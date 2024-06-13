@@ -5,35 +5,39 @@
       <!-- Primera ficha -->
       <div class="row mb-3">
 
-<div class="col-12 col-lg-6">
-  <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
-    <h5 class="titulo1 mt-3">Información General</h5>
-    <div class="row align-items-center">
-      <div class="col-4 col-md-3">
-        <p class="titulo2 text-center mt-2 mb-1">NÚMERO DE CONTRATO</p>
-        <p class="text-center mb-0">{{ contratoSeleccionado?.numero_contrato }}</p>
-      </div>
-      <div class="col-4">
-        <p class="titulo2 text-center mt-2 mb-1">NOMBRE DE PROYECTO</p>
-        <p class="text-center mb-0">{{ contratoSeleccionado?.nombre_proyecto }}</p>
-      </div>
-      <div class="col-4 text-center d-flex flex-column align-items-center justify-content-center">
-        <p class="titulo2 mt-2 mb-1" *ngIf="!tieneDeudas">NO TIENE DEUDAS</p>
-        <p class="titulo2 mt-2 mb-1" *ngIf="tieneDeudas">TIENE DEUDAS PENDIENTES</p>
-        <mat-icon class="mt-1" *ngIf="!tieneDeudas" style="font-size: 2rem; color: green;">sentiment_very_satisfied</mat-icon>
-        <mat-icon class="mt-1" *ngIf="tieneDeudas" style="font-size: 2rem; color: red;">sentiment_dissatisfied</mat-icon>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="col-12 col-lg-6">
+          <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
+            <h5 class="titulo1 mt-3">Información General</h5>
+            <div class="row align-items-center">
+              <div class="col-4 col-md-3">
+                <p class="titulo2 text-center mt-2 mb-1">NÚMERO DE CONTRATO</p>
+                <p class="text-center mb-0">{{ contratoSeleccionado?.numero_contrato }}</p>
+              </div>
+              <div class="col-4">
+                <p class="titulo2 text-center mt-2 mb-1">NOMBRE DE PROYECTO</p>
+                <p class="text-center mb-0">{{ contratoSeleccionado?.nombre_proyecto }}</p>
+              </div>
+              <div class="col-4 text-center d-flex flex-column align-items-center justify-content-center">
+                <p class="titulo2 mt-2 mb-1" *ngIf="!tieneDeudas">NO TIENE DEUDAS</p>
+                <p class="titulo2 mt-2 mb-1" *ngIf="tieneDeudas">TIENE DEUDAS PENDIENTES</p>
+                <mat-icon class="mt-1" *ngIf="!tieneDeudas"
+                  style="font-size: 2rem; color: green;">sentiment_very_satisfied</mat-icon>
+                <mat-icon class="mt-1" *ngIf="tieneDeudas"
+                  style="font-size: 2rem; color: red;">sentiment_dissatisfied</mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        
+
         <!-- Segunda ficha -->
         <div class="col-12 col-lg-6 mt-3 mt-lg-0">
           <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
             <h5 class="titulo1 ms-3 mt-3">Progreso de pago</h5>
             <div class="d-flex align-items-center mx-3">
-              <div class="progress" role="progressbar" aria-label="Animated striped example" [attr.aria-valuenow]="porcentajePagado" aria-valuemin="0" aria-valuemax="100" style="height: 10px; width: 100%;">
+              <div class="progress" role="progressbar" aria-label="Animated striped example"
+                [attr.aria-valuenow]="porcentajePagado" aria-valuemin="0" aria-valuemax="100"
+                style="height: 10px; width: 100%;">
                 <div class="progress-bar bg-success" [style.width.%]="porcentajePagado"></div>
               </div>
               <span class="percentage-label ms-2">{{ porcentajePagado.toFixed(2) }}%</span>
@@ -52,20 +56,21 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Tercera ficha -->
       <div class="row mb-3">
         <div class="col-12">
           <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
             <h5 class="titulo1 ms-3 mt-3">¿Tienes dificultades para pagar, y necesitas ayuda?</h5>
-            <p class="texto2 ms-3 mt-3">Ingrese al siguiente enlace y una de nuestras ejecutivas especializadas estará gustosa de atender sus consultas</p>
+            <p class="texto2 ms-3 mt-3">Ingrese al siguiente enlace y una de nuestras ejecutivas especializadas estará
+              gustosa de atender sus consultas</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
               <button class="boton1 ms-3 mb-2 me-4">AYUDA</button>
             </div>
           </div>
         </div>
       </div>
-      
+
       <!-- Cuarta ficha -->
       <div class="row mb-3">
         <div class="col-12">
@@ -80,7 +85,7 @@
                   <thead>
                     <tr>
                       <th class="titulo2" scope="col">#LETRAS</th>
-                      <th class="titulo2" scope="col">#CUOTA</th>
+                      <th class="titulo2" scope="col">CUOTA</th>
                       <th class="titulo2" scope="col">INTERÉS <br>VENCIDO</th>
                       <th class="titulo2" scope="col">MORA</th>
                       <th class="titulo2" scope="col">TOTAL A PAGAR</th>
@@ -92,9 +97,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let historial of getPaginatedList()" [ngClass]="{'cuota-pagada': historial.saldo === '0.00'}">
+                    <tr *ngFor="let historial of getPaginatedList()"
+                      [ngClass]="{'cuota-pagada': historial.saldo === '0.00'}">
                       <td>{{ historial.nombre }}</td>
-                      <td></td>
+                      <td>{{ historial.monto_programado }}</td>
                       <td>{{ historial.interes_compensatorio }}</td>
                       <td>{{ historial.mora }}</td>
                       <td>{{ historial.monto_programado }}</td>
