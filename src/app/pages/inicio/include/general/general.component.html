@@ -1,0 +1,216 @@
+
+<!--<div class="col-12 ">-->
+  <div class="panel">
+    <h4 class="titulo m-3">Mi resumen</h4>
+    <div class="container">
+      <!--primera fila-->
+      <div class="row">
+        <div class=" col-12 col-lg-6"><!--Primera ficha-->
+          <div class="ficha alt_ult_pag">
+            <p class="titulo1 ps-3 pt-3">Mis últimos pagos</p>
+            <ng-container *ngIf="listaLastPayment && listaLastPayment.length > 0; else noPayments">
+              <div *ngFor="let pago of listaLastPayment" class="mb-3">
+                <p class="titulo3 ps-3">PAGADO</p>
+                <div class="row">
+                  <div class="texto2 col-6 ps-4">{{ formatDate(pago.fecha_vcto) }}</div>
+                  <div class="col-6 pe-4 text-end titulo1">{{ formatCurrency(pago.monto_pagado) }}</div>
+                </div>
+                <p class="titulo3 ps-3">Cuota: {{ pago.numero_couta }}</p>
+                <hr class="mx-3">
+              </div>
+            </ng-container>
+            <ng-template #noPayments>
+              <p class="texto2 mt-3 ps-3">Aún no realiza ningún pago de sus letras</p>
+            </ng-template>
+          </div>
+          
+        </div>
+        <div class="col-12 col-lg-6 mt-3 mt-lg-0"><!--ficha 2-->
+          <div class="ficha alt_est_inm">
+            <!--contenido-->
+            <p class="titulo1 ms-3 mt-3">Estado de mi inmuebles</p>
+            <div class="row">
+              <div class="col-7">
+                <p class="texto2 ps-3">Gracias por confiar en nosotros,
+                  el estado actual es:<strong>Entrega de mi propiedad</strong></p>
+                <!--<p type="button" class="link-opacity-100-hover ps-3" (click)="setModulo('PAGOS')" id="link1">Ver mis deudas</p>-->
+
+              </div>
+              <div class="col-5">
+                <img src="../../../assets/calendario.png" alt="Bootstrap" class="logoCalendario">
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-3"><!--Tercera ficha-->
+          <div class="ficha alt_prox_ven">
+            <p class="titulo1 ps-3 pt-3">Mis próximas letras a pagar</p>
+            
+            <!-- Verifica si la lista está vacía o nula -->
+            <ng-container *ngIf="listaProximaLetra && listaProximaLetra.length > 0; else noPayments2">
+                <!-- Muestra solo los primeros tres registros -->
+                <div *ngFor="let letra of listaProximaLetra.slice(0, 3)" class="mb-3">
+                    <!-- Contenido de cada registro -->
+                    <p class="titulo2 ps-3">PRÓXIMO VENCIMIENTO</p>
+                    <div class="row">
+                        <div class="texto2 col-6 ps-4">{{ formatDate(letra.fecha_vcto) }}</div>
+                        <div class="titulo1 col-6 pe-4 text-end">{{ formatCurrency(letra.saldo) }}</div>
+                    </div>
+                    <p class="titulo2 ps-3">Cuota: {{ letra.numero_couta }}</p>
+                    <hr class="mx-3">
+                </div>
+                <!-- Verifica si la lista tiene más de tres elementos -->
+                <ng-container *ngIf="listaProximaLetra.length > 3">
+                    <!-- Botón "Ver más" -->
+                    <button class="link btn btn-link" (click)="showAll = true" *ngIf="!showAll">Ver más</button>
+        
+                    <!-- Muestra el resto de la lista si se hace clic en "Ver más" -->
+                    <div *ngIf="showAll">
+                        <div *ngFor="let letra of listaProximaLetra.slice(3)" class="mb-3">
+                            <!-- Contenido de cada registro -->
+                            <p class="titulo2 ps-3">PRÓXIMO VENCIMIENTO</p>
+                            <div class="row">
+                                <div class="texto2 col-6 ps-4">{{ formatDate(letra.fecha_vcto) }}</div>
+                                <div class="titulo1 col-6 pe-4 text-end">{{ formatCurrency(letra.saldo) }}</div>
+                            </div>
+                            <p class="titulo2 ps-3">Cuota: {{ letra.numero_couta }}</p>
+                            <hr class="mx-3">
+                        </div>
+                    </div>
+                    <!-- Botón "Ver menos" -->
+                    <button class="link btn btn-link" (click)="toggleShowAll()" *ngIf="showAll">Ver menos</button>
+                </ng-container>
+            </ng-container>
+        
+            <!-- Mensaje si la lista está vacía o nula -->
+            <ng-template #noPayments2>
+                <p class="texto2 mt-3 ps-3">Por el momento no tiene deudas</p>
+            </ng-template>
+        
+            <!-- Enlace para ver todas las deudas -->
+            <p class="text-end">
+              <a class="link-opacity-100-hover ps-3" (click)="setModulo('PAGOS')" id="link1">
+                Ver mis deudas
+              </a>
+            </p>
+        </div>
+        </div>
+        <div class="col-lg-6 mt-3"><!--cuarta ficha-->
+          <div class="ficha">
+            <!--contenido-->
+            <p class="titulo1 ms-3 mt-3">Preguntas frecuentes</p>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseTwo')">
+                    ¿Cuándo es la fecha de pago de las letras?
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <P class="texto2">
+                      La fecha de pago de las letras, se verifican en el cronograma que se encuentra adjunto a su
+                      contrato/compromiso.</P>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseTwo')">
+                    ¿Cuáles son los requisitos para realizar una cesión?
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <P class="texto2">
+                      Requisitos
+          
+                      La cesión procederá siempre y cuando, no se hayan cumplido lo siguientes requisitos de manera
+                      conjunta:
+                      La independización registral de la etapa en donde se encuentre el Lote.
+                      La cancelación del saldo precio de venta.
+                      Se debe presentar una copia del DNI vigente del cedente (propietario) y del cesionario
+                      (tercero interesado en adquirir propiedad).
+                      El cliente que realiza la solicitud de cesión debe estar al día en sus pagos.
+                      La ficha de cesión brindada por Menorca debe estar firmada por el cedente y el cesionario (Es
+                      requisito indispensable que se proceda con la firma del contato de cesión, la solicitud
+                      aceptada no acredita el otorgamiento de la cesión).
+                      El cesionario debe completar la ficha de conocimiento del cliente, la cual será brindada por
+                      Menorca.
+                      El cesionario debe presentar 2 recibos de servicios (por ejemplo: agua, luz, telefonia fija,
+                      etc.).
+                      Otros documentos que solicite la empresa en el proceso de evaluación.
+                      El costo será según el tarifario vigente.
+                      En caso el cesionario tenga el estado civil de casado:
+                      Debe presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta
+                      de matrimonio emitida por la Municipalidad.
+                      En caso el cesionario tenga el estado civil de casado pero con separación de patrimonios: Debe
+                      presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta de
+                      matrimonio emitida por la Municipalidad y adicionalmente deberá presentar la copia literal de
+                      la inscripción de la separación de patrimonios emitida por Registros Públicos.
+                      En caso el cesionario tenga el estado civil sea divorciado: Debe presentar la copia literal de
+                      la inscripción del divorcio emitida por Registros Públicos.
+                    </P>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseThree')">
+                    ¿Cuáles son los requisitos para realizar un refinamiento?
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <P class="texto2">
+                      Requisitos:
+                      El cliente debe presentear una copia del DNI vigente de todos los titulares.
+                      El cliente debe estar al día en los pagos.
+                      El trámite se solicita como mínimo con 15 días hábiles antes del próximo vencimiento de letra.
+                      Se debe completar la solicitud simple de refinanciamiento brindada por Menorca.
+                      Si el proceso es aceptado, el cliente deberá firmar las nuevas letras y la adenda que contenga
+                      el refinanciamiento (es requisito indispensable que se proceda con la firma de la adenda y las
+                      nuevas letras, la solicitud aceptada no acredita el otorgamiento del refinanciamento).
+                      El costo será según el tarifario vigente. Cabe aclarar, que a este monto se le tendrá que
+                      sumar los costos de retiro de letras, que son variables en función al caso.
+                      Si junto al refinanciamiento no amortiza su deuda (sujeto a variación según el tarifario
+                      vigente):
+                      Para el caso del contrato el costo de este trámite asciende a $300.00 dólares americanos.
+                      Para el caso del compromiso el costo asciende a $200.00 dólares americanos. Cabe aclarar, que
+                      a estos montos se le tendrá que sumar los costos de retiro de letras, que son variables en
+                      función al caso.
+                    </P>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div><!--fin de fila-->
+      <h4 class="titulo m-3">Novedades</h4>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="ficha">
+            <!--contenido-->
+            <p class="titulo1 ps-3 pt-3">Preguntas frecuentes</p>
+          </div>
+        </div>
+        <div class="col-lg-4 mt-3 mt-lg-0">
+          <div class="ficha">
+            <!--contenido-->
+            <p class="titulo1 ps-3 pt-3">Preguntas frecuentes</p>
+          </div>
+        </div>
+        <div class="col-lg-4 mt-3 mt-lg-0">
+          <div class="ficha">
+            <!--contenido-->
+            <p class="titulo1 ps-3 pt-3">Preguntas frecuentes</p>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div><!--Fin Panel-->
+<!--</div>-->

@@ -1,0 +1,328 @@
+
+.btn_act{
+    border: 3px solid #008755;
+    max-width: 175px;
+    color: #000000;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+}
+.btn_des{
+    color: #FFFFFF;
+}
+.btn_des:hover{
+    border: 3px solid #008755;
+    max-width: 175px;
+    border-radius: 15px;
+}
+.barra{
+    position:sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #008755;
+}
+.barraLogin{
+    position:sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #F2F2F2;
+}
+/*diseño linea login*/
+.switch{
+    text-align:justify;
+    display: flex;
+    height: 50px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center; 
+    border-radius: 50px;
+}
+@media (min-width: 992px){
+    .switch {
+        max-width:300px;
+    }
+}
+.container .outer{
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.outer #form{
+    width: 200%;
+    position: relative;
+    display: flex;
+    margin: auto;
+    transition: 0s ease-in-out;/*velocidad de cambio*/
+}
+#page {
+    margin: auto;
+    width: 100%;
+}
+/*diseño de pagos*/
+#ficha{
+    border: 2px solid #008755;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+}
+#panel{
+    border: 2px solid #008755;
+    background-color: #F2F2F2;
+    border-radius: 15px;
+    max-width: 1050px;
+}
+#barV{
+    border: 2px solid #000000;
+    background-image:url(../../../assets/fondo.png);
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    border-radius: 15px;
+}
+@media (min-width: 992px){
+    #barV {
+        max-width: 200px;
+    }
+}
+
+#text_barV{
+    font-weight: bold;
+    
+}
+#titulo{
+    font-size: 20px;
+    color: #008755;
+    font-weight: bold;
+}
+#titulo1{
+    font-size: 15px;
+    color: #008755;
+    font-weight: bold;
+}
+#titulo2{
+    font-size: 12px;
+    color: #000000;
+    font-weight: bold;
+}
+#titulo3{
+    font-size: 12px;
+    color: #33BA41;
+    font-weight: bold;
+}
+#titulo4{
+    font-size: 30px;
+    color: #008755;
+    font-weight: bold;
+    line-height: 1;
+}
+#texto1{
+    font-size: 12px;
+    color: #8D8D8D;
+    font-weight:lighter;
+    line-height: 1;
+}
+#texto2{
+    font-size: 18px;
+    color: #000000;
+    font-weight:normal;
+    line-height: 1;
+}
+#texto3{
+    font-size: 19px;
+    color: #000000 ;
+    font-weight:normal;
+    line-height: 2.5;
+    padding-left: 8px;
+}
+#texto4{
+    font-size: 14px;
+    color: #8D8D8D;
+    font-weight:lighter;
+    line-height: 1;
+}
+#link1{
+    font-size: 12px;
+    color: #007D4F;
+    font-weight:bold;
+    line-height: 1;
+}
+#link2{
+    font-size: 15px;
+    color: #007D4F;
+    font-weight:bold;
+    line-height: 1;
+}
+
+.boton1{
+    background-color: #ffff;
+    text-decoration: none;
+    color: #008755;
+    padding: 1px 40px;
+    font-size: 16px;
+    border: 2px solid #008755; 
+    border-radius: 15px;
+    cursor: pointer;
+}
+.boton1:hover{
+    background-color: #008755; 
+    color: #ffff; 
+}
+.boton2{
+    background-color: #008755;
+    text-decoration: none;
+    color: #ffff;
+    padding: 1px 40px;
+    font-size: 16px;
+    border: 2px solid #008755; 
+    border-radius: 15px;
+    cursor: pointer;
+}
+.boton2:hover{
+    background-color: #007D4F; 
+    color: #ffff; 
+}
+.boton3{
+    background-color: #008755;
+    font: weight 4px;
+    border: #008755;
+    text-decoration: none;
+    font-size: 16px;
+    color: #ffff;
+    padding: 8px 30px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.boton3:hover{
+    background-color: #007D4F; 
+    color: #ffff; 
+}
+.boton4{
+    background-color: #ffff;
+    text-decoration: none;
+    font-weight: bold;
+    color: #008755;
+    font-size: 16px;
+    border: 0px solid #008755; 
+    border-radius: 50px;
+    cursor: pointer;
+    height: 40px;
+    width:140px;
+}
+.logo{
+    padding-left: 10px;
+}
+.portada{
+    
+    background-image:url(../../../assets/portada.png);
+    border-radius: 15px;
+    height: 600px;
+    background-size:cover;
+    background-position: center center;
+
+}
+@media (min-width: 200px){
+    .portada {
+        max-width: 630px;
+    }
+}
+
+.formulario{
+    border-radius: 15px; 
+    background-color: #F2F2F2;
+    border: 2px solid #008755 ;
+    height: 600px;
+}
+@media (min-width: 200px){
+    .formulario {
+        max-width: 630px;
+    }
+}
+
+.elemento {
+    padding: 40px;
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+    .elemento {
+      padding: 10px; 
+    }
+  }
+
+.modal1{
+    border-radius: 15px; 
+    border: 2px solid #008755 ;
+    color: #000000;
+    width: auto;
+}
+.titulo_modal{
+    font-size: 12px;
+    color: #007D4F;
+    font-weight:bold;
+    line-height: 1;
+}
+/*estilos de cambio de contraseña*/
+.form_cambio {
+    border: 3px solid #007D4F;
+    border-radius: 15px;
+    background-color: #F2F2F2;
+    max-width: 800px;
+    min-width: 330px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.contraseña{
+    display: flex;
+    align-items: center;
+}
+.bi{
+    font-size: 30px;
+    transform: translate(-35px);
+    cursor: pointer;
+}
+/*------------*/
+/*Nuevo codigo*/
+.btn5{
+    font-size: 10px;
+    color: #008755;
+    background-color: #FFFFFF;
+    font-weight: bold; 
+}
+.btn5:hover{
+    background-color: #F2F2F2;
+    color: #008755;
+
+}
+.btn6{
+    color: #008755;
+    background-color: #FFFFFF;
+    font-weight: bold;
+    align-items: end;
+
+}
+.btn6:hover{
+    background-color: #F2F2F2;
+    color: #008755;
+
+}
+.linea{
+    border: 2px solid;
+}
+#texto5{
+    font-size: 19px;
+    color: #FFFFFF;
+    font-weight:normal;
+    line-height: 2.5;
+    padding-left: 8px;
+}
+.text_tabla{
+    font-size: 10px;
+}
+.texto8{
+    font-size: 16px;
+}
+
+

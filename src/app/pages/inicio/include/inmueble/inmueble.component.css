@@ -1,0 +1,144 @@
+
+.barra {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #008755;
+}
+.btn_act {
+    border: 3px solid #008755;
+    max-width: 175px;
+    color: #000000;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+}
+
+.btn_des {
+    color: #FFFFFF;
+}
+
+.btn_des:hover {
+    border: 3px solid #008755;
+    max-width: 175px;
+    border-radius: 15px;
+}
+
+.boton1 {
+    background-color: #ffff;
+    text-decoration: none;
+    color: #008755;
+    padding: 1px 40px;
+    font-size: 16px;
+    border: 2px solid #008755;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.boton1:hover {
+    background-color: #008755;
+    color: #ffff;
+}
+.btn_tabla{
+    background-color: #008755;
+    border-color:#026641 ;
+    color: #FFFFFF;
+    font-weight: bold;
+    size: 18px;
+    align-items: center;
+    width: 50px;
+    height: 30px;
+}
+.btn_tabla:hover{
+    background-color: #fafffd;
+    border-color: #008755;
+    color: #000000;
+}
+
+/*seccion de titulos*/
+.titulo {
+    font-size: 20px;
+    color: #008755;
+    font-weight: bold;
+}
+.titulo1 {
+    font-size: 15px;
+    color: #008755;
+    font-weight: bold;
+}
+.titulo2 {
+    font-size: 12px;
+    color: #000000;
+    font-weight: bold;
+}
+
+/*Seccion de textos*/
+.texto1{
+    font-size: 10px;
+    color: #8D8D8D;
+    font-weight: lighter;
+    line-height: 1;
+}
+.texto2 {/*este sera mi texto estandar*/
+    font-size: 15px;
+    color: #8D8D8D;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1;
+}
+
+/*seccion de link*/
+.link{
+    font-size: 14px;
+    color:#008755;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*seccion de rectangulos*/
+.panel {
+    border: 2px solid #008755;
+    background-color: #F2F2F2 !important;
+    border-radius: 15px;
+    max-width: 1050px;
+}
+.ficha {
+    border: 2px solid #008755 !important;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+}
+
+.cuota-pagada {
+    background-color: #0be796; /* Verde */
+    /* color: #ffffff; Texto blanco */
+  }
+  .overflow-x-auto {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  
+  /* Establece un ancho mínimo para la tabla */
+  .table {
+    min-width: 100%;
+  }
+  
+  /* Agrega un padding inferior para evitar que el contenido se solape con la barra de desplazamiento */
+  .table-wrapper {
+    padding-bottom: 20px; /* Puedes ajustar el valor según tus necesidades */
+  }
+
+  .percentage-label {
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #28a745; /* Este es el color de la barra de progreso */
+    margin-left: 0.5rem;
+  }
+  
+  .col-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text-center p {
+    text-align: center;
+  }

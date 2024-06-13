@@ -1,0 +1,16 @@
+<div class="dialog-container">
+    <button class="close-button" (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="dialog-content">
+      <div class="icon">
+        <mat-icon>info</mat-icon>
+      </div>
+      <div class="title">
+        <b>{{data.alert.title}}</b>
+      </div>
+      <div class="message">
+        {{data.alert.message}}
+      </div>
+    </div>
+  </div>

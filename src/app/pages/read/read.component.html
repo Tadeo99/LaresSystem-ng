@@ -1,0 +1,208 @@
+<!--Navar-->
+<!--Navar-->
+<nav class="navbar navbar-expand-lg barra py-3 mb-5">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/logo.png" alt="Bootstrap" class="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+
+        <div class="dropdown" (click)="toggleDropdown()">
+          <button class="btn btn5 dropdown-toggle" type="button" id="dropdownMenuButton"
+            [attr.aria-expanded]="dropdownOpen ? 'true' : 'false'" (click)="toggleDropdownAndSelect()">
+
+            <div class="row">
+              <div class="col">{{ contratoSeleccionado?.nombre_proyecto }}</div>
+              <div class="col">
+                Et: {{ contratoSeleccionado?.nombre }} <br>
+                Mz: {{ contratoSeleccionado?.Manzana }} <br>
+                Lt: {{ contratoSeleccionado?.Lote }}
+              </div>
+            </div>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" [class.show]="dropdownOpen">
+            <li *ngFor="let contrato of listaContrato">
+              <a class="dropdown-item" (click)="seleccionarContrato($event, contrato);">
+                <div class="row">
+                  <div class="col">{{ contrato.nombre_proyecto }}</div>
+                  <div class="col">
+                    Et: {{ contrato.nombre }} <br>
+                    Mz: {{ contrato.Manzana }} <br>
+                    Lt: {{ contrato.Lote }}
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+
+        <div class="dropdown" *ngIf="usuario">
+          <button class="btn btn6 dropdown-toggle" type="button" (click)="toggleDropdownSession()"
+            aria-expanded="false">
+            <i class="bi-person my-3"></i> {{ usuario.cliente }}
+          </button>
+          <ul class="dropdown-menu" [class.show]="dropdownSession">
+            <li><a class="dropdown-item" (click)="cambiarContrasena()">Cambiar contraseña</a></li>
+            <li><a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a></li>
+          </ul>
+        </div>
+
+        <!--lista desplegable-->
+        <hr class="linea d-lg-none">
+        <a class="nav-link d-lg-none" id="texto5" (click)="viewPageInicio()"><i
+            class="bi-grid-1x2-fill me-3"></i>Inicio</a>
+        <a class="nav-link d-lg-none" id="texto5" (click)="openView(2)"><i class="bi-piggy-bank-fill me-3"></i>Mis
+          pagos</a>
+        <a class="nav-link d-lg-none" id="texto5"><i class="bi-house-fill me-3"></i>Mis inmuebles</a>
+        <a class="nav-link d-lg-none" id="texto5" href="#"><i class="bi-question-lg me-3"></i>Pregusntas frecuentes</a>
+        <hr class="linea d-lg-none">
+        <a class="nav-link d-lg-none" id="texto5" href="#"><i class="bi-person me-3"></i>Cerrar sesion</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!--barra vertical-->
+
+<div class="container"><!--sticky-top-->
+  <div class="row">
+    <div class="col-md-12 col-lg-2">
+      <div id="barV" style="height: 40rem;">
+        <div class="container ps-2 py-5">
+          <p class="btn_des ps-3 py-2" type="button" id="text_barV" (click)="viewPageInicio()"><i
+              class="bi bi-grid-1x2-fill"></i> Inicio
+          </p>
+          <p class="btn_act ps-3 py-2" type="button" id="text_barV" (click)="openView(2)"><i
+              class="bi bi-piggy-bank-fill"></i> Mis
+            pagos</p>
+          <p class="btn_des ps-3 py-2" type="button" id="text_barV" href="#"><i class="bi bi-house-fill"></i> Mis
+            inmuebles</p>
+          <p class="btn_des ps-3 py-2" type="button" id="text_barV" href="#"><i
+              class="bi bi-question-lg"></i>Preguntas<br>frecuentes</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col col">
+      <div id="panel">
+        <h4 class="m-3" id="titulo">Mis pagos</h4>
+        <div class="container">
+          <!--primera fila-->
+          <div class="row">
+            <!--Primera ficha-->
+            <div class="col-6">
+              <div id="ficha">
+                <h5 class="ms-3 mt-3" id="titulo1">Informacion General</h5>
+                <div class="row">
+                  <div class="col-4">
+                    <p class="ms-3 mt-3" id="titulo2">NÚMERO DE CONTRATO</p>
+                    <P class="ms-3">{{contratoSeleccionado?.numero_contrato}}</P><!--aqui debe ser automatico-->
+                  </div>
+                  <div class="col-4">
+                    <p class="mt-3" id="titulo2">TIPO DE PROYECTO</p>
+                    <P class="mt-3">{{contratoSeleccionado?.nombre_proyecto }}</P><!--aqui debe ser automatico-->
+                  </div>
+                  <div class="col-4">
+                    <p class="mt-3" id="titulo2">NO TIENE DEUDAS</p>
+                    <P class="mt-3">ICONO</P><!--aqui debe ser automatico-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Segunda ficha-->
+            <div class="col-6">
+              <div id="ficha">
+                <p class="ms-3 mt-3" id="titulo1">Progreso de pago</p>
+                <div class="progress mx-3" role="progressbar" aria-label="Animated striped example" aria-valuenow="75"
+                  aria-valuemin="0" aria-valuemax="100" style="height: 10px">
+                  <div class="progress-bar bg-success" style="width: 75%"></div>
+                </div>
+                <div class="row">
+                  <div class="col-6 text-start ps-4 mt-3">
+                    <p id="titulo2">ABONO A LA FECHA:</p>
+                    <P id="titulo2">USD 141,090.11</P><!--valor automatico-->
+                    <P id="texto1">Última actualizacion 10/01/2024</P><!--valor automatico-->
+                  </div>
+                  <div class="col-6 text-end pe-5 mt-3">
+                    <p id="titulo2">MONTO TOTAL:</p>
+                    <P id="titulo2">USD 156,766.79</P><!--valor automatico-->
+                    <P id="texto1">2/4 Cuotas pagadas</P><!--valor automatico-->
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <br>
+          <!--tercera Fila-->
+          <div class="col-12">
+            <div id="ficha">
+              <p class="ms-3 mt-3" id="titulo1">¿Tienes dificultades para pagar, y necesitas ayuda?</p>
+              <p class="ms-3 mt-3" id="texto1">Ingrese al siguiente enlace y una de nuestras ejecutivas especalizadas
+                estara<br>
+                gustosa de atender sus consultas</p>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="boton1 ms-3 mb-2 me-4">AYUDA</button>
+              </div>
+            </div>
+          </div>
+          <br>
+          <!--cuarta Fila-->
+          <div class="col-12">
+            <div id="ficha">
+              <p class="ms-3 mt-3" id="titulo1">Historial de pagos</p>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="boton1 ms-3 mb-2 me-4">COMPLETADO</button>
+              </div>
+              <div class="overflow-x-auto"><!--scroll-->
+                <table class="table table-striped text-center">
+                  <thead>
+                    <tr>
+                      <th scope="col">#LETRAS</th>
+                      <th scope="col">#CUOTA</th>
+                      <th scope="col">INTERÉS <br>VENCIDO</th>
+                      <th scope="col">MORA</th>
+                      <th scope="col">TOTAL A PAGAR</th>
+                      <th scope="col">FECHA DE VCTO.</th>
+                      <th scope="col">PAGADO</th>
+                      <th scope="col">SALDO</th>
+                      <th scope="col">FECHA DE PAGO</th>
+                      <th scope="col">BOLETA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let historial of listaHistorial">
+                      <td>{{ historial.nombre }}</td>
+                      <td>{{ historial.numero_contrato }}</td>
+                      <td>{{ historial.interes_compensatorio }}</td>
+                      <td>{{ historial.mora }}</td>
+                      <td>{{ historial.monto_pagado }}</td>
+                      <td>{{ formatDate(historial.fecha_vcto) }}</td>
+                      <td>{{ historial.monto_pagado }}</td>
+                      <td>{{ historial.saldo }}</td>
+                      <td>{{ formatDate(historial.fecha_pago) }}</td>
+                      <td><a href="#">Ver</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><!--fin scroll-->
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
+<br>
+<br>
+<br>
+<br>

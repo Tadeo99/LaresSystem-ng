@@ -1,0 +1,100 @@
+.barra {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #008755;
+}
+
+/*Seccion de botones*/
+.btn_act {
+    border: 3px solid #008755;
+    max-width: 175px;
+    color: #000000;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+}
+
+.btn_des {
+    color: #FFFFFF;
+}
+
+.btn_des:hover {
+    border: 3px solid #008755;
+    max-width: 175px;
+    border-radius: 15px;
+}
+/*Seccion de rectangulos*/
+.panel {
+    border: 2px solid #008755;
+    background-color: #F2F2F2;
+    border-radius: 15px;
+    max-width: 1050px;
+}
+.ficha {
+    border: 2px solid #008755;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+}
+/*Seccion de titulos*/
+.titulo{
+    font-size: 20px;
+    color: #008755;
+    font-weight: bold;
+}
+.titulo1 {
+    font-size: 15px;
+    color: #008755;
+    font-weight: bold;
+}
+.titulo2 {
+    font-size: 12px;
+    color: #000000;
+    font-weight: bold;
+}
+.titulo3 {
+    font-size: 12px;
+    color: #33BA41;
+    font-weight: bold;
+}
+/*Seccion de texto*/
+.texto1 {
+    font-size: 12px;
+    color: #8D8D8D;
+    font-weight: lighter;
+    line-height: 1;
+}
+.texto2 {/*este sera mi texto estandar*/
+    font-size: 15px;
+    color: #000000;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1;
+}
+
+/*seccion de link*/
+.link{
+    font-size: 14px;
+    color:#008755;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*altura de paneles*/
+.alt_prox_ven{/**altura de la ficha de proximos a vences en "inicio"*/
+    min-height: 180px;
+}
+
+.alt_est_inm{/**altura de la ficha de estado inmueble en "inicio"*/
+    min-height: 180px;
+}
+.alt_ult_pag{/**altura de la ficha de estado inmueble en "inicio"*/
+    min-height: 180px;
+}
+.link-opacity-100-hover {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    cursor: pointer; /* Cambia el cursor a puntero */
+  }
+  
+  .link-opacity-100-hover:hover {
+    opacity: 1;
+  }

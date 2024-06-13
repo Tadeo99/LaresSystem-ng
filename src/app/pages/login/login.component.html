@@ -1,0 +1,150 @@
+<body>
+  <!--Navar-->
+  <nav class="navbar navbar-expand-lg barraLogin py-3 mb-5">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../../../assets/logo2.png" alt="Bootstrap" class="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-item d-none d-lg-block">
+            <!--<button type="button" class="boton2 btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              ?
+            </button>-->
+            <!-- Modal 
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content modal1">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5 titulo_modal" id="staticBackdropLabel">Importante</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>¿Necesita ayuda para ingresar? Por favor
+                      póngase en contacto con nosotros:</p>
+                    <p>Email:</p>
+                    <p>Call center</p>
+                  </div>
+                  <div class="text-center mb-3">
+                    <button type="button" class="boton2 text-center" data-bs-dismiss="modal">Aceptar</button>
+                  </div>
+                </div>
+              </div>
+            </div>--><!--din modal-->
+          </a>
+          <a class="nav-item">
+            <a type="button" href="/login" class="boton1 d-none d-lg-block mx-2">INGRESA</a>
+          </a>
+          <a class="nav-item ">
+            <a type="button" (click)="openView(3)" class="boton2 d-none d-lg-block">REGISTRATE</a>
+          </a>
+          <a class="nav-link d-lg-none" id="texto3" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop1">Informacion</a>
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content modal1">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5 titulo_modal" id="staticBackdropLabel">Importante</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>¿Necesita ayuda para ingresar? Por favor
+                    póngase en contacto con nosotros:</p>
+                  <p>Email:</p>
+                  <p>Call center</p>
+                </div>
+                <div class="text-center mb-3">
+                  <button type="button" class="boton2 text-center" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div><!--din modal-->
+          <a class="nav-link d-lg-none" id="texto3" href="#">Ingreso</a>
+          <a class="nav-link d-lg-none" id="texto3" href="#">Registro</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!--panel-->
+  <div class="container">
+    <div class="row">
+      <div class="col d-none d-md-block">
+        <div class="portada">
+        </div>
+      </div>
+
+      <div class="col"><!--inicio del formulario-->
+        <div class="formulario elemento">
+          
+          <div class="container">
+            <p class="mb-5" id="titulo4">Ingreso a<br>Portales Lares</p>
+            <!--cambio de formulario
+            <div class="relleno">
+              <div class="form-box">
+                <div class="button-box1">
+                  <div id="btn0"></div>
+                  <button type="button" class="toggle-btn1 login" onclick="leftClick(),tab1();">Documento</button>
+
+                  <button type="button" class="toggle-btn1 signup" onclick="rightClick(),tab2();">Celular</button>
+                </div>
+              </div>
+            </div>-->
+
+            <div class="outer mt-5">
+              <form class="needs-validation" novalidate (ngSubmit)="login()" #formulario="ngForm">
+                <div class="input-group">
+                  <select class="form-select mt-3" id="tipoDocumento" [(ngModel)]="tipoDocumento" name="tipoDocumento"
+                    required
+                    [ngClass]="{'is-invalid': formulario.submitted && (tipoDocumento === 'T' || !tipoDocumento)}">
+                    <option selected disabled value="T">Tipo de documento</option>
+                    <option value="DNI">DNI</option>
+                    <option value="CE">CE</option>
+                    <option value="RUC">RUC</option>
+                    <option value="PASAPORTE">Pasaporte</option>
+                  </select>
+                  <div *ngIf="formulario.submitted && (tipoDocumento === 'T' || !tipoDocumento)"
+                    class="invalid-feedback">
+                    Debes seleccionar un tipo de documento válido
+                  </div>
+                </div>
+                <div class="input-group">
+                  <input type="text" class="form-control mt-3" id="numeroDocumento" [(ngModel)]="numeroDocumento"
+                    name="numeroDocumento" aria-label="Text input with dropdown button" required
+                    [ngClass]="{'is-invalid': formulario.submitted && formulario.controls['numeroDocumento'].invalid}">
+                  <div *ngIf="formulario.submitted && formulario.controls['numeroDocumento']?.errors?.['required']"
+                    class="invalid-feedback">
+                    Debes ingresar el número de documento
+                  </div>
+                </div>
+                <div class="input-group">
+                  <input type="password" class="form-control mt-3" id="password" [(ngModel)]="password" name="password"
+                    aria-label="Text input with dropdown button" required
+                    [ngClass]="{'is-invalid': formulario.submitted && formulario.controls['password'].invalid}">
+                  <div *ngIf="formulario.submitted && formulario.controls['password']?.errors?.['required']"
+                    class="invalid-feedback">
+                    Debes ingresar la contraseña
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <button class="boton3 my-5" type="submit">INICIAR SESIÓN</button>
+                </div>
+                <p class="text-end"><a id="link2" class="link-opacity-100-hover" href="#">¿Olvidaste tu contraseña?</a>
+                </p><!--link-->
+                <p class="text-end"><a id="link2" class="link-opacity-100-hover" href="/registro">¿Aún no estás
+                    registrado? Registrar aquí</a></p>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>

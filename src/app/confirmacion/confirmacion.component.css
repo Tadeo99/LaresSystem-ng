@@ -1,0 +1,310 @@
+a {
+    text-decoration: none;
+}
+
+.relleno{
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos hijos */
+    justify-content: center; /* Centra horizontalmente los elementos hijos */
+    border-radius: 30px;
+    width: 310px; /* Cambiado a 300px */
+    height: 55px;
+    margin: 35px auto;
+    background: #008755;
+}
+
+.button-box1 {
+    width: 300px; /* Cambiado a 300px */
+    margin: 40px auto;
+    position: relative;
+    border-radius: 30px;
+    background: #008755;
+}
+.toggle-btn1{
+    padding:10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    text-align: center; 
+    font-weight: bold;
+    font-size: 17px;
+    color: #bbbbbb;
+}
+
+#btn0{
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 150px; /* Ajustado a 150px */
+    height: 100%;
+    background:#fff;
+    border-radius: 30px;
+    transition: .5s;
+}
+
+/** Estilos **/
+/*************/
+
+
+.btn_act{
+    border: 3px solid #008755;
+    max-width: 175px;
+    color: #000000;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+}
+.btn_des{
+    color: #FFFFFF;
+}
+.btn_des:hover{
+    border: 3px solid #008755;
+    max-width: 175px;
+    border-radius: 15px;
+}
+.barra{
+    position:sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #008755;
+    height: 70px; 
+}
+.barraLogin{
+    background-color: #F2F2F2;
+}
+/*diseño linea login*/
+.switch{
+    text-align:justify;
+    display: flex;
+    height: 50px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center; 
+    border-radius: 50px;
+}
+@media (min-width: 992px){
+    .switch {
+        max-width:300px;
+    }
+}
+.container .outer{
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.outer #form{
+    width: 200%;
+    position: relative;
+    display: flex;
+    margin: auto;
+    transition: 0s ease-in-out;/*velocidad de cambio*/
+}
+#page {
+    margin: auto;
+    width: 100%;
+}
+/*diseño de pagos*/
+#ficha{
+    border: 2px solid #008755;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+}
+#panel{
+    border: 2px solid #008755;
+    background-color: #F2F2F2;
+    border-radius: 15px;
+    max-width: 1050px;
+}
+#barV{
+    border: 2px solid #000000;
+    background-image:url(../../assets/fondo.png);
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    border-radius: 15px;
+}
+@media (min-width: 992px){
+    #barV {
+        max-width: 200px;
+    }
+}
+
+#text_barV{
+    font-weight: bold;
+    
+}
+#titulo{
+    font-size: 20px;
+    color: #008755;
+    font-weight: bold;
+}
+#titulo1{
+    font-size: 15px;
+    color: #008755;
+    font-weight: bold;
+}
+#titulo2{
+    font-size: 12px;
+    color: #000000;
+    font-weight: bold;
+}
+#titulo3{
+    font-size: 12px;
+    color: #33BA41;
+    font-weight: bold;
+}
+#titulo4{
+    font-size: 30px;
+    color: #008755;
+    font-weight: bold;
+    line-height: 1;
+}
+#texto1{
+    font-size: 12px;
+    color: #8D8D8D;
+    font-weight:lighter;
+    line-height: 1;
+}
+#texto2{
+    font-size: 18px;
+    color: #000000;
+    font-weight:normal;
+    line-height: 1;
+}
+#texto3{
+    font-size: 14px;
+    color: #000000;
+    line-height: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#texto4{
+    font-size: 14px;
+    color: #8D8D8D;
+    font-weight:lighter;
+    line-height: 1;
+}
+#link1{
+    font-size: 12px;
+    color: #007D4F;
+    font-weight:bold;
+    line-height: 1;
+}
+#link2{
+    font-size: 15px;
+    color: #007D4F;
+    font-weight:bold;
+    line-height: 1;
+}
+
+.boton1{
+    background-color: #ffff;
+    text-decoration: none;
+    color: #008755;
+    padding: 1px 40px;
+    font-size: 16px;
+    border: 2px solid #008755; 
+    border-radius: 15px;
+    cursor: pointer;
+}
+.boton1:hover{
+    background-color: #008755; 
+    color: #ffff; 
+}
+.boton2{
+    background-color: #008755;
+    text-decoration: none;
+    color: #ffff;
+    padding: 1px 40px;
+    font-size: 16px;
+    border: 2px solid #008755; 
+    border-radius: 15px;
+    cursor: pointer;
+}
+.boton2:hover{
+    background-color: #007D4F; 
+    color: #ffff; 
+}
+.boton3{
+    background-color: #008755;
+    font: weight 4px;
+    border: #008755;
+    text-decoration: none;
+    font-size: 16px;
+    color: #ffff;
+    padding: 8px 30px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.boton3:hover{
+    background-color: #007D4F; 
+    color: #ffff; 
+}
+.boton4{
+    background-color: #ffff;
+    text-decoration: none;
+    font-weight: bold;
+    color: #008755;
+    font-size: 16px;
+    border: 0px solid #008755; 
+    border-radius: 50px;
+    cursor: pointer;
+    height: 40px;
+    width:140px;
+}
+.logo{
+    padding-left: 10px;
+}
+.portada{
+    
+    background-image:url(../../assets/portada.png);
+    border-radius: 15px;
+    height: 600px;
+    background-size:cover;
+    background-position: center center;
+
+}
+@media (min-width: 200px){
+    .portada {
+        max-width: 630px;
+    }
+}
+
+.formulario{
+    border-radius: 15px; 
+    background-color: #F2F2F2;
+    border: 2px solid #008755 ;
+    height: 600px;
+}
+@media (min-width: 200px){
+    .formulario {
+        max-width: 630px;
+    }
+}
+
+.elemento {
+    padding: 40px;
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+    .elemento {
+      padding: 10px; 
+    }
+  }
+
+.modal1{
+    border-radius: 15px; 
+    border: 2px solid #008755 ;
+    color: #000000;
+    width: auto;
+}
+.titulo_modal{
+    font-size: 12px;
+    color: #007D4F;
+    font-weight:bold;
+    line-height: 1;
+}
