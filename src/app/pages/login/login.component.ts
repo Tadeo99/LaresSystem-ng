@@ -34,34 +34,36 @@ export class LoginComponent {
   }
 
   login() {
-    const params = {
-      tipoDocumento: this.tipoDocumento,
-      numeroDocumento: this.numeroDocumento,
-      password: this.password,
-    };
-    this.service.login(params).subscribe((response: any) => {
-      if (!response.isError) {
-        if (response.pagination === 'CHANGES PASSWORD') {
-          this.viewDetail('change-password');
+    if(this.tipoDocumento && this.numeroDocumento && this.tipoDocumento != "T" ){
+      const params = {
+        tipoDocumento: this.tipoDocumento,
+        numeroDocumento: this.numeroDocumento,
+        password: this.password,
+      };
+      this.service.login(params).subscribe((response: any) => {
+        if (!response.isError) {
+          if (response.pagination === 'CHANGES PASSWORD') {
+            this.viewDetail('change-password');
+          } else {
+            this.viewDetail('inicio');
+          }
+          this.usuario = new Usuario(
+            response.listaResultado.documento_cliente,
+            response.listaResultado.tipo_documento,
+            response.listaResultado.nombre,
+            response.listaResultado.cliente,
+            response.listaResultado.telefono,
+            response.listaResultado.celulares,
+            response.listaResultado.usuario,
+            ''
+          );
+          localStorage.clear();
+          this.usuarioService.setUsuario(this.usuario);
         } else {
-          this.viewDetail('inicio');
+          this.openModalError(response.mensajeError);
         }
-        this.usuario = new Usuario(
-          response.listaResultado.documento_cliente,
-          response.listaResultado.tipo_documento,
-          response.listaResultado.nombre,
-          response.listaResultado.cliente,
-          response.listaResultado.telefono,
-          response.listaResultado.celulares,
-          response.listaResultado.usuario,
-          ''
-        );
-        localStorage.clear();
-        this.usuarioService.setUsuario(this.usuario);
-      } else {
-        this.openModalError(response.mensajeError);
-      }
-    });
+      });
+    }
   }
 
   validaPagina() {

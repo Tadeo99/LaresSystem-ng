@@ -122,7 +122,7 @@
               </div>
             </div>
             <div class="input-group">
-              <input type="text" class="form-control mt-3" id="numeroDocumento" [(ngModel)]="numeroDocumento"
+              <input type="text" placeholder="Ingrese Número de documento" class="form-control mt-3" id="numeroDocumento" [(ngModel)]="numeroDocumento"
                 name="numeroDocumento" aria-label="Text input with dropdown button" required
                 [ngClass]="{'is-invalid': formulario.submitted && formulario.controls['numeroDocumento'].invalid}">
               <div *ngIf="formulario.submitted && formulario.controls['numeroDocumento']?.errors?.['required']"
