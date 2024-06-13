@@ -39,6 +39,9 @@ export class RegistroComponent {
     const dialogRef = this.dialog.open(ModalMessageComponent, {
       width: '400px', data: { success: {message: mensaje}}
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.openView(1);
+    });
   }
 
   openMsgExito(message: string) {
