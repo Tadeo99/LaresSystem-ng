@@ -30,14 +30,16 @@
             <!--contenido-->
             <p class="titulo1 ms-3 mt-3">Estado de mi inmuebles</p>
             <div class="row">
-              <div class="col-7">
+              <div class="col-6">
                 <p class="texto2 ps-3">Gracias por confiar en nosotros,
                   el estado actual es:<strong>Entrega de mi propiedad</strong></p>
                 <!--<p type="button" class="link-opacity-100-hover ps-3" (click)="setModulo('PAGOS')" id="link1">Ver mis deudas</p>-->
 
               </div>
-              <div class="col-5">
-                <img src="../../../assets/calendario.png" alt="Bootstrap" class="logoCalendario">
+              <div class="col-6">
+                <div class="container-fluid me-4">
+                  <div class="container imgCalendario"></div>
+                </div>
               </div>
             </div>
             <br>
@@ -90,7 +92,7 @@
         
             <!-- Enlace para ver todas las deudas -->
             <p class="text-end">
-              <a class="link-opacity-100-hover ps-3" (click)="setModulo('PAGOS')" id="link1">
+              <a class="link link-opacity-100-hover px-3" (click)="setModulo('PAGOS')" id="link1">
                 Ver mis deudas
               </a>
             </p>
@@ -103,11 +105,11 @@
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseTwo')">
+                  <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseOne')">
                     ¿Cuándo es la fecha de pago de las letras?
                   </button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <P class="texto2">
                       La fecha de pago de las letras, se verifican en el cronograma que se encuentra adjunto a su
@@ -125,33 +127,46 @@
                   <div class="accordion-body">
                     <P class="texto2">
                       Requisitos
-          
-                      La cesión procederá siempre y cuando, no se hayan cumplido lo siguientes requisitos de manera
-                      conjunta:
-                      La independización registral de la etapa en donde se encuentre el Lote.
-                      La cancelación del saldo precio de venta.
-                      Se debe presentar una copia del DNI vigente del cedente (propietario) y del cesionario
-                      (tercero interesado en adquirir propiedad).
-                      El cliente que realiza la solicitud de cesión debe estar al día en sus pagos.
-                      La ficha de cesión brindada por Menorca debe estar firmada por el cedente y el cesionario (Es
-                      requisito indispensable que se proceda con la firma del contato de cesión, la solicitud
-                      aceptada no acredita el otorgamiento de la cesión).
-                      El cesionario debe completar la ficha de conocimiento del cliente, la cual será brindada por
-                      Menorca.
-                      El cesionario debe presentar 2 recibos de servicios (por ejemplo: agua, luz, telefonia fija,
-                      etc.).
-                      Otros documentos que solicite la empresa en el proceso de evaluación.
-                      El costo será según el tarifario vigente.
-                      En caso el cesionario tenga el estado civil de casado:
-                      Debe presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta
-                      de matrimonio emitida por la Municipalidad.
-                      En caso el cesionario tenga el estado civil de casado pero con separación de patrimonios: Debe
-                      presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta de
-                      matrimonio emitida por la Municipalidad y adicionalmente deberá presentar la copia literal de
-                      la inscripción de la separación de patrimonios emitida por Registros Públicos.
-                      En caso el cesionario tenga el estado civil sea divorciado: Debe presentar la copia literal de
-                      la inscripción del divorcio emitida por Registros Públicos.
                     </P>
+                      <ul>
+                        <li> La cesión procederá siempre y cuando, no se hayan cumplido lo siguientes requisitos de manera
+                          conjunta:
+                          <ol>
+                            <li>La independización registral de la etapa en donde se encuentre el Lote.</li>
+                            <li>La cancelación del saldo precio de venta.</li>
+                          </ol>
+                        </li>
+                        <li> Se debe presentar una copia del DNI vigente del cedente (propietario) y del cesionario
+                          (tercero interesado en adquirir propiedad).
+                        </li>
+                        <li>El cliente que realiza la solicitud de cesión debe estar al día en sus pagos.</li>
+                        <li>La ficha de cesión brindada por Lares debe estar firmada por el cedente y el cesionario (Es
+                          requisito indispensable que se proceda con la firma del contato de cesión, la solicitud
+                          aceptada no acredita el otorgamiento de la cesión).
+                        </li>
+                        <li>El cesionario debe completar la ficha de conocimiento del cliente, la cual será brindada por
+                          Lares.
+                        </li>
+                        <li>El cesionario debe presentar 2 recibos de servicios (por ejemplo: agua, luz, telefonia fija,
+                          etc.).
+                        </li>
+                        <li>Otros documentos que solicite la empresa en el proceso de evaluación.</li>
+                        <li>El costo será según el tarifario vigente.</li>
+                        <li>En caso el cesionario tenga el estado civil de casado:
+                          <ol>
+                            <li>Debe presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta
+                              de matrimonio emitida por la Municipalidad.
+                            </li>
+                            <li> En caso el cesionario tenga el estado civil de casado pero con separación de patrimonios: Debe
+                              presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta de
+                              matrimonio emitida por la Municipalidad y adicionalmente deberá presentar la copia literal de
+                              la inscripción de la separación de patrimonios emitida por Registros Públicos.
+                            </li>
+                          </ol>
+                        </li>
+                        <li>En caso el cesionario tenga el estado civil sea divorciado: Debe presentar la copia literal de
+                          la inscripción del divorcio emitida por Registros Públicos.</li>
+                      </ul>
                   </div>
                 </div>
               </div>
@@ -163,24 +178,27 @@
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <P class="texto2">
+                    <P class="texto2"></P>
                       Requisitos:
-                      El cliente debe presentear una copia del DNI vigente de todos los titulares.
-                      El cliente debe estar al día en los pagos.
-                      El trámite se solicita como mínimo con 15 días hábiles antes del próximo vencimiento de letra.
-                      Se debe completar la solicitud simple de refinanciamiento brindada por Menorca.
-                      Si el proceso es aceptado, el cliente deberá firmar las nuevas letras y la adenda que contenga
-                      el refinanciamiento (es requisito indispensable que se proceda con la firma de la adenda y las
-                      nuevas letras, la solicitud aceptada no acredita el otorgamiento del refinanciamento).
-                      El costo será según el tarifario vigente. Cabe aclarar, que a este monto se le tendrá que
-                      sumar los costos de retiro de letras, que son variables en función al caso.
-                      Si junto al refinanciamiento no amortiza su deuda (sujeto a variación según el tarifario
-                      vigente):
-                      Para el caso del contrato el costo de este trámite asciende a $300.00 dólares americanos.
-                      Para el caso del compromiso el costo asciende a $200.00 dólares americanos. Cabe aclarar, que
-                      a estos montos se le tendrá que sumar los costos de retiro de letras, que son variables en
-                      función al caso.
-                    </P>
+                      <ul>
+                        <li>El cliente debe presentear una copia del DNI vigente de todos los titulares.</li>
+                        <li>El cliente debe estar al día en los pagos.</li>
+                        <li>El trámite se solicita como mínimo con 15 días hábiles antes del próximo vencimiento de letra.
+                          Se debe completar la solicitud simple de refinanciamiento brindada por Lares.</li>
+                        <li>Si el proceso es aceptado, el cliente deberá firmar las nuevas letras y la adenda que contenga
+                          el refinanciamiento (es requisito indispensable que se proceda con la firma de la adenda y las
+                          nuevas letras, la solicitud aceptada no acredita el otorgamiento del refinanciamento).</li>
+                        <li>El costo será según el tarifario vigente. Cabe aclarar, que a este monto se le tendrá que
+                          sumar los costos de retiro de letras, que son variables en función al caso.</li>
+                        <li>Si junto al refinanciamiento no amortiza su deuda (sujeto a variación según el tarifario
+                          vigente):</li>
+                          <ol>
+                            <li>Para el caso del contrato el costo de este trámite asciende a $300.00 dólares americanos.</li>
+                            <li>Para el caso del compromiso el costo asciende a $200.00 dólares americanos. Cabe aclarar, que
+                              a estos montos se le tendrá que sumar los costos de retiro de letras, que son variables en
+                              función al caso.</li>
+                          </ol>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -192,25 +210,49 @@
       <h4 class="titulo m-3">Novedades</h4>
       <div class="row">
         <div class="col-lg-4">
-          <div class="ficha">
-            <!--contenido-->
-            <p class="titulo1 ps-3 pt-3">Preguntas frecuentes</p>
+          <div class="ficha p-3">
+            <div class="container-flui pb-3">
+              <div class="container imgFicha1 "></div>
+            </div>
+            <p class="titulo1 ">Proximos proyectos a realizar</p>
+            <p class="tituloFicha ">Los Rosales de Manchay</p>
+            <p class="texto2 ">¡Hola emprendedor! ¿Cómo va tu emprendimiento? Hoy te enseñamos uno de los procesos aparentemente más sencillos...</p>
+            <a class="link link-opacity-100-hover" href="https://www.lares.pe/pages/nuestros-proyectos"><!--(click)="setModulo('PAGOS')" id="link1-->
+              Ver mis deudas
+            </a>
           </div>
         </div>
-        <div class="col-lg-4 mt-3 mt-lg-0">
-          <div class="ficha">
-            <!--contenido-->
-            <p class="titulo1 ps-3 pt-3">Preguntas frecuentes</p>
+
+        <div class="col-lg-4">
+          <div class="ficha p-3 mt-3 mt-lg-0">
+            <div class="container-flui pb-3">
+              <div class="container imgFicha2 "></div>
+            </div>
+            <p class="titulo1 ">Proximos proyectos a realizar</p>
+            <p class="tituloFicha ">Villa el Encanto Paracas</p>
+            <p class="texto2 ">¡Hola emprendedor! ¿Cómo va tu emprendimiento? Hoy te enseñamos uno de los procesos aparentemente más sencillos...</p>
+            <a class="link link-opacity-100-hover" href="https://www.lares.pe/pages/nuestros-proyectos"><!--(click)="setModulo('PAGOS')" id="link1-->
+              Ver mis deudas
+            </a>
           </div>
         </div>
-        <div class="col-lg-4 mt-3 mt-lg-0">
-          <div class="ficha">
-            <!--contenido-->
-            <p class="titulo1 ps-3 pt-3">Preguntas frecuentes</p>
+
+        <div class="col-lg-4">
+          <div class="ficha p-3 mt-3 mt-lg-0">
+            <div class="container-flui pb-3">
+              <div class="container imgFicha3 "></div>
+            </div>
+            <p class="titulo1 ">Proximos proyectos a realizar</p>
+            <p class="tituloFicha ">La Capilla Cieneguilla</p>
+            <p class="texto2 ">¡Hola emprendedor! ¿Cómo va tu emprendimiento? Hoy te enseñamos uno de los procesos aparentemente más sencillos...</p>
+            <a class="link link-opacity-100-hover" href="https://www.lares.pe/pages/nuestros-proyectos"><!--(click)="setModulo('PAGOS')" id="link1-->
+              Ver mis deudas
+            </a>
           </div>
         </div>
       </div>
       <br>
     </div>
-  </div><!--Fin Panel-->
+  </div>
+<br><!--Fin Panel-->
 <!--</div>-->

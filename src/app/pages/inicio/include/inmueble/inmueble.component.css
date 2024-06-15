@@ -1,61 +1,17 @@
-
-.barra {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background-color: #008755;
-}
-.btn_act {
-    border: 3px solid #008755;
-    max-width: 175px;
-    color: #000000;
-    border-radius: 15px;
-    background-color: #FFFFFF;
-}
-
-.btn_des {
-    color: #FFFFFF;
-}
-
-.btn_des:hover {
-    border: 3px solid #008755;
-    max-width: 175px;
-    border-radius: 15px;
-}
-
-.boton1 {
-    background-color: #ffff;
-    text-decoration: none;
-    color: #008755;
-    padding: 1px 40px;
-    font-size: 16px;
+/*Seccion de rectangulos*/
+.panel {
     border: 2px solid #008755;
+    background-color: #F2F2F2;
     border-radius: 15px;
-    cursor: pointer;
+    max-width: 1050px;
 }
-
-.boton1:hover {
-    background-color: #008755;
-    color: #ffff;
+.ficha {
+    border: 2px solid #008755;
+    background-color: #FFFFFF;
+    border-radius: 15px;
 }
-.btn_tabla{
-    background-color: #008755;
-    border-color:#026641 ;
-    color: #FFFFFF;
-    font-weight: bold;
-    size: 18px;
-    align-items: center;
-    width: 50px;
-    height: 30px;
-}
-.btn_tabla:hover{
-    background-color: #fafffd;
-    border-color: #008755;
-    color: #000000;
-}
-
-/*seccion de titulos*/
-.titulo {
+/*Seccion de titulos*/
+.titulo{
     font-size: 20px;
     color: #008755;
     font-weight: bold;
@@ -65,80 +21,96 @@
     color: #008755;
     font-weight: bold;
 }
+
+/*seccion de textos*/
 .titulo2 {
     font-size: 12px;
     color: #000000;
     font-weight: bold;
 }
-
-/*Seccion de textos*/
-.texto1{
-    font-size: 10px;
-    color: #8D8D8D;
-    font-weight: lighter;
-    line-height: 1;
-}
-.texto2 {/*este sera mi texto estandar*/
-    font-size: 15px;
-    color: #8D8D8D;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    line-height: 1;
-}
-
-/*seccion de link*/
-.link{
+.texto {
     font-size: 14px;
-    color:#008755;
+    color: #008755;
     font-weight: bold;
-    text-decoration: underline;
 }
-
-/*seccion de rectangulos*/
-.panel {
-    border: 2px solid #008755;
-    background-color: #F2F2F2 !important;
-    border-radius: 15px;
-    max-width: 1050px;
+.texto1 {
+    font-size: 14px;
+    color: #008755;
 }
-.ficha {
-    border: 2px solid #008755 !important;
-    background-color: #FFFFFF;
-    border-radius: 15px;
+.texto2 {
+    font-size: 19px;
+    color: #8D8D8D;
 }
-
-.cuota-pagada {
-    background-color: #0be796; /* Verde */
-    /* color: #ffffff; Texto blanco */
-  }
-  .overflow-x-auto {
-    overflow-x: auto;
-    max-width: 100%;
-  }
-  
-  /* Establece un ancho mínimo para la tabla */
-  .table {
-    min-width: 100%;
-  }
-  
-  /* Agrega un padding inferior para evitar que el contenido se solape con la barra de desplazamiento */
-  .table-wrapper {
-    padding-bottom: 20px; /* Puedes ajustar el valor según tus necesidades */
-  }
-
-  .percentage-label {
-    font-size: 0.875rem;
+.texto3 {
+    font-size: 18px;
+    color: #000000;
     font-weight: bold;
-    color: #28a745; /* Este es el color de la barra de progreso */
-    margin-left: 0.5rem;
-  }
-  
-  .col-4 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .text-center p {
-    text-align: center;
-  }
+}
+/*altura paneles*/
+.alt_pan_gen{/**altura de la ficha de estado inmueble en "inicio"*/
+    min-height: 180px;
+}
+.alt_pan_proy{/**altura de la ficha de estado inmueble en "inicio"*/
+    min-height: 180px;
+}
+
+/*imagenes*/
+.imgCasa {
+    border-radius: 15px;
+    background-image:url(../../../../../assets/icono_casa.jpeg) ;
+    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    height: 50px;
+    width: 50px;
+}
+.imgProyecto {
+    border-radius: 15px;
+    background-image:url(../../../../../assets/costa_morena.png) ;
+    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    height: 180px;
+}
+.imgPaso1 {
+    border-radius: 15px;
+    background-image:url(../../../../../assets/firma_contrato.jpg) ;
+    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    height: 90px;
+}
+.imgPaso2 {
+    border-radius: 15px;
+    background-image:url(../../../../../assets/pago_completado.jpg) ;
+    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    height: 90px;
+}
+.imgPaso3 {
+    border-radius: 15px;
+    background-image:url(../../../../../assets/entraga_propiedad.jpg) ;
+    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    height: 90px;
+}
+.imgPaso4 {
+    border-radius: 15px;
+    background-image:url(../../../../../assets/entrega_minuta.jpg) ;
+    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    height: 90px;
+}
+
+.boton_anexo{
+    border-radius: 15px;
+    background-color: #008755;
+    color: #F2F2F2;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100px;
+
+}

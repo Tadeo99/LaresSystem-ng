@@ -1,114 +1,102 @@
 <div class="col-12">
-  <div class="panel shadow p-3 mb-5 bg-white rounded">
+  <div class="panel ">
     <h4 class="titulo m-3">Mis inmuebles</h4>
     <div class="container">
       <!-- Primera fila -->
       <div class="row mb-3">
         <!-- Primera ficha -->
         <div class="col-12 col-lg-6">
-          <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
-            <h5 class="titulo1 ms-3 mt-3">NOMBRE DEL PROYECTO</h5>
-            <p class="ms-3">{{ contratoSeleccionado?.nombre_proyecto }}</p>
+          <div class="ficha alt_pan_gen">
             <div class="row">
-              <div class="col-4">
-                <p class="titulo2 ms-3 mt-3">TIPO DE PROYECTO</p>
-                <p class="ms-3">{{ contratoSeleccionado?.tipo_proyecto }}</p>
+              <div class="col-8">
+                <p class="titulo2 ps-3 pt-3">NOMBRE DEL PROYECTO</p>
+                <p class="texto ms-3">{{ contratoSeleccionado?.nombre_proyecto }}</p>
               </div>
               <div class="col-4">
+                <div class="container imgCasa mt-4"></div>
+              </div>
+            </div>
+              
+            <div class="row">
+              <div class="col-7">
+                <p class="titulo2 ms-3">TIPO DE PROYECTO</p>
+                <p class="ms-3">{{ contratoSeleccionado?.nombre_proyecto }}</p>
+              </div>
+              <div class="col-5 pe-5">
                 <p class="titulo2 mt-3">NUMERO DE PROYECTO</p>
-                <p class="mt-3">{{ contratoSeleccionado?.numero_proyecto }}</p>
+                <p class="mt-3">{{ contratoSeleccionado?.numero_contrato }}</p>
               </div>
             </div>
           </div>
         </div>
         
-        <!-- Segunda ficha -->
-        <div class="col-12 col-lg-6 mt-3 mt-lg-0">
-          <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
-            <h5 class="titulo1 ms-3 mt-3">Información General</h5>
-            <div class="row">
-              <div class="col-4">
-                <p class="titulo2 ms-3 mt-3">NÚMERO DE CONTRATO</p>
-                <p class="ms-3">{{ contratoSeleccionado?.numero_contrato }}</p>
-              </div>
-              <div class="col-4">
-                <p class="titulo2 mt-3">TIPO DE PROYECTO</p>
-                <p class="mt-3">{{ contratoSeleccionado?.tipo_proyecto }}</p>
-              </div>
-              <div class="col-4 text-center">
-                <p class="titulo2 mt-3" *ngIf="!tieneDeudas">NO TIENE DEUDAS</p>
-                <p class="titulo2 mt-3" *ngIf="tieneDeudas">TIENE DEUDAS PENDIENTES</p>
-                <mat-icon class="mt-1" *ngIf="!tieneDeudas" style="font-size: 2rem; color: green;">sentiment_very_satisfied</mat-icon>
-                <mat-icon class="mt-1" *ngIf="tieneDeudas" style="font-size: 2rem; color: red;">sentiment_dissatisfied</mat-icon>
-              </div>
-            </div>
+       <!-- Segunda ficha -->
+      <div class="col-12 col-lg-4 mt-3 mt-lg-0 ms-5">
+        <div class="alt_pan_proy imgProyecto ">
           </div>
         </div>
       </div>
+
+      <hr>
       
-      <!-- Tercera ficha -->
-      <div class="row mb-3">
-        <div class="col-12 col-lg-6">
-          <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
-            <h5 class="titulo1 ms-3 mt-3">Progreso de pago</h5>
-            <div class="d-flex align-items-center mx-3">
-              <div class="progress" role="progressbar" aria-label="Animated striped example" [attr.aria-valuenow]="porcentajePagado" aria-valuemin="0" aria-valuemax="100" style="height: 10px; width: 100%;">
-                <div class="progress-bar bg-success" [style.width.%]="porcentajePagado"></div>
+      <h4 class="titulo m-3">Mis inmuebles</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col mx-4 text-center">
+            <div class="ficha mb-3">
+              <p class="texto3 mt-3">1</p>
+              <div class="container-fluid">
+                <div class="container imgPaso1"></div>
               </div>
-              <span class="percentage-label ms-2">{{ porcentajePagado.toFixed(2) }}%</span>
+              <p class="titulo2 ps-3 pt-3">Firma del contrato</p>
             </div>
-            <div class="row">
-              <div class="col-6 text-start ps-4 mt-3">
-                <p class="titulo2">ABONO A LA FECHA:</p>
-                <p class="titulo2">USD {{ montoPagadoTotal.toFixed(2) }}</p>
-                <!-- <p class="texto1">Última actualización {{ formatDateTemp(fechaActualizacion) }}</p> -->
+            <p class="texto2">Completado</p>
+          </div>
+          <div class="col mx-4 text-center">
+            <div class="ficha mb-3">
+              <p class="texto3 mt-3">2</p>
+              <div class="container-fluid">
+                <div class="container imgPaso2"></div>
               </div>
-              <div class="col-6 text-end pe-5 mt-3">
-                <p class="titulo2">MONTO TOTAL:</p>
-                <p class="titulo2">USD {{ montoProgramadoTotal.toFixed(2) }}</p>
-                <p class="texto1">{{ cuotasPagadas }}/{{ totalCuotas }} Cuotas pagadas</p>
-              </div>
+              <p class="titulo2 ps-3 pt-3">Pago completado</p>
             </div>
+            <p class="texto2">En proceso</p>
+          </div>
+          <div class="col mx-4 text-center">
+            <div class="ficha mb-3">
+              <p class="texto3 mt-3">3</p>
+              <div class="container-fluid ">
+                <div class="container imgPaso3 "></div>
+              </div>
+              <p class="titulo2 ps-3 pt-3">Entrega de mi propie</p>
+            </div>
+            <p class="texto2">En proceso</p>
+          </div>
+          <div class="col mx-4 text-center">
+            <div class="ficha mb-3">
+              <p class="texto3 mt-3 ">4</p>
+              <div class="container-fluid">
+                <div class="container imgPaso4 "></div>
+              </div>
+              <p class="titulo2 ps-3 pt-3">Entrega de minuta *</p>
+            </div>
+            <p class="texto2">En proceso</p>
           </div>
         </div>
-        
-        <!-- Cuarta ficha -->
-        <div class="col-12 col-lg-6 mt-3 mt-lg-0">
-          <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
-            <h5 class="titulo1 ms-3 mt-3">Información General</h5>
-            <div class="row">
-              <div class="col-4">
-                <p class="titulo2 ms-3 mt-3">NÚMERO DE CONTRATO</p>
-                <p class="ms-3">{{ contratoSeleccionado?.numero_contrato }}</p>
-              </div>
-              <div class="col-4">
-                <p class="titulo2 mt-3">TIPO DE PROYECTO</p>
-                <p class="mt-3">{{ contratoSeleccionado?.tipo_proyecto }}</p>
-              </div>
-              <div class="col-4 text-center">
-                <p class="titulo2 mt-3" *ngIf="!tieneDeudas">NO TIENE DEUDAS</p>
-                <p class="titulo2 mt-3" *ngIf="tieneDeudas">TIENE DEUDAS PENDIENTES</p>
-                <mat-icon class="mt-1" *ngIf="!tieneDeudas" style="font-size: 2rem; color: green;">sentiment_very_satisfied</mat-icon>
-                <mat-icon class="mt-1" *ngIf="tieneDeudas" style="font-size: 2rem; color: red;">sentiment_dissatisfied</mat-icon>
-              </div>
-            </div>
-          </div>
+        <p class="texto1 mx-3 mt-3">(*) LARES te sugiere que realices la inscripción de tu minuta
+          de compraventa en los Registros Públicos, con la finalidad de
+           que el inmueble aparezca inscrito a tu nombre.</p>
+      </div>
+
+      <h4 class="titulo mt-3 mb-4 mx-3">Anexo</h4>
+      <div class="container mb-4">
+        <div class="row">
+          <div class="col titulo2">Plano de inmueble</div>
+          <div class="col"><button class="btn boton_anexo">Ver</button></div>
+          <div class="col titulo2">Plano del proyecto</div>
+          <div class="col"><button class="btn boton_anexo">Ver</button></div>
         </div>
       </div>
-      
-      <!-- Segunda fila -->
-      <div class="row mb-3">
-        <div class="col-12">
-          <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
-            <h5 class="titulo1 ms-3 mt-3">¿Tienes dificultades para pagar, y necesitas ayuda?</h5>
-            <p class="texto2 ms-3 mt-3">Ingrese al siguiente enlace y una de nuestras ejecutivas especializadas estará gustosa de atender sus consultas</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button class="boton1 ms-3 mb-2 me-4">AYUDA</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
     </div>
   </div>
 </div>

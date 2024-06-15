@@ -12,6 +12,7 @@ import { PATH_URL_DATA } from 'src/shared/helpers/constants';
 import { Usuario } from 'src/shared/models/common/clases/usuario';
 import { UsuarioService } from 'src/shared/usuarioService';
 import { CacheService } from 'src/shared/CacheService';
+
 @Component({
   selector: 'app-inicio-general',
   templateUrl: './general.component.html',
@@ -26,7 +27,7 @@ export class GeneralComponent implements OnInit,OnChanges {
   listaProximaLetra: any[] = [];
   listaLastPayment: any[] = [];
   usuario: Usuario | null;
-
+  
   constructor(
     private usuarioService: UsuarioService,
     private service: ApiserviceService,

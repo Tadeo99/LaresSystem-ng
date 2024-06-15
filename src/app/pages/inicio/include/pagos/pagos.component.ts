@@ -29,6 +29,7 @@ export class PagosComponent implements OnInit {
   porcentajePagado: number = 0;
   cuotasPagadas: number = 0;
   totalCuotas: number = 0;
+  listaProximaLetra: any[] = [];
 
   constructor(
     private usuarioService: UsuarioService,
@@ -89,7 +90,7 @@ export class PagosComponent implements OnInit {
       this.porcentajePagado = 0;
     }
   }
-
+//si tiene deudas el cliente
   get tieneDeudas(): boolean {
     return this.cuotasPagadas < this.totalCuotas;
   }
@@ -209,5 +210,23 @@ export class PagosComponent implements OnInit {
       }
     );
   }
-
+  async obtenerProxmaLetra(numContrato: string) {
+    if (this.tipoDocumento && this.numDocumento && numContrato) {
+      var params = {
+        tipoDocumento: this.tipoDocumento,
+        numeroDocumento: this.numDocumento,
+        numero_contrato: numContrato,
+      };
+      await this.service
+        .obtenerProximaLetra(params)
+        .subscribe((response: any) => {
+          if (!response.isError) {
+            this.listaProximaLetra = response.listaResultado;
+            console.log('Lista proxima Letra ', this.listaProximaLetra);
+          } else {
+            this.openModalError(response.mensajeError);
+          }
+        });
+    }
+  }
 }
