@@ -12,9 +12,10 @@ import { GeneralComponent } from './include/general/general.component';
 import { PagosComponent } from './include/pagos/pagos.component';
 import { inmuebleComponent } from './include/inmueble/inmueble.component';
 import { SharedPages } from '@pages/shared/shared-pages.module';
+import { PreguntasFrecuentesComponent } from './include/preguntas/preguntas.component';
 @NgModule({
   declarations: [
-    InicioComponent,GeneralComponent,PagosComponent,inmuebleComponent
+    InicioComponent,GeneralComponent,PagosComponent,inmuebleComponent,PreguntasFrecuentesComponent
   ],
   imports: [
     CommonModule,

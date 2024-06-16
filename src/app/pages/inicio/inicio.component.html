@@ -108,6 +108,12 @@
           <app-inmueble [contratoSeleccionado]="contratoSeleccionado"></app-inmueble>
         </div>
       </section>
+      
+      <section *ngIf="modulo === 'PREGUNTAS' && contratoSeleccionado">
+        <div class="container">
+          <app-preguntas-frecuentes [contratoSeleccionado]="contratoSeleccionado"></app-preguntas-frecuentes>
+        </div>
+      </section>
 
     </div>
   </div>
