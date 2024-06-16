@@ -3,5 +3,6 @@ export const environment = {
     urlService: 'http://localhost:6500/',
     urlAng : "http://localhost:4200/",
     AngApiPath: 'http://localhost:4200/security',
-    angHome : "http://localhost:4200/"
+    angHome : "http://localhost:4200/",
+    urlServiceDigitechso: 'https://apirestlares.digitechso.com/'
 };

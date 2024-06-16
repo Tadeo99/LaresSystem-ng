@@ -6,7 +6,7 @@ export class Contrato {
     nombre: string;
     cliente: string;
     manzana: string;
-    lote: string;
+    Lote: string;
     telefono: string;
     celulares: string;
   
@@ -29,7 +29,7 @@ export class Contrato {
       this.nombre = nombre;
       this.cliente = cliente;
       this.manzana = manzana;
-      this.lote = lote;
+      this.Lote = lote;
       this.telefono = telefono;
       this.celulares = celulares;
     }

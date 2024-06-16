@@ -11,6 +11,7 @@ import { InicioComponent } from './inicio.component';
 import { GeneralComponent } from './include/general/general.component';
 import { PagosComponent } from './include/pagos/pagos.component';
 import { inmuebleComponent } from './include/inmueble/inmueble.component';
+import { SharedPages } from '@pages/shared/shared-pages.module';
 @NgModule({
   declarations: [
     InicioComponent,GeneralComponent,PagosComponent,inmuebleComponent
@@ -25,6 +26,7 @@ import { inmuebleComponent } from './include/inmueble/inmueble.component';
     MatIconModule,
     SharedModule,
     InicioRoutingModule,
+    SharedPages
   ],
   exports: [
     InicioComponent

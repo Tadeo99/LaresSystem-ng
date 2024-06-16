@@ -8,7 +8,7 @@ import { PATH_URL_DATA } from 'src/shared/helpers/constants';
 import { Usuario } from 'src/shared/models/common/clases/usuario';
 import { UsuarioService } from 'src/shared/usuarioService';
 import { DatePipe } from '@angular/common';
-
+import { ModalBoletaComponent } from '@pages/shared/modal-show-boleta/modal-boleta.component';
 @Component({
   selector: 'app-pagos',
   templateUrl: './pagos.component.html',
@@ -17,11 +17,13 @@ import { DatePipe } from '@angular/common';
 export class PagosComponent implements OnInit {
   datos: any;
   @Input() contratoSeleccionado: any;
+  currentDate: Date = new Date();
   currentPage: number = 1; // Página actual
   itemsPerPage: number = 10; // Elementos por página
   tipoDocumento: any;
   numDocumento: any;
   listaHistorial: any[] = [];
+  listaCutotasVencidas: any[] = [];
   usuario: Usuario | null;
 
   montoPagadoTotal: number = 0;
@@ -40,6 +42,26 @@ export class PagosComponent implements OnInit {
     private datePipe: DatePipe
     
   ) {}
+
+  openModalBoleta(nombrePago : string) {
+    const dialogRef = this.dialog.open(ModalBoletaComponent, {
+      width: '500px',  data: { numContrato : this.contratoSeleccionado.numero_contrato , nombre_pago : nombrePago}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
+
+  isDeudaVencida(historial: any): boolean {
+    // Obtener la fecha actual
+    const currentDate = new Date();
+  
+    // Convertir la fecha de vencimiento del historial a objeto Date
+    const fechaVencimiento = new Date(historial.fecha_vcto);
+  
+    // Verificar si la fecha de vencimiento es anterior a la fecha actual
+    return fechaVencimiento < currentDate && parseFloat(historial.saldo) > 0;
+  }
 
   getTotalPages() {
     return Math.ceil(this.listaHistorial.length / this.itemsPerPage);
@@ -90,10 +112,17 @@ export class PagosComponent implements OnInit {
       this.porcentajePagado = 0;
     }
   }
+
 //si tiene deudas el cliente
-  get tieneDeudas(): boolean {
-    return this.cuotasPagadas < this.totalCuotas;
-  }
+get tieneDeudas(): boolean {
+  const hoy = new Date(); // Fecha actual
+  // Filtrar las cuotas que están vencidas y no han sido pagadas
+  const cuotasConDeuda = this.listaHistorial.filter(historial => {
+    return new Date(historial.fecha_vcto) < hoy && historial.estado !== 'pagado';
+  });
+  // Devolver true si hay al menos una cuota con deuda
+  return cuotasConDeuda.length > 0;
+}
 
   cerrarSesion() {
     this.goLogin();
@@ -118,9 +147,14 @@ export class PagosComponent implements OnInit {
         numeroDocumento: this.numDocumento,
         numero_contrato: numContrato,
       };
-      await this.service.obtenerHistorial(params).subscribe((response: any) => {
+      await this.service.obtenerHistorial(params).subscribe((response) => {
         if (!response.isError) {
           this.listaHistorial = response.listaResultado;
+          if (this.listaHistorial.length > 0){
+            this.listaCutotasVencidas = response.listaResultado.filter((historial: any) => {
+              return new Date(historial.fecha_vcto) < new Date() && historial.estado !== 'pagado';
+            });
+          }
           this.calcularValores();
         } else {
           this.openModalError(response.mensajeError);
@@ -188,6 +222,25 @@ export class PagosComponent implements OnInit {
       return formattedDate ? formattedDate : "-";
     }
     return "-";
+  }
+
+
+  formatMilesNumber(number: number | string): string {
+    if (!number) return ''; // Manejar caso de valor nulo o indefinido
+
+    // Convertir a número si es string
+    let numericValue = typeof number === 'string' ? parseFloat(number) : number;
+
+    // Verificar si es un número válido
+    if (!isNaN(numericValue)) {
+      // Formatear con separadores de miles y dos decimales
+      return numericValue.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    } else {
+      return ''; // Manejar caso de valor no numérico
+    }
   }
 
   formatCurrency(amount: string): string {

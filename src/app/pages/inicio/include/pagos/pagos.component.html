@@ -6,7 +6,8 @@
       <div class="row mb-3">
 
         <div class="col-12 col-lg-6">
-          <div class="ficha p-3 alt_pan_gen" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
+          <div class="ficha p-3 alt_pan_gen"
+            style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
             <h5 class="titulo1 ">Información General</h5>
             <div class="row align-items-center">
               <div class="col-4 col-md-3">
@@ -65,7 +66,9 @@
             <p class="texto2 ms-3 mt-3">Ingrese al siguiente enlace y una de nuestras ejecutivas especializadas estará
               gustosa de atender sus consultas</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <a  class="boton1 ms-3 mb-2 me-4" href="https://api.whatsapp.com/send?phone=51923365503&text=Estoy%20experimentando%20dificultades%20para%20pagar%20en%20este%20momento%20y%20necesito%20ayuda.%20¿Podrías%20guiarme%20sobre%20cómo%20proceder%3F">AYUDA</a>
+              <a class="boton1 ms-3 mb-2 me-4"
+                href="https://api.whatsapp.com/send?phone=51923365503&text=Estoy%20experimentando%20dificultades%20para%20pagar%20en%20este%20momento%20y%20necesito%20ayuda.%20¿Podrías%20guiarme%20sobre%20cómo%20proceder%3F"
+                target="_blank">AYUDA</a>
             </div>
           </div>
         </div>
@@ -73,7 +76,7 @@
       <!-- Cuarta ficha -->
       <div class="row mb-3">
         <div class="col-12">
-          <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
+          <div class="ficha p-3 custom-table">
             <h5 class="titulo1 ms-3">Historial de pagos</h5>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
               <button class="boton1 ms-3 mb-2 me-4">COMPLETADO</button>
@@ -96,18 +99,27 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let historial of getPaginatedList()"
-                      [ngClass]="{'cuota-pagada': historial.saldo === '0.00'}">
+                    <tr *ngFor="let historial of getPaginatedList()" [ngClass]="{
+                      'cuota-pagada': historial.saldo === '0.00',
+                      'deuda-vencida': isDeudaVencida(historial)
+                  }" class="table-row">
                       <td>{{ historial.nombre }}</td>
-                      <td>{{ historial.monto_programado }}</td>
+                      <td>{{ formatMilesNumber(historial.monto_programado) }}</td>
                       <td>{{ historial.interes_compensatorio }}</td>
                       <td>{{ historial.mora }}</td>
-                      <td>{{ historial.monto_programado }}</td>
+                      <td>{{ formatMilesNumber(historial.monto_programado) }}</td>
                       <td>{{ formatDateTemp(historial.fecha_vcto) }}</td>
-                      <td>{{ historial.monto_pagado }}</td>
+                      <td>{{ formatMilesNumber(historial.monto_pagado) }}</td>
                       <td>{{ historial.saldo }}</td>
                       <td>{{ formatDateTemp(historial.fecha_pago) }}</td>
-                      <td><a class="link" href="#">Ver</a></td>
+                      <td>
+                        <p class="text-end">
+                          <a class="link link-opacity-100-hover px-3" (click)="openModalBoleta(historial.nombre)"
+                            id="link1">
+                            Ver
+                          </a>
+                        </p>
+                      </td>
                     </tr>
                   </tbody>
                 </table>

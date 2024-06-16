@@ -17,7 +17,7 @@
 
             <div class="row">
               <div class="col">{{ contratoSeleccionado?.nombre_proyecto }}</div>
-              <div class="col">{{contratoSeleccionado?.numero_contrato}}<!--{{ contratoSeleccionado?.nombre }}-->
+              <div class="col">{{contratoSeleccionado?.numero_contrato}} - {{ contratoSeleccionado?.Lote }}
                 <!--Et: {{ contratoSeleccionado?.nombre }} <br>
                 Mz: {{ contratoSeleccionado?.Manzana }} <br>
                 Lt: {{ contratoSeleccionado?.Lote }}-->
@@ -29,7 +29,7 @@
               <a class="dropdown-item" (click)="seleccionarContrato($event, contrato);">
                 <div class="row">
                   <div class="col">{{ contrato.nombre_proyecto }}</div>
-                  <div class="col">{{ contrato.nombre }}
+                  <div class="col">{{contratoSeleccionado?.numero_contrato}} - {{ contratoSeleccionado?.Lote }}
                     <!--Et: {{ contrato.nombre }} <br>
                     Mz: {{ contrato.Manzana }} <br>
                     Lt: {{ contrato.Lote }}-->

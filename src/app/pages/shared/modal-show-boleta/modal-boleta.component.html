@@ -1,0 +1,51 @@
+<!-- modal-boleta.component.html -->
+
+<mat-dialog-content class="dialog-content">
+  <!-- Botón para cerrar el modal -->
+  <button type="button" class="close-button" (click)="redirect()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <!-- Contenedor principal del modal -->
+  <div class="modal-container">
+    <!-- Contenedor del ícono -->
+    <div class="icon-container">
+      <div class="swal2-icon ico-mapfre_145_informacion icon-accod"></div>
+    </div>
+    <!-- Título del modal -->
+    <h2 class="modal-title">{{ nombre_pago }}</h2>
+    <!-- Contenedor de la tabla -->
+    <div class="table-container" *ngIf="mostrarTabla">
+      <table mat-table [dataSource]="listaOperaciones" class="mat-elevation-z8">
+
+        <!-- Definición de columnas -->
+        <ng-container matColumnDef="nro">
+          <th mat-header-cell *matHeaderCellDef> Nro </th>
+          <td mat-cell *matCellDef="let element"> {{ element.nro }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numero_operacion">
+          <th mat-header-cell *matHeaderCellDef> Número Operación </th>
+          <td mat-cell *matCellDef="let element"> {{ element.numero_operacion }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="detalles">
+          <th mat-header-cell *matHeaderCellDef> Ver Detalle </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="verDetalle(element)" class="ver-detalle-btn">Ver Boleta</button>
+          </td>
+        </ng-container>
+
+        <!-- Filas de la tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="mat-row"></tr>
+
+      </table>
+    </div>
+
+    <!-- Contenedor de botones -->
+    <div class="button-container">
+      <button mat-button class="cancel-button" (click)="redirect()">Cerrar</button>
+    </div>
+
+  </div>
+</mat-dialog-content>
