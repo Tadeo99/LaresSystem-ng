@@ -112,7 +112,7 @@
   }
   .deuda-vencida {
     background-color: #ffe6e6; /* Fondo rojo claro */
-    color: red; /* Texto rojo */
+    color: red !important; /* Texto rojo */
     font-weight: bold; /* Texto en negrita */
 }
   .overflow-x-auto {
