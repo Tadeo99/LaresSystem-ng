@@ -27,10 +27,11 @@ export class JwtTokenInterceptor implements HttpInterceptor {
     this.loaderService.show();
     if (
       request.url.startsWith(environment.urlService) ||
-      request.url.startsWith(environment.AngApiPath)
+      request.url.startsWith(environment.AngApiPath) ||
+      request.url.startsWith(environment.urlServiceSunat)
     ) {
-      var access_token = localStorage.getItem('jwtAngToken_jwtAngToken');
-
+      var access_token = "apis-token-9080.H-mMAcC5NewEhE2WY2s2XMJQiXRPnDXT";
+      
       if (access_token) {
         request = request.clone({
           setHeaders: { Authorization: `Bearer ${access_token}` },

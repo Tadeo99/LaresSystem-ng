@@ -36,6 +36,7 @@ export class InicioComponent implements OnInit, OnChanges {
   usuario: Usuario | null;
   contrato: Contrato | null;
   modulo: string = MODULES.INICIO;
+  tipoCambio : any = null;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -53,7 +54,7 @@ export class InicioComponent implements OnInit, OnChanges {
     } else {
       this.recuperarParametros();
       this.obtenerContrato();
-      //this.obtenerTipoCambioSunat();
+      // this.obtenerTipoCambioSunat();
       const cacheService = new CacheService<any>('modulo');
       if (cacheService) {
         this.modulo = cacheService.getCache() || 'INICIO';
@@ -156,21 +157,33 @@ export class InicioComponent implements OnInit, OnChanges {
   async obtenerTipoCambioSunat() {
     const fechaActual = new Date().toISOString().split('T')[0]; // Obtener la fecha actual en formato YYYY-MM-DD
     const params = {
-      fecha: fechaActual,
+      date: fechaActual,
     };
-    this.service.obtenerTipoCambioSunat(params).subscribe((response: any) => {
-      const tipoCambio = response[fechaActual];
-      if (tipoCambio) {
-        const cacheService = new CacheService<any>('tipoCambio');
-        cacheService.setCache(tipoCambio);
-        this.mostrarTipoCambio(tipoCambio);
-      } else {
-        this.openModalError('No se encontraron datos para la fecha proporcionada.');
-      }
-    }, (error) => {
-      console.error('Error al obtener el tipo de cambio', error);
-      this.openModalError('Hubo un error al procesar la solicitud.');
-    });
+    const cacheService = new CacheService<any>('tipoCambio');
+    this.tipoCambio = cacheService.getCache();
+    if (!this.tipoCambio) {
+      this.service.obtenerTipoCambioSunat(params).subscribe((response: any) => {
+        const tipoCambio = {
+          compra: response.precioCompra,
+          venta: response.precioVenta,
+          moneda: response.moneda,
+          fecha: response.fecha,
+        };
+  
+        if (tipoCambio) {
+          this.tipoCambio = tipoCambio;
+          cacheService.setCache(tipoCambio);
+          this.mostrarTipoCambio(tipoCambio);
+        } else {
+          this.openModalError('No se encontraron datos para la fecha proporcionada.');
+        }
+      }, (error) => {
+        console.error('Error al obtener el tipo de cambio', error);
+        this.openModalError('Hubo un error al procesar la solicitud.');
+      });
+    } else {
+      this.mostrarTipoCambio(this.tipoCambio);
+    }
   }
   
   mostrarTipoCambio(tipoCambio: any) {

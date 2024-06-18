@@ -57,9 +57,10 @@ export class ApiserviceService {
   }
 
   obtenerTipoCambioSunat(request: any): Observable<any> {
-    const pathService = environment.urlServiceSunat + 'cambio/' + request.fecha;
+    const pathService = environment.urlServiceSunat + 'v2/sunat/tipo-cambio';
+    console.log(pathService + request.date);
     this.dataService.set(pathService);
-    return this.dataService.execGet().pipe();
+    return this.dataService.execGet(request).pipe();
   }
 
   obtenerProximaLetra(request: any): Observable<any> {
