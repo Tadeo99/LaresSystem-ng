@@ -29,6 +29,7 @@ export class PagosComponent implements OnInit {
   montoPagadoTotal: number = 0;
   montoProgramadoTotal: number = 0;
   porcentajePagado: number = 0;
+  moneda : string;
   cuotasPagadas: number = 0;
   totalCuotas: number = 0;
   listaProximaLetra: any[] = [];
@@ -105,6 +106,7 @@ export class PagosComponent implements OnInit {
       if (historial.estado === 'pagado') {
         this.cuotasPagadas++;
       }
+      this.moneda = historial.moneda;
     });
     if (this.montoProgramadoTotal > 0) {
       this.porcentajePagado = (this.montoPagadoTotal * 100) / this.montoProgramadoTotal;

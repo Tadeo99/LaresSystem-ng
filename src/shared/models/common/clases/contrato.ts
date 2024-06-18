@@ -5,7 +5,7 @@ export class Contrato {
     nombre_proyecto: string;
     nombre: string;
     cliente: string;
-    manzana: string;
+    Manzana: string;
     Lote: string;
     telefono: string;
     celulares: string;
@@ -28,7 +28,7 @@ export class Contrato {
       this.nombre_proyecto = nombre_proyecto;
       this.nombre = nombre;
       this.cliente = cliente;
-      this.manzana = manzana;
+      this.Manzana = manzana;
       this.Lote = lote;
       this.telefono = telefono;
       this.celulares = celulares;

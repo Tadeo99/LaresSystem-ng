@@ -64,6 +64,17 @@ export enum MODULES {
     PREGUNTAS_FRECUENTES = 'PREGUNTAS'
 }
 
+export enum PROYECTO {
+    COSTA_MORENA = 'CM',
+    EL_MIRADOR_DE_LA_PLANICIE = 'PLA',
+    ALTOS_DEL_VALLE = 'ADV',
+    VILLA_EL_ENCANTO = 'VE',
+    LOS_ROSALES_DE_MANCHAY = 'RM',
+    LA_CAPILLA = 'CAP',
+    TERRAZAS_DEL_VALLE = 'TDV',
+    EL_ENCANTO_DE_PARACAS = 'EP'
+}
+
 export const ALERT_MESSAGES : Array<any> = [
     {
         title: 'Aviso',

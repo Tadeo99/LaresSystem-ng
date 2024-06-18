@@ -16,7 +16,7 @@
               </div>
               <div class="col-4">
                 <p class="titulo2 text-center mt-1 mb-1">NOMBRE DE PROYECTO</p>
-                <p class="text-center mb-0">{{ contratoSeleccionado?.nombre_proyecto }}</p>
+                <p class="text-center mb-0">{{ contratoSeleccionado?.nombre_proyecto }} - {{ contratoSeleccionado?.Manzana }} - {{ contratoSeleccionado?.Lote }}</p>
               </div>
               <div class="col-4 text-center d-flex flex-column align-items-center justify-content-center">
                 <p class="titulo2 mt-2 mb-1" *ngIf="!tieneDeudas">NO TIENE DEUDAS</p>
@@ -46,11 +46,11 @@
             <div class="row">
               <div class="col-6 text-start ps-4 mt-3">
                 <p class="titulo2">ABONO A LA FECHA:</p>
-                <p class="titulo2">USD {{ montoPagadoTotal.toFixed(2) }}</p>
+                <p class="titulo2">{{moneda}} {{ formatMilesNumber(montoPagadoTotal.toFixed(2)) }}</p>
               </div>
               <div class="col-6 text-end pe-5 mt-3">
                 <p class="titulo2">MONTO TOTAL:</p>
-                <p class="titulo2">USD {{ montoProgramadoTotal.toFixed(2) }}</p>
+                <p class="titulo2">{{moneda}} {{ formatMilesNumber(montoProgramadoTotal.toFixed(2)) }}</p>
                 <p class="texto1">{{ cuotasPagadas }}/{{ totalCuotas }} Cuotas pagadas</p>
               </div>
             </div>
@@ -113,7 +113,7 @@
                       <td>{{ historial.saldo }}</td>
                       <td>{{ formatDateTemp(historial.fecha_pago) }}</td>
                       <td>
-                        <p class="text-end">
+                        <p class="text-end" *ngIf="historial.estado === 'pagado'">
                           <a class="link link-opacity-100-hover px-3" (click)="openModalBoleta(historial.nombre)"
                             id="link1">
                             Ver

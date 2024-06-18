@@ -56,6 +56,12 @@ export class ApiserviceService {
     return this.dataService.execGet(request).pipe();
   }
 
+  obtenerTipoCambioSunat(request: any): Observable<any> {
+    const pathService = environment.urlServiceSunat + 'cambio/' + request.fecha;
+    this.dataService.set(pathService);
+    return this.dataService.execGet().pipe();
+  }
+
   obtenerProximaLetra(request: any): Observable<any> {
     const pathService = environment.urlService + 'nextLetter';
     this.dataService.set(pathService);

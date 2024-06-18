@@ -12,7 +12,7 @@ import { environment } from '@environments/environments';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { AlertComponent } from 'src/shared/components/alert/alert.component';
 import { ContratoService } from 'src/shared/ContratoService';
-import { MODULES, PATH_URL_DATA } from 'src/shared/helpers/constants';
+import { MODULES, PATH_URL_DATA,BASE_DATE_FORMAT } from 'src/shared/helpers/constants';
 import { Usuario } from 'src/shared/models/common/clases/usuario';
 import { UsuarioService } from 'src/shared/usuarioService';
 import { Contrato } from 'src/shared/models/common/clases/contrato';
@@ -23,7 +23,7 @@ import { CacheService } from 'src/shared/CacheService';
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css',
 })
-export class InicioComponent implements OnInit,OnChanges {
+export class InicioComponent implements OnInit, OnChanges {
   @ViewChild('dropdownMenu') dropdownMenu: ElementRef;
   tipoDocumento: any;
   numDocumento: any;
@@ -53,8 +53,9 @@ export class InicioComponent implements OnInit,OnChanges {
     } else {
       this.recuperarParametros();
       this.obtenerContrato();
-      const cacheService = new CacheService<any>("modulo");
-      if(cacheService){
+      //this.obtenerTipoCambioSunat();
+      const cacheService = new CacheService<any>('modulo');
+      if (cacheService) {
         this.modulo = cacheService.getCache() || 'INICIO';
       }
     }
@@ -74,7 +75,7 @@ export class InicioComponent implements OnInit,OnChanges {
 
   setModulo(modulo: string): void {
     this.modulo = modulo;
-    const cacheService = new CacheService<any>("modulo");
+    const cacheService = new CacheService<any>('modulo');
     cacheService.setCache(this.modulo);
   }
 
@@ -109,7 +110,7 @@ export class InicioComponent implements OnInit,OnChanges {
   }
 
   async obtenerContrato() {
-    const cacheService = new CacheService<any>("listaContrato");
+    const cacheService = new CacheService<any>('listaContrato');
     this.listaContrato = cacheService.getCache() || [];
     this.contratoSeleccionado = this.contratoService.getContrato();
     if (this.listaContrato.length === 0) {
@@ -137,7 +138,7 @@ export class InicioComponent implements OnInit,OnChanges {
                   this.contratoSeleccionado.telefono,
                   this.contratoSeleccionado.celulares
                 );
-                const cacheService = new CacheService<any>("listaContrato");
+                const cacheService = new CacheService<any>('listaContrato');
                 cacheService.setCache(response.listaResultado);
                 this.contratoService.setContrato(this.contrato);
               }
@@ -147,9 +148,33 @@ export class InicioComponent implements OnInit,OnChanges {
             }
           });
       }
-    }else{
+    } else {
       this.contratoSeleccionado = this.contratoService.getContrato();
     }
+  }
+
+  async obtenerTipoCambioSunat() {
+    const fechaActual = new Date().toISOString().split('T')[0]; // Obtener la fecha actual en formato YYYY-MM-DD
+    const params = {
+      fecha: fechaActual,
+    };
+    this.service.obtenerTipoCambioSunat(params).subscribe((response: any) => {
+      const tipoCambio = response[fechaActual];
+      if (tipoCambio) {
+        const cacheService = new CacheService<any>('tipoCambio');
+        cacheService.setCache(tipoCambio);
+        this.mostrarTipoCambio(tipoCambio);
+      } else {
+        this.openModalError('No se encontraron datos para la fecha proporcionada.');
+      }
+    }, (error) => {
+      console.error('Error al obtener el tipo de cambio', error);
+      this.openModalError('Hubo un error al procesar la solicitud.');
+    });
+  }
+  
+  mostrarTipoCambio(tipoCambio: any) {
+    console.log(`Compra: ${tipoCambio.compra}, Venta: ${tipoCambio.venta}`);
   }
 
   llenarContrato() {
