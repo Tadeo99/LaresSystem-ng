@@ -153,7 +153,7 @@ export class GeneralComponent implements OnInit,OnChanges {
   }
 
   formatCurrency(amount: string): string {
-    return `USD ${parseFloat(amount).toLocaleString('en-US', {
+    return `${parseFloat(amount).toLocaleString('en-US', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })}`;
