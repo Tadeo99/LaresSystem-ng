@@ -1,76 +1,28 @@
 <body>
   <!--Navar-->
-  <nav class="navbar navbar-expand-lg barraLogin py-3 mb-5">
+  <nav class="navbar barraLogin py-3 mb-5">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="../../../assets/logo2.png" alt="Bootstrap" class="logo">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <a class="nav-item d-none d-lg-block">
-            <!--<button type="button" class="boton2 btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              ?
-            </button>-->
-            <!-- Modal 
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content modal1">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5 titulo_modal" id="staticBackdropLabel">Importante</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>¿Necesita ayuda para ingresar? Por favor
-                      póngase en contacto con nosotros:</p>
-                    <p>Email:</p>
-                    <p>Call center</p>
-                  </div>
-                  <div class="text-center mb-3">
-                    <button type="button" class="boton2 text-center" data-bs-dismiss="modal">Aceptar</button>
-                  </div>
-                </div>
-              </div>
-            </div>--><!--din modal-->
-          </a>
-          <a class="nav-item">
-            <a type="button" href="/login" class="boton1 d-none d-lg-block mx-2">INGRESA</a>
-          </a>
-          <a class="nav-item ">
-            <a type="button" (click)="openView(3)" class="boton2 d-none d-lg-block">REGISTRATE</a>
-          </a>
-          <a class="nav-link d-lg-none" id="texto3" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop1">Informacion</a>
-          <!-- Modal -->
-          <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content modal1">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5 titulo_modal" id="staticBackdropLabel">Importante</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>¿Necesita ayuda para ingresar? Por favor
-                    póngase en contacto con nosotros:</p>
-                  <p>Email:</p>
-                  <p>Call center</p>
-                </div>
-                <div class="text-center mb-3">
-                  <button type="button" class="boton2 text-center" data-bs-dismiss="modal">Aceptar</button>
-                </div>
-              </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <a class="nav-item">
+                <a type="button" href="/login" class="boton1 mx-2" [ngClass]="{'active': botonActivo === 1}"
+                  (click)="activarBoton(1)">INGRESA</a>
+              </a>
             </div>
-          </div><!--din modal-->
-          <a class="nav-link d-lg-none" id="texto3" href="#">Ingreso</a>
-          <a class="nav-link d-lg-none" id="texto3" href="#">Registro</a>
+            <div class="col-6">
+              <a class="nav-item">
+                <a type="button" class="boton1" [ngClass]="{'active': botonActivo === 2}" (click)="activarBoton(2)"(click)="openView(3)">
+                  REGISTRATE
+                </a>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   </nav>
 
   <!--panel-->

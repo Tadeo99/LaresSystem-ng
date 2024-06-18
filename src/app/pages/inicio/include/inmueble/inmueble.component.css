@@ -75,7 +75,7 @@
 .imgPaso1 {
     border-radius: 15px;
     background-image:url(../../../../../assets/firma_contrato.jpg) ;
-    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-size: contain; /* Ajusta el tamaño para cubrir completamente el contenedor */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-position: center; /* Centra la imagen */
     height: 90px;
@@ -83,7 +83,7 @@
 .imgPaso2 {
     border-radius: 15px;
     background-image:url(../../../../../assets/pago_completado.jpg) ;
-    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-size: contain; /* Ajusta el tamaño para cubrir completamente el contenedor */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-position: center; /* Centra la imagen */
     height: 90px;
@@ -91,15 +91,15 @@
 .imgPaso3 {
     border-radius: 15px;
     background-image:url(../../../../../assets/entraga_propiedad.jpg) ;
-    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-size: contain; /* Ajusta el tamaño para cubrir completamente el contenedor */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-position: center; /* Centra la imagen */
     height: 90px;
 }
 .imgPaso4 {
     border-radius: 15px;
-    background-image:url(../../../../../assets/entrega_minuta.jpg) ;
-    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
+    background-image: url(../../../../../assets/entrega_minuta.jpg);
+    background-size: contain; /* Ajusta el tamaño para que la imagen se ajuste dentro del contenedor */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-position: center; /* Centra la imagen */
     height: 90px;

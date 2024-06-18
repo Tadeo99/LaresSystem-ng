@@ -10,15 +10,25 @@
             style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
             <h5 class="titulo1 ">Información General</h5>
             <div class="row align-items-center">
-              <div class="col-4 col-md-3">
+              <div class="col-3 col-md-3">
                 <p class="titulo2 text-center mt-1 mb-1">NÚMERO DE CONTRATO</p>
                 <p class="text-center mb-0">{{ contratoSeleccionado?.numero_contrato }}</p>
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <p class="titulo2 text-center mt-1 mb-1">NOMBRE DE PROYECTO</p>
-                <p class="text-center mb-0">{{ contratoSeleccionado?.nombre_proyecto }} - {{ contratoSeleccionado?.Manzana }} - {{ contratoSeleccionado?.Lote }}</p>
+                <p class="text-center mb-0">{{ contratoSeleccionado?.nombre_proyecto }}</p>
               </div>
-              <div class="col-4 text-center d-flex flex-column align-items-center justify-content-center">
+              <div class="col-3">
+                <div class="row">
+                  <div class="col-6 "><p class="titulo2 text-center mt-1 mb-1">Mz: </p></div>
+                  <div class="col-6 "><p class="text-center  mt-1 mb-1">{{ contratoSeleccionado?.Manzana }}</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-6"><p class="titulo2 text-center mt-1 mb-1">Lt:</p></div>
+                    <div class="col-6"><p class="text-center  mt-1 mb-1">{{ contratoSeleccionado?.Lote }}</p></div>
+                </div>
+              </div>
+              <div class="col-3 text-center d-flex flex-column align-items-center justify-content-center">
                 <p class="titulo2 mt-2 mb-1" *ngIf="!tieneDeudas">NO TIENE DEUDAS</p>
                 <p class="titulo2 mt-2 mb-1" *ngIf="tieneDeudas">TIENE DEUDAS PENDIENTES</p>
                 <mat-icon class="mt-1 icon_face" *ngIf="!tieneDeudas"
@@ -66,7 +76,7 @@
             <p class="texto2 ms-3 mt-3">Ingrese al siguiente enlace y una de nuestras ejecutivas especializadas estará
               gustosa de atender sus consultas</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <a class="boton1 ms-3 mb-2 me-4"
+              <a class="boton1 ms-3 mb-2 me-4 text-center"
                 href="https://api.whatsapp.com/send?phone=51923365503&text=Estoy%20experimentando%20dificultades%20para%20pagar%20en%20este%20momento%20y%20necesito%20ayuda.%20¿Podrías%20guiarme%20sobre%20cómo%20proceder%3F"
                 target="_blank">AYUDA</a>
             </div>
@@ -77,9 +87,9 @@
       <div class="row mb-3">
         <div class="col-12">
           <div class="ficha p-3 custom-table">
-            <h5 class="titulo1 ms-3">Historial de pagos</h5>
+            <h5 class="titulo1 ms-3 mb-5">Historial de pagos</h5>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button class="boton1 ms-3 mb-2 me-4">COMPLETADO</button>
+              <!--<button class="boton1 ms-3 mb-2 me-4">COMPLETADO</button>-->
             </div>
             <div class="container">
               <div class="overflow-x-auto table-wrapper">
@@ -135,4 +145,5 @@
       </div>
     </div>
   </div>
+  <br>
 </div>

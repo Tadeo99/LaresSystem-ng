@@ -1,75 +1,64 @@
+
+
 <!--Navar-->
-<nav class="navbar navbar-expand-lg barra py-3 mb-5">
+<nav class="navbar barra py-3 mb-2 mb-md-5">
   <div class="container">
     <a class="navbar-brand" href="#">
       <img src="../../../assets/logo.png" alt="Bootstrap" class="logo">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
-
-        <div class="dropdown" (click)="toggleDropdown()">
-          <button class="btn btn5 dropdown-toggle" type="button" id="dropdownMenuButton"
-            [attr.aria-expanded]="dropdownOpen ? 'true' : 'false'" (click)="toggleDropdownAndSelect()">
-
-            <div class="row">
-              <div class="col">{{ contratoSeleccionado?.nombre_proyecto }}</div>
-              <div class="col">{{contratoSeleccionado?.numero_contrato}} - {{ contratoSeleccionado?.Lote }}
-                <!--Et: {{ contratoSeleccionado?.nombre }} <br>
-                Mz: {{ contratoSeleccionado?.Manzana }} <br>
-                Lt: {{ contratoSeleccionado?.Lote }}-->
-              </div>
-            </div>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" [class.show]="dropdownOpen">
-            <li *ngFor="let contrato of listaContrato">
-              <a class="dropdown-item" (click)="seleccionarContrato($event, contrato);">
+        <div class="row">
+          <div class="col-6 col-md-4">
+            <div class="dropdown" (click)="toggleDropdown()">
+              <button class="btn btn5 dropdown-toggle" type="button" id="dropdownMenuButton"
+                [attr.aria-expanded]="dropdownOpen ? 'true' : 'false'" (click)="toggleDropdownAndSelect()">
+    
                 <div class="row">
-                  <div class="col">{{ contrato.nombre_proyecto }}</div>
-                  <div class="col">{{contrato?.numero_contrato}} - {{ contrato?.Lote }}
-                    <!--Et: {{ contrato.nombre }} <br>
-                    Mz: {{ contrato.Manzana }} <br>
-                    Lt: {{ contrato.Lote }}-->
+                  <div class="col">{{ contratoSeleccionado?.nombre_proyecto }}</div>
+                  <div class="col">{{contratoSeleccionado?.numero_contrato}} - {{ contratoSeleccionado?.Lote }}
+                    <!--Et: {{ contratoSeleccionado?.nombre }} <br>
+                    Mz: {{ contratoSeleccionado?.Manzana }} <br>
+                    Lt: {{ contratoSeleccionado?.Lote }}-->
                   </div>
                 </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-
-        <div class="dropdown" *ngIf="usuario">
-          <button class="btn btn5 dropdown-toggle ms-3" type="button" (click)="toggleDropdownSession()"
-            aria-expanded="false">
-            <i class="bi-person my-3"></i> {{ usuario.cliente }}
-          </button>
-          <ul class="dropdown-menu" [class.show]="dropdownSession">
-            <li><a class="dropdown-item" (click)="cambiarContrasena()">Cambiar contraseña</a></li>
-            <li><a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a></li>
-          </ul>
-        </div>
-
-        <!--lista desplegable-->
-        <hr class="linea d-lg-none">
-        <a class="nav-link d-lg-none" id="texto5" href="#"><i class="bi-grid-1x2-fill me-3"></i>Inicio</a>
-        <a class="nav-link d-lg-none" id="texto5" (click)="openView(2)"><i class="bi-piggy-bank-fill me-3"></i>Mis
-          pagos</a>
-        <a class="nav-link d-lg-none" id="texto5"><i class="bi-house-fill me-3"></i>Mis inmuebles</a>
-        <a class="nav-link d-lg-none" id="texto5" href="#"><i class="bi-question-lg me-3"></i>Pregusntas frecuentes</a>
-        <hr class="linea d-lg-none">
-        <a class="nav-link d-lg-none" id="texto5" href="#"><i class="bi-person me-3"></i>Cerrar sesion</a>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" [class.show]="dropdownOpen">
+                <li *ngFor="let contrato of listaContrato">
+                  <a class="dropdown-item" (click)="seleccionarContrato($event, contrato);">
+                    <div class="row">
+                      <div class="col">{{ contrato.nombre_proyecto }}</div>
+                      <div class="col">{{contrato?.numero_contrato}} - {{ contrato?.Lote }}
+                        <!--Et: {{ contrato.nombre }} <br>
+                        Mz: {{ contrato.Manzana }} <br>
+                        Lt: {{ contrato.Lote }}-->
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6 col-md-6">
+            <div class="dropdown" *ngIf="usuario">
+              <button class="btn btn5 dropdown-toggle " type="button" (click)="toggleDropdownSession()" aria-expanded="false">
+                <i class="bi-person my-3"></i>
+                <span class="d-none d-md-inline">{{ usuario.cliente }}</span>
+              </button>
+              <ul class="dropdown-menu" [class.show]="dropdownSession">
+                <li><a class="dropdown-item" (click)="cambiarContrasena()">Cambiar contraseña</a></li>
+                <li><a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a></li>
+              </ul>
+            </div>
+          </div>
+      </div>
       </div>
     </div>
-  </div>
 </nav>
 <!--barra vertical-->
 
 
 <!-- app.component.html -->
-<div class="container">
+<div class="container mb-2">
   <div class="row">
     <div class="col-md-3 col-lg-2  d-none d-md-block">
       <div class="menu barV" style="height: 40rem;">
@@ -90,7 +79,41 @@
       </div>
     </div>
 
-    <div class="col">
+<!--segundo barra de menu-->
+<div class="container-fluid mb- d-block d-md-none">
+<div class="row">
+<div class="col-12 ">
+ 
+    <div class="container mb-2">
+      <div class="row barV text-center">
+      <div class="col-3">
+        <p [class.btn_actH]="isModuloActivo('INICIO')" [class.btn_desH]="!isModuloActivo('INICIO')" class="pt-4 " type="button" id="text_barV" (click)="setModulo('INICIO')">
+          <i class="bi-grid-1x2-fill"><br></i> Inicio
+        </p>
+      </div>
+      <div class="col-3">
+        <p [class.btn_actH]="isModuloActivo('PAGOS')" [class.btn_desH]="!isModuloActivo('PAGOS')" class="pt-4" type="button" id="text_barV" (click)="setModulo('PAGOS')">
+          <i class="bi-piggy-bank-fill"><br></i> Mis pagos
+        </p>
+      </div>
+      <div class="col-3">
+        <p [class.btn_actH]="isModuloActivo('INMUEBLES')" [class.btn_desH]="!isModuloActivo('INMUEBLES')" class=" pt-3" type="button" id="text_barV" (click)="setModulo('INMUEBLES')">
+          <i class="bi-house-fill"><br></i> Mis inmuebles
+        </p>
+      </div>
+      <div class="col-3">
+        <p [class.btn_actH]="isModuloActivo('PREGUNTAS')" [class.btn_desH]="!isModuloActivo('PREGUNTAS')" class="pt-2" type="button" id="text_barV" (click)="setModulo('PREGUNTAS')">
+          <i class="bi-question-lg"><br></i> Preguntas frecuentes
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+    <div class="col-12 col-md-9 col-lg-10">
       <section *ngIf="modulo === 'INICIO' && contratoSeleccionado">
         <div class="container">
           <app-inicio-general [contratoSeleccionado]="contratoSeleccionado" [modulo]="modulo"></app-inicio-general>
@@ -118,3 +141,4 @@
     </div>
   </div>
 </div>
+

@@ -23,6 +23,21 @@
     max-width: 175px;
     border-radius: 15px;
 }
+.boton1 {
+    background-color: #ffff;
+    text-decoration: none;
+    color: #008755;
+    padding: 1px 40px;
+    font-size: 16px;
+    border: 2px solid #008755;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.boton1:hover {
+    background-color: #008755;
+    color: #ffff;
+}
 /*Seccion de rectangulos*/
 .panel {
     border: 2px solid #008755;

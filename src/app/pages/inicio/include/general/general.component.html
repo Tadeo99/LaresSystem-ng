@@ -1,13 +1,13 @@
 
 <!--<div class="col-12 ">-->
-  <div class="container-fluid fondo_panel mb-4 mt-5">
+  <div class="container-fluid fondo_panel mb-4 mt-0 mt-lg-5">
     <div class="row">
-      <div class="col-4">
-        <img class="img_panel ps-4" src="../../../../../assets/img_panel.png">
+      <div class=" d-none d-lg-block col-md-4 col-lg-4">
+        <img class="img_panel " src="../../../../../assets/img_panel.png">
       </div>
-      <div class="col-5">
-        <p class="titulo_panel pt-4">¡Bienvenido! {{ usuario?.cliente }}</p>
-        <p class="letra_panel">Puedes conocer tus pagos pendientes o pagar tu próxima letra además de conocer tu deuda total.</p>
+      <div class="col-12 col-md-12 col-lg-8">
+        <p class="titulo_panel pt-2 pt-md-2 pt-lg-4" >¡Bienvenido(a) {{ usuario?.cliente }}!</p>
+        <p class="letra_panel pt-1 pt-lg-4 ">Puedes conocer tus pagos pendientes o pagar tu próxima letra además de conocer tu deuda total.</p>
       </div>
     </div>
     
@@ -113,104 +113,51 @@
         <div class="col-lg-6 mt-3"><!--cuarta ficha-->
           <div class="ficha">
             <!--contenido-->
-            <p class="titulo1 ms-3 mt-3">Preguntas frecuentes</p>
+            <p class="titulo1 ms-3 mt-3">Gestiones</p>
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseOne')">
-                    ¿Cuándo es la fecha de pago de las letras?
+                    Post Venta 
                   </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <P class="texto2">
-                      La fecha de pago de las letras, se verifican en el cronograma que se encuentra adjunto a su
-                      contrato/compromiso.</P>
+                    <P class="texto2">Consultas</P>
+                      <ul>
+                        <li>Recojo de letras</li>
+                        <li>Firma de contrato</li>
+                        <li>Firma de adenda</li>
+                        <li>Comunicación de avance del proyecto</li>
+                        <li>Cartas de no adeudo</li>
+                        <li>Horario de atención: 9am a 1pm y de 3pm a 4pm</li>
+                      </ul>
+                      <p>¿Necesitas ayuda? Escríbenos aquí: <a class="link link-opacity-100-hover"
+                        href="https://api.whatsapp.com/send?phone=51975146063&text=¡Hola!👋%20Tengo%20dudas%20y%20consultas%20en%20el%20%20proceso%20de%20post%20Venta%20¿Podría%20ayudarme%3F"
+                        target="_blank">+51 975 146 063</a></p>
                   </div>
                 </div>
               </div>
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseTwo')">
-                    ¿Cuáles son los requisitos para realizar una cesión?
+                    Cobranzas
                   </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    <P class="texto2">
-                      Requisitos
-                    </P>
+                    <P class="texto2">Consultas</P>
                       <ul>
-                        <li> La cesión procederá siempre y cuando, no se hayan cumplido lo siguientes requisitos de manera
-                          conjunta:
-                          <ol>
-                            <li>La independización registral de la etapa en donde se encuentre el Lote.</li>
-                            <li>La cancelación del saldo precio de venta.</li>
-                          </ol>
-                        </li>
-                        <li> Se debe presentar una copia del DNI vigente del cedente (propietario) y del cesionario
-                          (tercero interesado en adquirir propiedad).
-                        </li>
-                        <li>El cliente que realiza la solicitud de cesión debe estar al día en sus pagos.</li>
-                        <li>La ficha de cesión brindada por Lares debe estar firmada por el cedente y el cesionario (Es
-                          requisito indispensable que se proceda con la firma del contato de cesión, la solicitud
-                          aceptada no acredita el otorgamiento de la cesión).
-                        </li>
-                        <li>El cesionario debe completar la ficha de conocimiento del cliente, la cual será brindada por
-                          Lares.
-                        </li>
-                        <li>El cesionario debe presentar 2 recibos de servicios (por ejemplo: agua, luz, telefonia fija,
-                          etc.).
-                        </li>
-                        <li>Otros documentos que solicite la empresa en el proceso de evaluación.</li>
-                        <li>El costo será según el tarifario vigente.</li>
-                        <li>En caso el cesionario tenga el estado civil de casado:
-                          <ol>
-                            <li>Debe presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta
-                              de matrimonio emitida por la Municipalidad.
-                            </li>
-                            <li> En caso el cesionario tenga el estado civil de casado pero con separación de patrimonios: Debe
-                              presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta de
-                              matrimonio emitida por la Municipalidad y adicionalmente deberá presentar la copia literal de
-                              la inscripción de la separación de patrimonios emitida por Registros Públicos.
-                            </li>
-                          </ol>
-                        </li>
-                        <li>En caso el cesionario tenga el estado civil sea divorciado: Debe presentar la copia literal de
-                          la inscripción del divorcio emitida por Registros Públicos.</li>
+                        <li>Dudas sobre cómo realizar pagos</li>
+                        <li>Envío de voucher de abono</li>
+                        <li>Solicitud de Estado de cuenta</li>
+                        <li>Cálculo de refinanciamiento</li>
+                        <li>Cálculo de prepagos</li>
+                        <li>Horario de atención: 9am a 1pm y de 2pm a 6pm</li>
                       </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseThree')">
-                    ¿Cuáles son los requisitos para realizar un refinamiento?
-                  </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <P class="texto2"></P>
-                      Requisitos:
-                      <ul>
-                        <li>El cliente debe presentear una copia del DNI vigente de todos los titulares.</li>
-                        <li>El cliente debe estar al día en los pagos.</li>
-                        <li>El trámite se solicita como mínimo con 15 días hábiles antes del próximo vencimiento de letra.
-                          Se debe completar la solicitud simple de refinanciamiento brindada por Lares.</li>
-                        <li>Si el proceso es aceptado, el cliente deberá firmar las nuevas letras y la adenda que contenga
-                          el refinanciamiento (es requisito indispensable que se proceda con la firma de la adenda y las
-                          nuevas letras, la solicitud aceptada no acredita el otorgamiento del refinanciamento).</li>
-                        <li>El costo será según el tarifario vigente. Cabe aclarar, que a este monto se le tendrá que
-                          sumar los costos de retiro de letras, que son variables en función al caso.</li>
-                        <li>Si junto al refinanciamiento no amortiza su deuda (sujeto a variación según el tarifario
-                          vigente):</li>
-                          <ol>
-                            <li>Para el caso del contrato el costo de este trámite asciende a $300.00 dólares americanos.</li>
-                            <li>Para el caso del compromiso el costo asciende a $200.00 dólares americanos. Cabe aclarar, que
-                              a estos montos se le tendrá que sumar los costos de retiro de letras, que son variables en
-                              función al caso.</li>
-                          </ol>
-                    </ul>
+                      <p>¿Necesitas ayuda? Escríbenos aquí: <a class="link link-opacity-100-hover"
+                        href="https://api.whatsapp.com/send?phone=51923365503&text=Estoy%20experimentando%20dificultades%20para%20pagar%20en%20este%20momento%20y%20necesito%20ayuda.%20¿Podrías%20guiarme%20sobre%20cómo%20proceder%3F"
+                        target="_blank">+51 923 365 503</a></p>
                   </div>
                 </div>
               </div>

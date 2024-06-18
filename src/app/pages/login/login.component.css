@@ -228,6 +228,10 @@ a {
     background-color: #007D4F; 
     color: #ffff; 
 }
+.active {
+    background-color: #008755;
+    color: #ffffff;
+  }
 .boton3{
     background-color: #008755;
     font: weight 4px;

@@ -19,6 +19,7 @@ export class LoginComponent {
   numeroDocumento: string;
   password: string;
   usuario: Usuario; 
+  botonActivo: number = 1; // Inicialmente el botón INGRESA está activo
   constructor(
     private usuarioService: UsuarioService,
     private service: ApiserviceService,
@@ -27,6 +28,11 @@ export class LoginComponent {
     private dialog: MatDialog
   ) {
     
+  }
+
+
+  activarBoton(boton: number) {
+    this.botonActivo = boton;
   }
 
   openView(id: any) {

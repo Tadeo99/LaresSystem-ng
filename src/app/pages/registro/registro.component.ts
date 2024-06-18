@@ -9,6 +9,7 @@ import { ModalMessageComponent } from 'src/shared/components/modal-message/modal
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
+
 })
 export class RegistroComponent {
 
@@ -33,6 +34,12 @@ export class RegistroComponent {
           }
         })
     }
+  }
+
+  botonActivo: string = 'boton1'; // Inicialmente el botón activo es boton1
+
+  activarBoton(boton: string) {
+    this.botonActivo = boton;
   }
 
   success(mensaje : any) {
