@@ -46,6 +46,7 @@ export class LoginComponent {
         numeroDocumento: this.numeroDocumento,
         password: this.password,
       };
+      localStorage.clear();
       this.service.login(params).subscribe((response: any) => {
         if (!response.isError) {
           if (response.pagination === 'CHANGES PASSWORD') {
@@ -53,6 +54,7 @@ export class LoginComponent {
           } else {
             this.viewDetail('inicio');
           }
+          localStorage.setItem("token", response.accessToken);
           this.usuario = new Usuario(
             response.listaResultado.documento_cliente,
             response.listaResultado.tipo_documento,
@@ -63,7 +65,6 @@ export class LoginComponent {
             response.listaResultado.usuario,
             ''
           );
-          localStorage.clear();
           this.usuarioService.setUsuario(this.usuario);
         } else {
           this.openModalError(response.mensajeError);
@@ -79,6 +80,7 @@ export class LoginComponent {
     };
     this.service.validaUsuario(params).subscribe((response: any) => {
       if (!response.isError) {
+        
         if (response.objetoResultado === 'NOK') {
           this.viewDetail('change-password');
         } else {

@@ -2,21 +2,21 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnChanges,
   OnInit,
-  ViewChild,
-  OnChanges
+  ViewChild
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '@environments/environments';
 import { ApiserviceService } from 'src/app/apiservice.service';
-import { AlertComponent } from 'src/shared/components/alert/alert.component';
+import { CacheService } from 'src/shared/CacheService';
 import { ContratoService } from 'src/shared/ContratoService';
-import { MODULES, PATH_URL_DATA,BASE_DATE_FORMAT } from 'src/shared/helpers/constants';
+import { AlertComponent } from 'src/shared/components/alert/alert.component';
+import { MODULES, PATH_URL_DATA } from 'src/shared/helpers/constants';
+import { Contrato } from 'src/shared/models/common/clases/contrato';
 import { Usuario } from 'src/shared/models/common/clases/usuario';
 import { UsuarioService } from 'src/shared/usuarioService';
-import { Contrato } from 'src/shared/models/common/clases/contrato';
-import { CacheService } from 'src/shared/CacheService';
 
 @Component({
   selector: 'app-inicio',
@@ -36,8 +36,10 @@ export class InicioComponent implements OnInit, OnChanges {
   usuario: Usuario | null;
   contrato: Contrato | null;
   modulo: string = MODULES.INICIO;
-  tipoCambio : any = null;
-
+  tipoCambio: any = null;
+  estadoContrato: any = null;
+  pollingTimer: any;
+  pollingInterval: number = 300000;// 5 minutos 30
   constructor(
     private usuarioService: UsuarioService,
     private contratoService: ContratoService,
@@ -60,6 +62,20 @@ export class InicioComponent implements OnInit, OnChanges {
         this.modulo = cacheService.getCache() || 'INICIO';
       }
     }
+    this.startPolling();
+  }
+
+  startPolling(): void {
+    // Iniciar el intervalo de polling
+    this.pollingTimer = setInterval(() => {
+      this.updateProgress();
+    }, this.pollingInterval);
+  }
+
+  updateProgress(): void {
+    // Realizar una llamada al servicio para obtener el progreso actualizado
+    this.goLogin();
+    this.openModalError("La sesión ha expirado");
   }
 
   ngOnChanges() {
@@ -137,11 +153,14 @@ export class InicioComponent implements OnInit, OnChanges {
                   this.contratoSeleccionado.Manzana,
                   this.contratoSeleccionado.Lote,
                   this.contratoSeleccionado.telefono,
-                  this.contratoSeleccionado.celulares
+                  this.contratoSeleccionado.celulares,
+                  this.contratoSeleccionado.codigo_unidad,
+                  this.contratoSeleccionado.id_unidad
                 );
                 const cacheService = new CacheService<any>('listaContrato');
                 cacheService.setCache(response.listaResultado);
                 this.contratoService.setContrato(this.contrato);
+                this.obtenerEstado(this.contratoSeleccionado.numero_contrato);
               }
               console.log('Lista contrato desde servicio', this.listaContrato);
             } else {
@@ -151,6 +170,37 @@ export class InicioComponent implements OnInit, OnChanges {
       }
     } else {
       this.contratoSeleccionado = this.contratoService.getContrato();
+      await this.obtenerEstado(this.contratoSeleccionado.numero_contrato);
+    }
+  }
+
+  async obtenerEstado(numContrato: string) {
+    console.log("numContrato estado", numContrato);
+    const cacheService = new CacheService<any>('estado');
+    this.estadoContrato = cacheService.getCache() || null;
+  
+    if (this.estadoContrato == null || this.estadoContrato == undefined) {
+      const params = {
+        numero_contrato: numContrato,
+      };
+  
+      await this.service.obtenerEstado(params).subscribe((response: any) => {
+        if (!response.isError) {
+          // Verificar si response.objetoResultado es un arreglo y tiene al menos un elemento
+          if (Array.isArray(response.objetoResultado) && response.objetoResultado.length > 0) {
+            // Obtener el estado_letra del primer elemento del arreglo objetoResultado
+            this.estadoContrato = response.objetoResultado[0].estado_letra;
+            const cacheService = new CacheService<any>('estado');
+            cacheService.setCache(this.estadoContrato);
+          } else {
+            // En caso de que objetoResultado no sea un arreglo o esté vacío, manejarlo según tu lógica
+            this.estadoContrato = null; // o algún valor por defecto
+            console.error('objetoResultado no es un arreglo o está vacío.');
+          }
+        } else {
+          this.openModalError(response.mensajeError);
+        }
+      });
     }
   }
 
@@ -162,30 +212,35 @@ export class InicioComponent implements OnInit, OnChanges {
     const cacheService = new CacheService<any>('tipoCambio');
     this.tipoCambio = cacheService.getCache();
     if (!this.tipoCambio) {
-      this.service.obtenerTipoCambioSunat(params).subscribe((response: any) => {
-        const tipoCambio = {
-          compra: response.precioCompra,
-          venta: response.precioVenta,
-          moneda: response.moneda,
-          fecha: response.fecha,
-        };
-  
-        if (tipoCambio) {
-          this.tipoCambio = tipoCambio;
-          cacheService.setCache(tipoCambio);
-          this.mostrarTipoCambio(tipoCambio);
-        } else {
-          this.openModalError('No se encontraron datos para la fecha proporcionada.');
+      this.service.obtenerTipoCambioSunat(params).subscribe(
+        (response: any) => {
+          const tipoCambio = {
+            compra: response.precioCompra,
+            venta: response.precioVenta,
+            moneda: response.moneda,
+            fecha: response.fecha,
+          };
+
+          if (tipoCambio) {
+            this.tipoCambio = tipoCambio;
+            cacheService.setCache(tipoCambio);
+            this.mostrarTipoCambio(tipoCambio);
+          } else {
+            this.openModalError(
+              'No se encontraron datos para la fecha proporcionada.'
+            );
+          }
+        },
+        (error) => {
+          console.error('Error al obtener el tipo de cambio', error);
+          this.openModalError('Hubo un error al procesar la solicitud.');
         }
-      }, (error) => {
-        console.error('Error al obtener el tipo de cambio', error);
-        this.openModalError('Hubo un error al procesar la solicitud.');
-      });
+      );
     } else {
       this.mostrarTipoCambio(this.tipoCambio);
     }
   }
-  
+
   mostrarTipoCambio(tipoCambio: any) {
     console.log(`Compra: ${tipoCambio.compra}, Venta: ${tipoCambio.venta}`);
   }
@@ -201,7 +256,9 @@ export class InicioComponent implements OnInit, OnChanges {
       this.contratoSeleccionado.Manzana,
       this.contratoSeleccionado.Lote,
       this.contratoSeleccionado.telefono,
-      this.contratoSeleccionado.celulares
+      this.contratoSeleccionado.celulares,
+      this.contratoSeleccionado.codigo_unidad,
+      this.contratoSeleccionado.id_unidad
     );
     this.contratoService.deleteContrato();
     this.contratoService.setContrato(this.contrato);

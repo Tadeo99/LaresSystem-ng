@@ -28,14 +28,21 @@ export class JwtTokenInterceptor implements HttpInterceptor {
     if (
       request.url.startsWith(environment.urlService) ||
       request.url.startsWith(environment.AngApiPath) ||
-      request.url.startsWith(environment.urlServiceSunat)
+      request.url.startsWith(environment.urlServiceSunat)||
+      request.url.startsWith(environment.urlSperant)
     ) {
-      var access_token = "apis-token-9080.H-mMAcC5NewEhE2WY2s2XMJQiXRPnDXT";
-      
+      var access_token = localStorage.getItem('token');
       if (access_token) {
-        request = request.clone({
-          setHeaders: { Authorization: `Bearer ${access_token}` },
-        });
+        console.log(access_token);
+        if(request.url.startsWith(environment.urlSperant)){
+          request = request.clone({
+            setHeaders: { Authorization: 'mocpzudRVQ94rJNntDt3X41qdQ2HB61B96mZJTay' },
+          });
+        }else{
+          request = request.clone({
+            setHeaders: { Authorization: `Bearer ${access_token}` },
+          });
+        }
         return next.handle(request).pipe(
           finalize(() => {
             this.totalRequests--;

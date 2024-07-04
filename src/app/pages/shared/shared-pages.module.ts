@@ -14,10 +14,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ModalBoletaComponent } from './modal-show-boleta/modal-boleta.component';
 import { ModalShowBoletaComponent } from './modal-show-boleta/successful-message/modal-show-boleta.component';
+import { ModalOpenImageComponent } from './modal-open-image/modal-open-image.component';
 import { SafeUrlPipe } from 'src/shared/components/pipes/SafeUrlPipe';
 @NgModule({
   declarations: [
-    ModalBoletaComponent,ModalShowBoletaComponent, SafeUrlPipe
+    ModalBoletaComponent,ModalShowBoletaComponent, SafeUrlPipe,ModalOpenImageComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +38,7 @@ import { SafeUrlPipe } from 'src/shared/components/pipes/SafeUrlPipe';
    
   ],
   exports: [
-    ModalBoletaComponent,ModalShowBoletaComponent
+    ModalBoletaComponent,ModalShowBoletaComponent,ModalOpenImageComponent
   ],
   providers: [
   ]

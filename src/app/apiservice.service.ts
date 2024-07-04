@@ -56,6 +56,12 @@ export class ApiserviceService {
     return this.dataService.execGet(request).pipe();
   }
 
+  obtenerEstado(request: any): Observable<any> {
+    const pathService = environment.urlService + 'status';
+    this.dataService.set(pathService);
+    return this.dataService.execGet(request).pipe();
+  }
+
   obtenerTipoCambioSunat(request: any): Observable<any> {
     const pathService = environment.urlServiceSunat + 'v2/sunat/tipo-cambio';
     console.log(pathService + request.date);
@@ -79,6 +85,12 @@ export class ApiserviceService {
     const pathService = environment.urlService + 'recordPayment';
     this.dataService.set(pathService);
     return this.dataService.execGet(request).pipe();
+  }
+
+  obtenerImagenLote(request: any): Observable<any> {
+    const pathService = environment.urlSperant + request.idUnidad + '/images';
+    this.dataService.set(pathService);
+    return this.dataService.execGet().pipe();
   }
 
 }

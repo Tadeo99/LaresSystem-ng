@@ -9,7 +9,8 @@ export class Contrato {
     Lote: string;
     telefono: string;
     celulares: string;
-  
+    codigo_unidad : string;
+    id_unidad : string;
     constructor(
       numeroContrato: string,
       documentoCliente: string,
@@ -20,7 +21,9 @@ export class Contrato {
       manzana: string,
       lote: string,
       telefono: string,
-      celulares: string
+      celulares: string,
+      codigo_unidad : string,
+      id_unidad : string
     ) {
       this.numero_contrato = numeroContrato;
       this.documento_cliente = documentoCliente;
@@ -32,5 +35,7 @@ export class Contrato {
       this.Lote = lote;
       this.telefono = telefono;
       this.celulares = celulares;
+      this.codigo_unidad = codigo_unidad;
+      this.id_unidad = id_unidad
     }
   }

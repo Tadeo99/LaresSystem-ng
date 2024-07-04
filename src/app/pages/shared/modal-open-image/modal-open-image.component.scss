@@ -4,3 +4,24 @@
 .title-margin{
   margin-bottom: 10px;
 }
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #000; /* Fondo negro para resaltar la imagen */
+}
+
+.image-wrapper {
+  max-height:50%;
+  max-width: 100%;
+}
+
+.full-width-image {
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}

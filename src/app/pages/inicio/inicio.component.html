@@ -116,7 +116,7 @@
     <div class="col-12 col-md-9 col-lg-10">
       <section *ngIf="modulo === 'INICIO' && contratoSeleccionado">
         <div class="container">
-          <app-inicio-general [contratoSeleccionado]="contratoSeleccionado" [modulo]="modulo"></app-inicio-general>
+          <app-inicio-general [contratoSeleccionado]="contratoSeleccionado" [modulo]="modulo" [estadoContrato]="estadoContrato"></app-inicio-general>
         </div>
       </section>
 
@@ -128,7 +128,7 @@
       
       <section *ngIf="modulo === 'INMUEBLES' && contratoSeleccionado">
         <div class="container">
-          <app-inmueble [contratoSeleccionado]="contratoSeleccionado"></app-inmueble>
+          <app-inmueble [contratoSeleccionado]="contratoSeleccionado" [estadoContrato]="estadoContrato"></app-inmueble>
         </div>
       </section>
       

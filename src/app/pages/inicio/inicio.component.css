@@ -34,8 +34,8 @@
 
 .text_barV{
     font-weight: bold;
-    
 }
+
 .btn_act{
     border: 3px solid #008755;
     max-width: 175px;
@@ -43,6 +43,7 @@
     border-radius: 15px;
     background-color: #FFFFFF;
 }
+
 .btn_des{
     color: #FFFFFF;
 }
