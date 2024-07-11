@@ -77,46 +77,7 @@
 .barraLogin {
     background-color: #F2F2F2;
 }
-/*Switch documento/cel*/
-.radio-inputs {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    border-radius: 25px;
-    background-color: #008755;
-    box-sizing: border-box;
-    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
-    padding: 0.25rem;
-    font-size: 14px;
-    color: #fff;
-  }
-  
-  .radio-inputs .radio {
-    flex: 1 1 auto;
-    text-align: center;
-  }
-  
-  .radio-inputs .radio input {
-    display: none;
-  }
-  
-  .radio-inputs .radio .name {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    border-radius: 25px;
-    border: none;
-    padding: .5rem 0;
-    transition: all .15s ease-in-out;
-  }
-  
-  .radio-inputs .radio input:checked + .name {
-    background-color: #fff;
-    color: #008755;
-    font-weight: 500;
-  }
-/**/
+
 @media (min-width: 992px) {
     .switch {
         max-width: 300px;
