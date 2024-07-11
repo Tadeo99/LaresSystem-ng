@@ -1,71 +1,82 @@
 <body>
-  <!-- Navbar -->
-  <nav class="navbar barra py-2 mb-3 mb-md-6">
-      <div class="container">
-          <a class="navbar-brand" href="#">
-              <img src="../../../assets/logo.png" alt="Bootstrap" class="logo">
-          </a>
-          <div class="navbar-nav ms-auto">
-              <div class="row mt-3">
-                  <div class="col-6">
-                      <a href="/login" class="boton1 mx-2" [ngClass]="{'active': botonActivo === 1}" (click)="activarBoton(1)">INGRESA</a>
-                  </div>
-                  <div class="col-6">
-                      <a class="boton1" [ngClass]="{'': botonActivo === 2}" (click)="activarBoton(2)" (click)="openView(3)">REGISTRATE</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </nav>
-
-  <!-- Panel -->
-  <div class="container">
-      <div class="row">
-          <div class="col d-none d-md-block">
-              <div class="portada"></div>
-          </div>
-
-          <div class="col">
-              <!-- Formulario -->
-              <div class="formulario elemento">
-                  <div class="container">
-                      <p class="mb-5" id="titulo4">Ingresar al portal</p>
-                      <div class="outer mt-5">
-                          <form class="needs-validation" novalidate (ngSubmit)="login()" #formulario="ngForm">
-                              <div class="input-group">
-                                  <select class="form-select mt-3" id="tipoDocumento" [(ngModel)]="tipoDocumento" name="tipoDocumento" required [ngClass]="{'is-invalid': formulario.submitted && (tipoDocumento === 'T' || !tipoDocumento)}">
-                                      <option selected disabled value="T">Tipo de documento</option>
-                                      <option value="DNI">DNI</option>
-                                      <option value="CE">CE</option>
-                                      <option value="RUC">RUC</option>
-                                      <option value="PASAPORTE">Pasaporte</option>
-                                  </select>
-                                  <div *ngIf="formulario.submitted && (tipoDocumento === 'T' || !tipoDocumento)" class="invalid-feedback">
-                                      Debes seleccionar un tipo de documento válido
-                                  </div>
-                              </div>
-                              <div class="input-group">
-                                  <input type="text" placeholder="Ingrese Número de documento" class="form-control mt-3" id="numeroDocumento" [(ngModel)]="numeroDocumento" name="numeroDocumento" aria-label="Text input with dropdown button" required [ngClass]="{'is-invalid': formulario.submitted && formulario.controls['numeroDocumento'].invalid}">
-                                  <div *ngIf="formulario.submitted && formulario.controls['numeroDocumento']?.errors?.['required']" class="invalid-feedback">
-                                      Debes ingresar el número de documento
-                                  </div>
-                              </div>
-                              <div class="input-group">
-                                  <input type="password" placeholder="Ingrese Contraseña" class="form-control mt-3" id="password" [(ngModel)]="password" name="password" aria-label="Text input with dropdown button" required [ngClass]="{'is-invalid': formulario.submitted && formulario.controls['password'].invalid}">
-                                  <div *ngIf="formulario.submitted && formulario.controls['password']?.errors?.['required']" class="invalid-feedback">
-                                      Debes ingresar la contraseña
-                                  </div>
-                              </div>
-                              <p class="text-end"><a id="link2" class="link-opacity-100-hover" href="#">¿Olvidaste tu contraseña?</a></p>
-                              <div class="mb-3">
-                                  <button class="boton3 my-5" type="submit">INICIAR SESIÓN</button>
-                              </div>
-                              <p class="text-center">¿Aún no estás registrado? <a id="link2" class="link-opacity-100-hover" (click)="openView(3)">Registrar aquí</a></p>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</body>
+    <!-- Navbar -->
+    <nav class="navbar barra py-2 mb-3 mb-md-6">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../../../assets/logo.png" alt="Bootstrap" class="logo">
+            </a>
+            <div class="navbar-nav ms-auto">
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <a href="/login" class="boton1 mx-2" [ngClass]="{'active': botonActivo === 1}" (click)="activarBoton(1)">INGRESA</a>
+                    </div>
+                    <div class="col-6">
+                        <a class="boton1" [ngClass]="{'': botonActivo === 2}" (click)="activarBoton(2)" (click)="openView(3)">REGISTRATE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+  
+    <!-- Panel -->
+    <div class="container">
+        <div class="row">
+            <div class="col d-none d-md-block">
+                <div class="portada"></div>
+            </div>
+  
+            <div class="col">
+                <!-- Formulario -->
+                <div class="formulario elemento">
+                    <div class="container">
+                        <p class="mb-3" id="titulo4">Ingresar al portal</p>
+                        <div class="outer mt-0">
+                          <div class="radio-inputs my-1">
+                              <label class="radio">
+                                <input type="radio" name="radio" checked="">
+                                <span class="name">DOCUMENTO</span>
+                              </label>
+                              <label class="radio">
+                                <input type="radio" name="radio">
+                                <span class="name">CELULAR</span>
+                              </label>                                
+                          </div>
+  
+                            <form class="needs-validation" novalidate (ngSubmit)="login()" #formulario="ngForm">
+                                <div class="input-group">
+                                    <select class="form-select mt-3" id="tipoDocumento" [(ngModel)]="tipoDocumento" name="tipoDocumento" required [ngClass]="{'is-invalid': formulario.submitted && (tipoDocumento === 'T' || !tipoDocumento)}">
+                                        <option selected disabled value="T">Tipo de documento</option>
+                                        <option value="DNI">DNI</option>
+                                        <option value="CE">CE</option>
+                                        <option value="RUC">RUC</option>
+                                        <option value="PASAPORTE">Pasaporte</option>
+                                    </select>
+                                    <div *ngIf="formulario.submitted && (tipoDocumento === 'T' || !tipoDocumento)" class="invalid-feedback">
+                                        Debes seleccionar un tipo de documento válido
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Número de documento" class="form-control mt-3" id="numeroDocumento" [(ngModel)]="numeroDocumento" name="numeroDocumento" aria-label="Text input with dropdown button" required [ngClass]="{'is-invalid': formulario.submitted && formulario.controls['numeroDocumento'].invalid}">
+                                    <div *ngIf="formulario.submitted && formulario.controls['numeroDocumento']?.errors?.['required']" class="invalid-feedback">
+                                        Debes ingresar el número de documento
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" placeholder="Contraseña" class="form-control mt-3" id="password" [(ngModel)]="password" name="password" aria-label="Text input with dropdown button" required [ngClass]="{'is-invalid': formulario.submitted && formulario.controls['password'].invalid}">
+                                    <div *ngIf="formulario.submitted && formulario.controls['password']?.errors?.['required']" class="invalid-feedback">
+                                        Debes ingresar la contraseña
+                                    </div>
+                                </div>
+                                <p class="text-end"><a id="link2" class="link-opacity-100-hover" href="#">¿Olvidaste tu contraseña?</a></p>
+                                <div class="mb-0">
+                                    <button class="boton3 my-3" type="submit">INICIAR SESIÓN</button>
+                                </div>
+                                <p class="text-center f-t">¿Aún no estás registrado? <a id="link2" class="link-opacity-100-hover" (click)="openView(3)">Registrar aquí</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>

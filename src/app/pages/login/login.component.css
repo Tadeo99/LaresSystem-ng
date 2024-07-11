@@ -1,8 +1,3 @@
-/* Estilos generales */
-a {
-    text-decoration: none;
-}
-
 .relleno {
     display: flex;
     align-items: center; /* Centra verticalmente los elementos hijos */
@@ -13,7 +8,9 @@ a {
     margin: 35px auto;
     background: #008755;
 }
-
+.f-t{
+    font-size: 0.875rem;
+}
 .barraLogin {
     background-color: #008755;
 }
@@ -80,17 +77,46 @@ a {
 .barraLogin {
     background-color: #F2F2F2;
 }
-
-.switch {
-    text-align: justify;
+/*Switch documento/cel*/
+.radio-inputs {
+    position: relative;
     display: flex;
-    height: 50px;
-    margin: 0 auto;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    background-color: #008755;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  .radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  
+  .radio-inputs .radio input {
+    display: none;
+  }
+  
+  .radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
     justify-content: center;
-    align-items: center; 
-    border-radius: 50px;
-}
-
+    border-radius: 25px;
+    border: none;
+    padding: .5rem 0;
+    transition: all .15s ease-in-out;
+  }
+  
+  .radio-inputs .radio input:checked + .name {
+    background-color: #fff;
+    color: #008755;
+    font-weight: 500;
+  }
+/**/
 @media (min-width: 992px) {
     .switch {
         max-width: 300px;
@@ -175,7 +201,7 @@ a {
 }
 
 #titulo4 {
-    font-size: 30px;
+    font-size: 25px;
     color: #008755;
     font-weight: bold;
     line-height: 1;
@@ -209,7 +235,10 @@ a {
     font-weight: lighter;
     line-height: 1;
 }
-
+.form-control, .form-select{
+    font-size: 0.875rem!important;
+    padding: .75rem!important;
+}
 #link1 {
     font-size: 12px;
     color: #007D4F;
@@ -228,37 +257,41 @@ a {
     background-color: #fff;
     text-decoration: none;
     color: #008755;
-    padding: 5px 40px;
-    font-size: 16px;
-    border: 2px solid #008755; 
-    border-radius: 15px;
+    padding: 8px 25px;
+    font-size: 14px;
+    border-radius: 25px;
     cursor: pointer;
+    font-weight: 500;
 }
 
 .boton1:hover {
-    background-color: #649b25; 
+    background-color: #008755; 
     color: #fff; 
+    border: 1px solid #f2f2f2;
 }
 
 .boton2 {
     background-color: #008755;
     text-decoration: none;
     color: #fff;
-    padding: 2px 40px;
-    font-size: 16px;
-    border: 2px solid #008755; 
-    border-radius: 15px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #008755;
+    padding: 8px 25px;
+    font-size: 14px;
+    border: 2px solid #008755;
+    border-radius: 25px;
     cursor: pointer;
 }
 
 .boton2:hover {
-    background-color: #007D4F; 
+    background-color: #008755; 
     color: #fff; 
+    border: 1px solid #f2f2f2;
 }
 
 .active {
     background-color: #F2F2F2;
-    color: #649b25;
 }
 
 .boton3 {
@@ -266,10 +299,10 @@ a {
     font: weight 4px;
     border: #008755;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 0.875rem;
     color: #fff;
     padding: 8px 30px;
-    border-radius: 15px;
+    border-radius: 25px;
     cursor: pointer;
 }
 
@@ -324,6 +357,8 @@ a {
 
 .elemento {
     padding: 40px;
+    display:flex;
+    align-items: center;
 }
 
 @media screen and (max-width: 600px) {
