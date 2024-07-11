@@ -5,48 +5,41 @@
       <!-- Primera fila -->
       <div class="row mb-3">
         <!-- Primera ficha -->
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-4">
           <div class="ficha alt_pan_gen">
             <div class="row">
-              <div class="col-8">
+              <div class="col-12">
                 <p class="titulo2 ps-3 pt-3">NOMBRE DEL PROYECTO</p>
                 <p class="texto ms-3">{{ contratoSeleccionado?.nombre_proyecto }}</p>
               </div>
-              <div class="col-4">
-                <div class="container imgCasa mt-4"></div>
-              </div>
-            </div>
-              
+            </div>              
             <div class="row">
-              <div class="col-7">
-                <p class="titulo2 ms-3">TIPO DE PROYECTO</p>
-                <p class="ms-3">{{ contratoSeleccionado?.nombre_proyecto }}</p>
-              </div>
-              <div class="col-5 pe-5">
-                <p class="titulo2 mt-3">NUMERO DE PROYECTO</p>
-                <p class="mt-3">{{ contratoSeleccionado?.numero_contrato }}</p>
+              <div class="col-12">
+                <p class="titulo2 ps-3 pt-3">NUMERO DE CONTRATO</p>
+                <p class="mt-1 ms-3">{{ contratoSeleccionado?.numero_contrato }}</p>
               </div>
             </div>
           </div>
+        </div>  
+        <div class="col-12 col-lg-4 img-inm">
+          <img src="https://sperant.s3.amazonaws.com/lares/gallery/project/Capilla_Banner_20240706203753.png" alt="">
         </div>
-        
-       <!-- Segunda ficha -->
-      <div class="d-none d-lg-block col-12 col-lg-4 mt-3 mt-lg-0 ms-5">
-        <div class="alt_pan_proy imgProyecto ">
-          </div>
-        </div>
-      </div>
+        <div class="col-12 col-lg-4 img-inm">
+          <img src="https://sperant.s3.amazonaws.com/lares/gallery/project/Costa_Morena_Banner_20240706204118.jpg" alt="">
+        </div>     
 
       <hr>
       
-      <h4 class="titulo m-3">Mis inmuebles</h4>
+      <h4 class="titulo m-3">Estado de mi propiedad</h4>
       <div class="container">
         <div class="row mx-3">
           <div class="col-12 col-md-3 mx-0  text-center">
             <div class="ficha mb-3">
               <p class="texto3 mt-3">1</p>
               <div class="container-fluid">
-                <div class="container imgPaso1"></div>
+                <div class="container imgPaso1">
+                  <img src="../../../../../assets/1.svg" alt="">
+                </div>
               </div>
               <p class="titulo2 ps-3 pt-3">Firma del contrato</p>
             </div>
@@ -56,7 +49,9 @@
             <div class="ficha mb-3">
               <p class="texto3 mt-3">2</p>
               <div class="container-fluid">
-                <div class="container imgPaso2 "></div>
+                <div class="container imgPaso2 ">
+                  <img src="../../../../../assets/2.svg" alt="">
+                </div>
               </div>
               <p class="titulo2 ps-3 pt-3">Pago completado</p>
             </div>
@@ -66,7 +61,9 @@
             <div class="ficha mb-3">
               <p class="texto3 mt-3">3</p>
               <div class="container-fluid ">
-                <div class="container imgPaso3 "></div>
+                <div class="container imgPaso3 ">
+                  <img src="../../../../../assets/3.svg" alt="">
+                </div>
               </div>
               <p class="titulo2 ps-3 pt-3">Entrega de mi propie</p>
             </div>
@@ -76,7 +73,9 @@
             <div class="ficha mb-3">
               <p class="texto3 mt-3 ">4</p>
               <div class="container-fluid">
-                <div class="container imgPaso4 "></div>
+                <div class="container imgPaso4 ">
+                  <img src="../../../../../assets/4.svg" alt="">
+                </div>
               </div>
               <p class="titulo2 ps-3 pt-3">Entrega de minuta *</p>
             </div>

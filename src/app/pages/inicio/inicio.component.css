@@ -10,13 +10,13 @@
     color: #008755;
     background-color: #FFFFFF;
     font-weight: bold; 
+    border-radius: 25px;
 }
 .barV{
-    border: 2px solid #000000;
-    background-image:url(../../../assets/fondo.png);
-    background-size: 100px 100px;
+    background-color: #008755;
     background-repeat: repeat;
     border-radius: 15px;
+    width: 200px;
 }
 @media (min-width: 992px){
     #barV {
@@ -39,7 +39,8 @@
 .btn_act{
     border: 3px solid #008755;
     max-width: 175px;
-    color: #000000;
+    color: #008755;
+    font-weight: 500;
     border-radius: 15px;
     background-color: #FFFFFF;
 }

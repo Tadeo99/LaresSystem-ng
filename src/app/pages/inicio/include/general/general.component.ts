@@ -28,7 +28,13 @@ export class GeneralComponent implements OnInit,OnChanges {
   listaProximaLetra: any[] = [];
   listaLastPayment: any[] = [];
   usuario: Usuario | null;
-  
+  montoPagadoTotal: number = 0;
+  montoProgramadoTotal: number = 0;
+  porcentajePagado: number = 0;
+  moneda: string;
+  cuotasPagadas: number = 0;
+  totalCuotas: number = 0;
+
   constructor(
     private usuarioService: UsuarioService,
     private service: ApiserviceService,
@@ -137,7 +143,18 @@ export class GeneralComponent implements OnInit,OnChanges {
     this.usuarioService.deleteUsuario();
     window.location.href = environment.angHome + 'login';
   }
-
+  formatMilesNumber(number: number | string): string {
+    if (!number) return '';
+    let numericValue = typeof number === 'string' ? parseFloat(number) : number;
+    if (!isNaN(numericValue)) {
+      return numericValue.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    } else {
+      return '';
+    }
+  }
   viewDetail(namePage: string) {
     var id = this.usuario?.tipoDocumento;
     var id_dos = this.usuario?.documentoCliente;

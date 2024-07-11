@@ -1,13 +1,13 @@
 
 <!--<div class="col-12 ">-->
-  <div class="container-fluid fondo_panel mb-4 mt-0 mt-lg-5">
+  <div class="fondo_panel mb-4 mt-0 ">
     <div class="row">
       <div class=" d-none d-lg-block col-md-4 col-lg-4">
-        <img class="img_panel " src="../../../../../assets/img_panel.png">
+        <img class="img_panel " src="https://sperant.s3.amazonaws.com/lares/gallery/project/Costa_Morena_Banner_20240706204118.jpg">
       </div>
       <div class="col-12 col-md-12 col-lg-8">
-        <p class="titulo_panel pt-2 pt-md-2 pt-lg-4" >¡Bienvenido(a) {{ usuario?.cliente }}!</p>
-        <p class="letra_panel pt-1 pt-lg-4 ">Puedes conocer tus pagos pendientes o pagar tu próxima letra además de conocer tu deuda total.</p>
+        <p class="titulo_panel pt-2 pt-md-2 pt-lg-4 px-4" >¡Bienvenido(a) {{ usuario?.cliente }}!</p>
+        <p class="letra_panel pt-2 pt-lg-2 px-4">Puedes conocer tus pagos pendientes o pagar tu próxima letra además de conocer tu deuda total.</p>
       </div>
     </div>
     
@@ -22,7 +22,7 @@
             <p class="titulo1 ps-3 pt-3">Mis últimos pagos</p>
             <ng-container *ngIf="listaLastPayment && listaLastPayment.length > 0; else noPayments">
               <div *ngFor="let pago of listaLastPayment" class="mb-3">
-                <p class="titulo3 ps-3">PAGADO</p>
+                <p class="titulo3 ps-3"><i class="bi bi-circle-fill"></i> PAGADO</p>
                 <div class="row">
                   <div class="texto2 col-6 ps-4">{{ formatDate(pago.fecha_vcto) }}</div>
                   <div class="col-6 pe-4 text-end titulo1"> {{pago.moneda}} {{ formatCurrency(pago.monto_pagado) }}</div>
@@ -37,29 +37,33 @@
           </div>
           
         </div>
-        <div class="col-12 col-lg-6 mt-3 mt-lg-0"><!--ficha 2-->
-          <div class="ficha alt_est_inm">
-            <!--contenido-->
-            <p class="titulo1 ms-3 mt-3">Estado de mi inmuebles</p>
-            <div class="row">
-              <div class="col-6">
-                <p class="texto2 ps-3">Gracias por confiar en nosotros,
-                  el estado actual es: <strong>{{this.estadoContrato}}</strong></p>
-                <!--<p type="button" class="link-opacity-100-hover ps-3" (click)="setModulo('PAGOS')" id="link1">Ver mis deudas</p>-->
-
+        <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+          <div class="ficha p-3" style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
+            <h5 class="titulo1 ms-3">Progreso de pago</h5>
+            <div class="d-flex align-items-center mx-3">
+              <div class="progress" role="progressbar" aria-label="Animated striped example"
+                [attr.aria-valuenow]="porcentajePagado" aria-valuemin="0" aria-valuemax="100"
+                style="height: 10px; width: 100%;">
+                <div class="progress-bar bg-success" [style.width.%]="porcentajePagado"></div>
               </div>
-              <div class="col-6">
-                <div class="container-fluid me-4">
-                  <div class="container imgFirma"></div>
-                </div>
+              <span class="percentage-label ms-2">{{ porcentajePagado.toFixed(2) }}%</span>
+            </div>
+            <div class="row">
+              <div class="col-6 text-start ps-4 mt-3">
+                <p class="titulo2">ABONO A LA FECHA:</p>
+                <p class="titulo2">{{moneda}} {{ formatMilesNumber(montoPagadoTotal.toFixed(2)) }}</p>
+              </div>
+              <div class="col-6 text-end pe-5 mt-3">
+                <p class="titulo2">MONTO TOTAL:</p>
+                <p class="titulo2">{{moneda}} {{ formatMilesNumber(montoProgramadoTotal.toFixed(2)) }}</p>
+                <p class="texto1">{{ cuotasPagadas }}/{{ totalCuotas }} Cuotas pagadas</p>
               </div>
             </div>
-            <br>
           </div>
         </div>
         <div class="col-lg-6 mt-3"><!--Tercera ficha-->
           <div class="ficha alt_prox_ven">
-            <p class="titulo1 ps-3 pt-3">Mis próximas letras a pagar</p>
+            <p class="titulo1 ps-3 pt-3">Mi próxima letra a pagar</p>
             
             <!-- Verifica si la lista está vacía o nula -->
             <ng-container *ngIf="listaProximaLetra && listaProximaLetra.length > 0; else noPayments2">
@@ -117,35 +121,36 @@
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseOne')">
+                  <button class="titulo3 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseOne')">
                     Post Venta 
                   </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <P class="texto2">Consultas</P>
-                      <ul>
-                        <li>Recojo de letras</li>
-                        <li>Firma de contrato</li>
-                        <li>Firma de adenda</li>
-                        <li>Comunicación de avance del proyecto</li>
-                        <li>Cartas de no adeudo</li>
-                        <li>Horario de atención: 9am a 1pm y de 3pm a 4pm</li>
-                      </ul>
-                      <p>¿Necesitas ayuda? Escríbenos aquí: <a class="link link-opacity-100-hover"
+                  <div class="accordion-body mt-0">
+                    <a class="link link-opacity-100-hover"
                         href="https://api.whatsapp.com/send?phone=51975146063&text=¡Hola!👋%20Tengo%20dudas%20y%20consultas%20en%20el%20%20proceso%20de%20post%20Venta%20¿Podría%20ayudarme%3F"
-                        target="_blank">+51 975 146 063</a></p>
+                        target="_blank">Escríbenos aquí</a>
+
+                    <P class="texto2"></P>
+                      <ul>
+                        <li><strong>Trámites diversos:</strong> Coordina con el Whatsapp <a href="#">975146063</a> la atención de los demás trámites que necesitas realizar.</li>
+                        
+                      </ul>
+                       
                   </div>
                 </div>
               </div>
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseTwo')">
+                  <button class="titulo3 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseTwo')">
                     Cobranzas
                   </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
+                    <a class="link link-opacity-100-hover"
+                        href="https://api.whatsapp.com/send?phone=51923365503&text=Estoy%20experimentando%20dificultades%20para%20pagar%20en%20este%20momento%20y%20necesito%20ayuda.%20¿Podrías%20guiarme%20sobre%20cómo%20proceder%3F"
+                        target="_blank">Escríbenos aquí</a>
                     <P class="texto2">Consultas</P>
                       <ul>
                         <li>Dudas sobre cómo realizar pagos</li>
@@ -155,9 +160,6 @@
                         <li>Cálculo de prepagos</li>
                         <li>Horario de atención: 9am a 1pm y de 2pm a 6pm</li>
                       </ul>
-                      <p>¿Necesitas ayuda? Escríbenos aquí: <a class="link link-opacity-100-hover"
-                        href="https://api.whatsapp.com/send?phone=51923365503&text=Estoy%20experimentando%20dificultades%20para%20pagar%20en%20este%20momento%20y%20necesito%20ayuda.%20¿Podrías%20guiarme%20sobre%20cómo%20proceder%3F"
-                        target="_blank">+51 923 365 503</a></p>
                   </div>
                 </div>
               </div>
@@ -166,49 +168,24 @@
           </div>
         </div>
       </div><!--fin de fila-->
-      <h4 class="titulo m-3">Novedades</h4>
+      <hr >
       <div class="row">
-        <div class="col-lg-4">
-          <div class="ficha p-3">
-            <div class="container-flui pb-3">
-              <div class="container imgFicha1 "></div>
-            </div>
-            <p class="titulo1 ">Proximos proyectos a realizar</p>
-            <p class="tituloFicha ">Los Rosales de Manchay</p>
-            <p class="texto2 ">¡Hola emprendedor! ¿Cómo va tu emprendimiento? Hoy te enseñamos uno de los procesos aparentemente más sencillos...</p>
-            <a class="link link-opacity-100-hover" href="https://www.lares.pe/pages/nuestros-proyectos" target="_blank"><!--(click)="setModulo('PAGOS')" id="link1-->
-              Ver Detalle
-            </a>
-          </div>
+        <p class="f-t">Mantente actualizado sobre nuestras novedades</p>
+        <div class="social-icons">
+          <a href="https://www.instagram.com" target="_blank" class="social-icon">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://www.tiktok.com" target="_blank" class="social-icon">
+            <i class="bi bi-tiktok"></i>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" class="social-icon">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" class="social-icon">
+            <i class="bi bi-linkedin"></i>
+          </a>
         </div>
-
-        <div class="col-lg-4">
-          <div class="ficha p-3 mt-3 mt-lg-0">
-            <div class="container-flui pb-3">
-              <div class="container imgFicha2 "></div>
-            </div>
-            <p class="titulo1 ">Proximos proyectos a realizar</p>
-            <p class="tituloFicha ">Villa el Encanto Paracas</p>
-            <p class="texto2 ">¡Hola emprendedor! ¿Cómo va tu emprendimiento? Hoy te enseñamos uno de los procesos aparentemente más sencillos...</p>
-            <a class="link link-opacity-100-hover" href="https://www.lares.pe/pages/nuestros-proyectos" target="_blank">
-              Ver Detalle
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="ficha p-3 mt-3 mt-lg-0">
-            <div class="container-flui pb-3">
-              <div class="container imgFicha3 "></div>
-            </div>
-            <p class="titulo1 ">Proximos proyectos a realizar</p>
-            <p class="tituloFicha ">La Capilla Cieneguilla</p>
-            <p class="texto2 ">¡Hola emprendedor! ¿Cómo va tu emprendimiento? Hoy te enseñamos uno de los procesos aparentemente más sencillos...</p>
-            <a class="link link-opacity-100-hover" href="https://www.lares.pe/pages/nuestros-proyectos" target="_blank"><!--(click)="setModulo('PAGOS')" id="link1-->
-              Ver Detalle
-            </a>
-          </div>
-        </div>
+        
       </div>
       <br>
     </div>

@@ -9,10 +9,11 @@ import { Usuario } from 'src/shared/models/common/clases/usuario';
 import { UsuarioService } from 'src/shared/usuarioService';
 import { DatePipe } from '@angular/common';
 import { ModalBoletaComponent } from '@pages/shared/modal-show-boleta/modal-boleta.component';
+
 @Component({
   selector: 'app-pagos',
   templateUrl: './pagos.component.html',
-  styleUrl: './pagos.component.css',
+  styleUrls: ['./pagos.component.css'],
 })
 export class PagosComponent implements OnInit {
   datos: any;
@@ -29,10 +30,34 @@ export class PagosComponent implements OnInit {
   montoPagadoTotal: number = 0;
   montoProgramadoTotal: number = 0;
   porcentajePagado: number = 0;
-  moneda : string;
+  moneda: string;
   cuotasPagadas: number = 0;
   totalCuotas: number = 0;
   listaProximaLetra: any[] = [];
+
+  currentSlide = 0;
+  slides = [
+    {
+      image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/inicio_20240706204617.png', 
+      stepTitle: 'PASO 1',
+      stepDescription: 'Elige “Pago de Servicios” en el menú principal.'
+    },
+    {
+      image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_2_20240706204619.png', 
+      stepTitle: 'PASO 2',
+      stepDescription: 'Descripción del paso 2.'
+    },
+    {
+      image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_3_20240706204622.png',
+      stepTitle: 'PASO 3',
+      stepDescription: 'Descripción del paso 3.'
+    },
+    {
+      image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_4_20240706204625.png', 
+      stepTitle: 'PASO 4',
+      stepDescription: 'Descripción del paso 4.'
+    },
+  ];
 
   constructor(
     private usuarioService: UsuarioService,
@@ -41,26 +66,30 @@ export class PagosComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private datePipe: DatePipe
-    
   ) {}
 
-  openModalBoleta(nombrePago : string) {
+  prevSlide() {
+    this.currentSlide = (this.currentSlide === 0) ? this.slides.length - 1 : this.currentSlide - 1;
+  }
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide === this.slides.length - 1) ? 0 : this.currentSlide + 1;
+  }
+
+  goToSlide(index: number) {
+    this.currentSlide = index;
+  }
+
+  openModalBoleta(nombrePago: string) {
     const dialogRef = this.dialog.open(ModalBoletaComponent, {
-      width: '500px',  data: { numContrato : this.contratoSeleccionado.numero_contrato , nombre_pago : nombrePago}
+      width: '500px',  data: { numContrato: this.contratoSeleccionado.numero_contrato, nombre_pago: nombrePago }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      
-    });
+    dialogRef.afterClosed().subscribe(result => {});
   }
 
   isDeudaVencida(historial: any): boolean {
-    // Obtener la fecha actual
     const currentDate = new Date();
-  
-    // Convertir la fecha de vencimiento del historial a objeto Date
     const fechaVencimiento = new Date(historial.fecha_vcto);
-  
-    // Verificar si la fecha de vencimiento es anterior a la fecha actual
     return fechaVencimiento < currentDate && parseFloat(historial.saldo) > 0;
   }
 
@@ -68,28 +97,30 @@ export class PagosComponent implements OnInit {
     return Math.ceil(this.listaHistorial.length / this.itemsPerPage);
   }
 
-  // Función para obtener la lista de elementos actual basada en la paginación
   getPaginatedList() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     return this.listaHistorial.slice(startIndex, endIndex);
   }
 
-  // Función para ir a la página anterior
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
 
-  // Función para ir a la página siguiente
   nextPage() {
     const totalPages = Math.ceil(this.listaHistorial.length / this.itemsPerPage);
     if (this.currentPage < totalPages) {
       this.currentPage++;
     }
   }
-
+  toggleAccordion(id: string) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.classList.toggle('show');
+    }
+  }
   ngOnInit(): void {
     this.usuario = this.usuarioService.getUsuario();
     this.recuperarParametros();
@@ -100,7 +131,7 @@ export class PagosComponent implements OnInit {
     this.totalCuotas = this.listaHistorial.length;
     this.listaHistorial.forEach(historial => {
       const montoPagado = parseFloat(historial.monto_pagado);
-      const saldo = parseFloat(historial.monto_programado);//monto programado
+      const saldo = parseFloat(historial.monto_programado); // monto programado
       this.montoPagadoTotal += montoPagado;
       this.montoProgramadoTotal += saldo;
       if (historial.estado === 'pagado') {
@@ -115,16 +146,13 @@ export class PagosComponent implements OnInit {
     }
   }
 
-//si tiene deudas el cliente
-get tieneDeudas(): boolean {
-  const hoy = new Date(); // Fecha actual
-  // Filtrar las cuotas que están vencidas y no han sido pagadas
-  const cuotasConDeuda = this.listaHistorial.filter(historial => {
-    return new Date(historial.fecha_vcto) < hoy && historial.estado !== 'pagado';
-  });
-  // Devolver true si hay al menos una cuota con deuda
-  return cuotasConDeuda.length > 0;
-}
+  get tieneDeudas(): boolean {
+    const hoy = new Date();
+    const cuotasConDeuda = this.listaHistorial.filter(historial => {
+      return new Date(historial.fecha_vcto) < hoy && historial.estado !== 'pagado';
+    });
+    return cuotasConDeuda.length > 0;
+  }
 
   cerrarSesion() {
     this.goLogin();
@@ -133,7 +161,7 @@ get tieneDeudas(): boolean {
   transform(value: any): any {
     if (value) {
       const dateParts = value.split('-');
-      return  `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}` ;
+      return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
     }
     return "-";
   }
@@ -152,7 +180,7 @@ get tieneDeudas(): boolean {
       await this.service.obtenerHistorial(params).subscribe((response) => {
         if (!response.isError) {
           this.listaHistorial = response.listaResultado;
-          if (this.listaHistorial.length > 0){
+          if (this.listaHistorial.length > 0) {
             this.listaCutotasVencidas = response.listaResultado.filter((historial: any) => {
               return new Date(historial.fecha_vcto) < new Date() && historial.estado !== 'pagado';
             });
@@ -165,7 +193,6 @@ get tieneDeudas(): boolean {
     }
   }
 
-  // Mostrar modal de alerta en caso de error al guardar
   openModalError(message: string) {
     var alert = { title: 'Alerta', message: message };
     const dialogRef = this.dialog.open(AlertComponent, {
@@ -196,7 +223,6 @@ get tieneDeudas(): boolean {
   }
 
   cambiarContrasena() {
-    // Redirigir al componente de cambio de contraseña
     this.viewDetail('change-password');
   }
 
@@ -207,7 +233,7 @@ get tieneDeudas(): boolean {
   }
 
   formatDate(date: string): string {
-    if(date){
+    if (date) {
       const options: Intl.DateTimeFormatOptions = {
         year: 'numeric',
         month: 'long',
@@ -226,22 +252,16 @@ get tieneDeudas(): boolean {
     return "-";
   }
 
-
   formatMilesNumber(number: number | string): string {
-    if (!number) return ''; // Manejar caso de valor nulo o indefinido
-
-    // Convertir a número si es string
+    if (!number) return '';
     let numericValue = typeof number === 'string' ? parseFloat(number) : number;
-
-    // Verificar si es un número válido
     if (!isNaN(numericValue)) {
-      // Formatear con separadores de miles y dos decimales
       return numericValue.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
     } else {
-      return ''; // Manejar caso de valor no numérico
+      return '';
     }
   }
 
@@ -253,7 +273,6 @@ get tieneDeudas(): boolean {
   }
 
   openView(id: any) {
-    console.log('entro a');
     this.router.navigate([PATH_URL_DATA[id]], { replaceUrl: false });
   }
 
@@ -265,6 +284,7 @@ get tieneDeudas(): boolean {
       }
     );
   }
+
   async obtenerProxmaLetra(numContrato: string) {
     if (this.tipoDocumento && this.numDocumento && numContrato) {
       var params = {
@@ -277,7 +297,6 @@ get tieneDeudas(): boolean {
         .subscribe((response: any) => {
           if (!response.isError) {
             this.listaProximaLetra = response.listaResultado;
-            console.log('Lista proxima Letra ', this.listaProximaLetra);
           } else {
             this.openModalError(response.mensajeError);
           }

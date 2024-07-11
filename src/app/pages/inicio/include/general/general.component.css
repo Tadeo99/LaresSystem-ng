@@ -14,6 +14,11 @@
     background-color: #FFFFFF;
 }
 
+hr {
+    height: 1px;
+    color: #008755;
+    opacity: 1;
+}
 .btn_des {
     color: #FFFFFF;
 }
@@ -25,13 +30,13 @@
 }
 /*Seccion de rectangulos*/
 .panel {
-    border: 2px solid #008755;
+    border: 1px solid #008755;
     background-color: #F2F2F2;
     border-radius: 15px;
     max-width: 1050px;
 }
 .ficha {
-    border: 2px solid #008755;
+    border: 1px solid #008755;
     background-color: #FFFFFF;
     border-radius: 15px;
 }
@@ -52,19 +57,19 @@
     font-weight: bold;
 }
 .titulo3 {
-    font-size: 12px;
-    color: #33BA41;
+    font-size: 13px;
+    color: #008755;
     font-weight: bold;
 }
 .titulo_panel{
-    font-size: 20px;
-    color: #000000;
+    font-size: 16px;
+    color: #fff;
     font-weight: bold;
 }
 .letra_panel{
-    font-size: 20px;
+    font-size: 12px;
     color: #FFFFFF;
-    font-weight: bold;
+    font-weight: 300;
 }
 /*Seccion de texto*/
 .texto1 {
@@ -74,9 +79,7 @@
     line-height: 1;
 }
 .texto2 {/*este sera mi texto estandar*/
-    font-size: 15px;
-    color: #000000;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
     line-height: 1;
 }
 
@@ -86,8 +89,12 @@
     color:#008755;
     font-weight: bold;
     text-decoration: underline;
+    opacity: 1;
 }
 
+.accordion-button {
+    padding: 0.3rem 1.25rem;
+}
 /*altura de paneles*/
 .alt_prox_ven{/**altura de la ficha de proximos a vences en "inicio"*/
     min-height: 180px;
@@ -99,12 +106,20 @@
 .alt_ult_pag{/**altura de la ficha de estado inmueble en "inicio"*/
     min-height: 180px;
 }
-.link-opacity-100-hover {
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-    cursor: pointer; /* Cambia el cursor a puntero */
+.accordion-body .link-opacity-100-hover {
+    background: #008755;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: inline-block;
   }
-  
+  .accordion-body {
+    padding: 0rem 1.25rem !important;
+}
   .link-opacity-100-hover:hover {
     opacity: 1;
   }
@@ -148,16 +163,52 @@
     font-size: 15px;
     color: #000000;
     font-weight: bold;
+    border-radius: 15px;
 }
 .fondo_panel{
-    border-radius: 15px;
-    background-image:url(../../../../../assets/panel.png) ;
-    background-size: cover; /* Ajusta el tamaño para cubrir completamente el contenedor */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-position: center; /* Centra la imagen */
     height: 150px;
+    background-color: #008755;
+    border-radius: 15px;
 }
 .img_panel {
-    height: 200px; /* Altura deseada para la imagen */
-    margin-top: -50px; /* Mover la imagen 20px hacia arriba */
+    height: 150px; 
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px 0 0 15px;
 }
+.f-t{
+    font-weight: bold;
+    color: #008755;
+}
+.percentage-label {
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #28a745; 
+    margin-left: 0.5rem;
+  }
+.social-icons {
+    display: flex;
+  }
+  
+  .social-icon {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%;
+    background-color: #008755;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    transition: transform 0.3s;
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.1); 
+  }
+  
+  .social-icon i {
+    color: #fff;
+    font-size: 24px; 
+  }
+  
