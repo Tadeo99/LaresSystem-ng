@@ -82,7 +82,6 @@
 .texto2 {/*este sera mi texto estandar*/
   font-size: 15px;
   color: #8D8D8D;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1;
 }
 
@@ -100,6 +99,7 @@
   background-color: #F2F2F2 !important;
   border-radius: 15px;
   max-width: 1050px;
+  
 }
 .ficha {
   border: 1px solid #008755 !important;
@@ -264,16 +264,59 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 .step-desc span{
 display: inline-block;
-max-width: 50px;
 text-align: center;
 }
+.bi-search{
+  margin-right: 10px;
+}
+.step-desc.oval {
+  border-radius: 50%; 
+  background-color: #fff; 
+  padding: 10px; 
+}
+
+.step-desc.rectangle {
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 8px; 
+  border-radius: 15px;
+    background-color: #F1F1F2;
+    padding: 12px;
+    width: 118%;
+    height: 34px;
+    display: flex;
+    flex-direction: row;
+}
+.step-desc.limp{
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  background-color: transparent ;
+}
+.bg-black {
+  display: flex;
+    flex-direction: row-reverse;
+}
+.bg-black img{
+  margin-right: 0;
+  margin-left: 80px;
+}
+
 .carousel-indicators {
 text-align: center;
 position: absolute;
-bottom: 15px;
 width: 100%;
 }
-
+.bi-droplet{
+  font-size: 18px;
+    border: 1px solid #F5770E;
+    border-radius: 50%;
+    padding: 3px;
+    margin-bottom: 5px;
+    display: inline-block;
+    background: #F5770E;
+    color: #fff;
+}
 .carousel-indicators span {
 cursor: pointer;
 height: 15px;
@@ -316,4 +359,21 @@ left: 0;
 .b-s.next {
 right: 0;
 }
-
+.accordion-button:hover {
+  z-index: 0;
+}
+@media (max-width: 768px){
+  .carousel-slide img, .bg-black img{
+    margin-right: 5px;
+  }
+  .accordion-body {
+    padding: .2rem 1.25rem;
+  }
+  .bg-black img {
+    margin-left: 10px;
+}
+.t-title {
+    padding: 0px 13px;
+    top: -18px;
+}
+}

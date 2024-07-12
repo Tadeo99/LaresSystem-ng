@@ -7,8 +7,8 @@
       <img src="../../../assets/logo.png" alt="Bootstrap" class="logo">
     </a>
       <div class="navbar-nav ms-auto">
-        <div class="row">
-          <div class="col-6 col-md-4">
+        <div class="row nav-option">
+          <div class="col-6 col-md-6 ">
             <div class="dropdown" (click)="toggleDropdown()">
               <button class="btn btn5 dropdown-toggle" type="button" id="dropdownMenuButton"
                 [attr.aria-expanded]="dropdownOpen ? 'true' : 'false'" (click)="toggleDropdownAndSelect()">
@@ -38,9 +38,9 @@
               </ul>
             </div>
           </div>
-          <div class="col-6 col-md-6">
+          <div class="col-6 col-md-6 ">
             <div class="dropdown" *ngIf="usuario">
-              <button class="btn btn5 dropdown-toggle " type="button" (click)="toggleDropdownSession()" aria-expanded="false">
+              <button class="btn btn5 p-16 dropdown-toggle " type="button" (click)="toggleDropdownSession()" aria-expanded="false">
                 <i class="bi-person my-3"></i>
                 <span class="d-none d-md-inline">{{ usuario.cliente }}</span>
               </button>
@@ -50,7 +50,7 @@
               </ul>
             </div>
           </div>
-      </div>
+        </div>
       </div>
     </div>
 </nav>
@@ -85,7 +85,7 @@
 <div class="col-12 ">
  
     <div class="container mb-2">
-      <div class="row barV text-center">
+      <div class="row barV text-center m-l">
       <div class="col-3">
         <p [class.btn_actH]="isModuloActivo('INICIO')" [class.btn_desH]="!isModuloActivo('INICIO')" class="pt-4 " type="button" id="text_barV" (click)="setModulo('INICIO')">
           <i class="bi-grid-1x2-fill"><br></i> Inicio
