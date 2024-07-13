@@ -83,10 +83,9 @@
             <div id="collapseCinco" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
                 <P class="texto2">
-                  Menorca citará por escrito al cliente, señalando fecha y hora de cita para la firma del acta de
-                   entrega correspondiente. Si el cliente no concurriera a la reunión citada se considerá que el 
-                   lote ha sido entregado por Menorca y recibido por el cliente a su conformidad, en la fecha de 
-                   citación programada.</P>
+                  Se ha previsto la entrega de terrenos incluso antes de la culminación total de obras, el desarrollo de las facilidades, beneficios o amenities que se hubieran diseñado, de modo tal que no será necesario culminar con todas ellas para disfrutar de su compra. 
+Al iniciar el proceso de entrega de terrenos, usted recibirá una comunicación vía correo electrónico, WhatsApp y/o llamada telefónica donde le indicaremos la fecha y hora dispuesta para la firma en nuestras oficinas de los documentos de entrega de terreno. A partir de ello, usted podrá ocupar su terreno y disfrutarlo al máximo, siempre manteniendo coordinación con nuestro equipo de postventa y con la administración del Condominio. 
+</P>
               </div>
             </div>
           </div>
@@ -94,303 +93,28 @@
 
         <p class="titulo1 ms-3 mt-5">Otras preguntas</p>
         <div class="accordion" id="accordionExample">
-          <div class="accordion-item">
+          <div class="accordion-item" *ngFor="let item of visibleAccordionItems">
             <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseSeis')">
-                ¿Dónde debo pagar mi cuota mensual?
+              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion(item.id)">
+                {{ item.title }}
               </button>
             </h2>
-            <div id="collapseSeis" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  Lares enviará un aviso preventivo al cliente, indicándole en que entidad bancaria deberá 
-                  realizar el abono correspondiente. En caso no reciba el aviso preventivo, el cliente deberá
-                   comunicarse a la central telefónica de Lares, a fin de que se le 
-                   brinde dicha información.</P>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseSiete')">
-                ¿Cuánto es la mora diaria por cada dia de retraso?¿A base de qué se calcula?
-              </button>
-            </h2>
-            <div id="collapseSiete" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  El interés moratorio diario se calculará en base al monto de la letra, según las consideraciones
-                   que constan en el Contrato/Compromiso.</P>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseOcho')">
-                Si quiero utilizar el libro de reclamaciones,¿dónde lo hago?
-              </button>
-            </h2>
-            <div id="collapseOcho" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  Contamos con un libro de reclamaciones en cada oficina de ventas Lares, el cual se encuentra
-                   al alcance de cualquier cliente que lo solicite, de ser el caso.</P>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseNueve')">
-                ¿Cuáles son los requisitos para realizar una cesión?
-              </button>
-            </h2>
-            <div id="collapseNueve" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  Requisitos
-                </P>
-                  <ul>
-                    <li> La cesión procederá siempre y cuando, no se hayan cumplido lo siguientes requisitos de manera
-                      conjunta:
-                      <ol>
-                        <li>La independización registral de la etapa en donde se encuentre el Lote.</li>
-                        <li>La cancelación del saldo precio de venta.</li>
-                      </ol>
-                    </li>
-                    <li> Se debe presentar una copia del DNI vigente del cedente (propietario) y del cesionario
-                      (tercero interesado en adquirir propiedad).
-                    </li>
-                    <li>El cliente que realiza la solicitud de cesión debe estar al día en sus pagos.</li>
-                    <li>La ficha de cesión brindada por Lares debe estar firmada por el cedente y el cesionario (Es
-                      requisito indispensable que se proceda con la firma del contato de cesión, la solicitud
-                      aceptada no acredita el otorgamiento de la cesión).
-                    </li>
-                    <li>El cesionario debe completar la ficha de conocimiento del cliente, la cual será brindada por
-                      Lares.
-                    </li>
-                    <li>El cesionario debe presentar 2 recibos de servicios (por ejemplo: agua, luz, telefonia fija,
-                      etc.).
-                    </li>
-                    <li>Otros documentos que solicite la empresa en el proceso de evaluación.</li>
-                    <li>El costo será según el tarifario vigente.</li>
-                    <li>En caso el cesionario tenga el estado civil de casado:
-                      <ol>
-                        <li>Debe presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta
-                          de matrimonio emitida por la Municipalidad.
-                        </li>
-                        <li> En caso el cesionario tenga el estado civil de casado pero con separación de patrimonios: Debe
-                          presentar la copia certificada de la partida de matrimonio emitida por Reniec o el acta de
-                          matrimonio emitida por la Municipalidad y adicionalmente deberá presentar la copia literal de
-                          la inscripción de la separación de patrimonios emitida por Registros Públicos.
-                        </li>
-                      </ol>
-                    </li>
-                    <li>En caso el cesionario tenga el estado civil sea divorciado: Debe presentar la copia literal de
-                      la inscripción del divorcio emitida por Registros Públicos.</li>
-                  </ul>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseDiez')">
-                ¿Cuáles son los requisitos para realizar un refinamiento?
-              </button>
-            </h2>
-            <div id="collapseDiez" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2"></P>
-                  Requisitos:
-                  <ul>
-                    <li>El cliente debe presentear una copia del DNI vigente de todos los titulares.</li>
-                    <li>El cliente debe estar al día en los pagos.</li>
-                    <li>El trámite se solicita como mínimo con 15 días hábiles antes del próximo vencimiento de letra.
-                      Se debe completar la solicitud simple de refinanciamiento brindada por Lares.</li>
-                    <li>Si el proceso es aceptado, el cliente deberá firmar las nuevas letras y la adenda que contenga
-                      el refinanciamiento (es requisito indispensable que se proceda con la firma de la adenda y las
-                      nuevas letras, la solicitud aceptada no acredita el otorgamiento del refinanciamento).</li>
-                    <li>El costo será según el tarifario vigente. Cabe aclarar, que a este monto se le tendrá que
-                      sumar los costos de retiro de letras, que son variables en función al caso.</li>
-                    <li>Si junto al refinanciamiento no amortiza su deuda (sujeto a variación según el tarifario
-                      vigente):</li>
-                      <ol>
-                        <li>Para el caso del contrato el costo de este trámite asciende a $300.00 dólares americanos.</li>
-                        <li>Para el caso del compromiso el costo asciende a $200.00 dólares americanos. Cabe aclarar, que
-                          a estos montos se le tendrá que sumar los costos de retiro de letras, que son variables en
-                          función al caso.</li>
-                      </ol>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseOnce')">
-                ¿A partir de cuándo puedo firmar la Munita de Compraventa?¿Cuáles son los requisitos?
-              </button>
-            </h2>
-            <div id="collapseOnce" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  Una vez que culminada la recepción de obras de la etapa en donde se ubica su Lote, Lares 
-                  procederá a realizar la independización registral, lo cual generará una partida independiente
-                   para cada Lote. En virtud de ello, Lares emitira la correpsondiente minuta de compraventa, 
-                   la cual incluirá el número de partida independizada de su lote y lo citará para su firma. 
-                   Es requisito que al momento de la firma presente copia de su DNI.</P>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseDoce')">
-                Soy peruano, vivo en el extranjero, y deseo realizar la firma de mi contrato/compromiso mediante
-                 un representante,¿qué debo presentar?
-              </button>
-            </h2>
-            <div id="collapseDoce" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  El apoderado deberá presentar un poder específico que lo faculte expresamente a suscribir 
-                  contratos/compromisos de compraventa de bienes inmueble. Dicho poder deberá estar validado 
-                  por el consulado correspondiente e inscrito en Registros Públicos.</P>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseTrece')">
-                Soy extranjero, vivo en el Perú y deseo realizar la firma de mi contrato/compromiso,¿qué debo presentar?
-              </button>
-            </h2>
-            <div id="collapseTrece" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  En caso de ser extranjero, para poder suscribir un contrato/compromiso, deberá presentar su carnet 
-                  de extranjería vigente. En caso de no contar con carnet de extranjería, deberá realizar el pago de
-                  "Permiso para firmar contratos" otorgado por migraciones y presentar el comprobante vigente 
-                  correspondiente.</P>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseCatorce')">
-                Cuando me entreguen mi lote, ¿los servicios básicos ya se encontraran habilitados?
-              </button>
-            </h2>
-            <div id="collapseCatorce" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  Los lotes se entregarán con las conexiones para la dotación de servicios básicos (luz, agua y desagüe)
-                   para que el Cliente tramite su suministro correspondiente. En caso las Empresas Prestadoras de
-                    Servicios (EPS) no se encuentre operando en la zona del proyecto, Lares brindará soluciones 
-                    propias para la dotación de los mismos, hasta que la EPS los recepcione.</P>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseQuince')">
-                Se me perdió mi contrato y deseo una copia,¿qué debo hacer?
-              </button>
-            </h2>
-            <div id="collapseQuince" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div [id]="item.id" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
                 <p class="texto2">
-                  En caso de pérdida del contrato/compromiso, deberá realizar una denuncia policial que acredite
-                   ello. Asimismo, deberá enviar un correo a atención.clientes&commat;Lares.com.pe colocando en
-                    el asunto del correo: COPIA LEGALIZADA DE CONTRATO/COMPROMISO. Dicha gestión tiene un costo 
-                    de S/6.00 soles por cada cara del CONTRATO/COMPROMISO, que deberá ser asumido por el cliente
-                     y con pago adelantado. Una vez que la notaría certifique la copia legalizada lo citaremos
-                      para que se acerque a recogerla en las oficinas de Menorca.
+                  {{ item.content }}
                 </p>
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseDiezSeis')">
-                Ya estoy próximo a cancelar el total de mi lote,¿Ustedes me entregan mi titulo de propiedad?
-              </button>
-            </h2>
-            <div id="collapseDiezSeis" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  El título de propiedad se puede acreditar mediante los contratos de compraventa, así como la minuta 
-                  de compraventa y/o la escritura pública que contenga la mencionada minuta. Sin perjuicio de ello, 
-                  según contratos es obligación del cliente realizar el trámite correspondiente ante los Registros 
-                  Públicos con la finalidad de que se inscriba la propiedad a su nombre, una vez concluido los 
-                  requisitos previo a ello, conforme lo indique el contrato.</P>
-              </div>
-            </div>
+          <div *ngIf="!showAll" class="d-flex justify-content-center">
+            <button (click)="toggleShowAll()" class="btn-toggle">Ver más</button>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseDiezSiete')">
-                ¿Puedo tener acceso a mi estado de cuenta?
-              </button>
-            </h2>
-            <div id="collapseDiezSiete" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  El cliente puede solicitar en cualquier momento su estado de cuenta, comunicándose directamente por 
-                  cualquier canal atención que brinde Menorca, sin costo alguno.</P>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseDiezOcho')">
-                ¿Cuáles son los requisitos para realizar una cancelación anticipada del total de mi deuda?
-              </button>
-            </h2>
-            <div id="collapseDiezOcho" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  Requisitos:</P>
-                  <ul>
-                    <li>El Cliente debe estar al día en sus pagos.</li>
-                    <li>El Cliente debe presentar una copia del DNI de todos los titulares.</li>
-                    <li>El Cliente debe gestionar el trámite como mínimo 10 días hábiles antes del próximo vencimiento de letra.</li>
-                    <li>Al Cliente se le cobra el monto total de la deuda y el retiro de letras en caso corresponda.</li>
-                    </ul>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseDiezNueve')">
-                ¿Quién se encarga del mantenimiento de las áreas públicas de mi unbanización?
-              </button>
-            </h2>
-            <div id="collapseDiezNueve" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  Lares se hará cargo del mantenimiento de las zonas comunes de las etapas que aún no han sido
-                   recepcionadas por la Municipalidad correspondiente.
-                </P>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="texto2 accordion-button collapsed" type="button" (click)="toggleAccordion('collapseVeinte')">
-                ¿Qué implica que me hayan notificado con una carta de resolución del contrato
-              </button>
-            </h2>
-            <div id="collapseVeinte" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <P class="texto2">
-                  Lares enviará la carta de resolución de contrato, via notarial al domicilio contractual del cliente,
-                   solo en caso que el cliente incumpla con las obligaciones de pago pactadas en su contrato/compromiso.
-                    En tal sentido, con la recepción de dicha carta notarial el contrato/compromiso quedará resuelto 
-                    automáticamente y de pleno derecho, siendo aplicable la penalidad que se detalle en su
-                     compromiso/contrato. Es por ello, que le recomendamos mantenerse al día en sus pagos.
-                </P>
-              </div>
-            </div>
+          <div *ngIf="showAll" class="d-flex justify-content-center">
+            <button (click)="toggleShowAll()" class="btn-toggle">Ver menos</button>
           </div>
         </div>
+        
         <br>
       </div>
     </div>

@@ -1,10 +1,11 @@
 .barra {
     position: sticky;
     top: 0;
-    z-index: 1;
     background-color: #008755;
 }
-
+.accordion-item .accordion-button {
+    color: #008755;
+}
 /*Seccion de botones*/
 .btn_act {
     border: 3px solid #008755;
@@ -88,13 +89,19 @@
     font-weight: lighter;
     line-height: 1;
 }
-.texto2 {/*este sera mi texto estandar*/
+.texto2 {
     font-size: 15px;
-    color: #000000;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #333;
     line-height: 1;
 }
-
+.btn-toggle{
+    border: none;
+    border-bottom: 2px solid #008755;
+    color: #008755;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 14px;
+}
 /*seccion de link*/
 .link{
     font-size: 14px;

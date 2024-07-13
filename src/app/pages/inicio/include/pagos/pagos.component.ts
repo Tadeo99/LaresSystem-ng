@@ -35,6 +35,7 @@ export class PagosComponent implements OnInit {
   totalCuotas: number = 0;
   listaProximaLetra: any[] = [];
   currentSlide = 0;  
+    
   crsl = [
     {
       specialStyle: true
@@ -100,7 +101,10 @@ export class PagosComponent implements OnInit {
   goToSlide(index: number) {
     this.currentSlide = index;
   }
-
+  
+  shouldShowButton(montoPagado: string, saldo: string): boolean {
+    return !(montoPagado === '0.00' && saldo === '0.00');
+  }
   openModalBoleta(nombrePago: string) {
     const dialogRef = this.dialog.open(ModalBoletaComponent, {
       width: '500px',  data: { numContrato: this.contratoSeleccionado.numero_contrato, nombre_pago: nombrePago }

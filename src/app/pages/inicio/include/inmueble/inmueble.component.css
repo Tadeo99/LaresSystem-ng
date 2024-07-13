@@ -21,7 +21,12 @@
     color: #008755;
     font-weight: bold;
 }
-
+.h-g{
+    margin-top: 10px;
+}
+.img-inm img{
+    border-radius: 15px;
+}
 /*seccion de textos*/
 .titulo2 {
     font-size: 12px;
@@ -137,7 +142,7 @@
     color:#008755;
 }
 .line {
-  width: 90px;
+  width: 120px;
     height: 2px;
     background-color: transparent;
     border-top: 7px solid #8d8d8d;

@@ -6,7 +6,9 @@ a {
 .barraLogin[_ngcontent-ng-c1398483108] {
     background-color: #008755;
 }
-
+.c-p{
+    color: #008755;
+}
 .relleno {
     display: flex;
     align-items: center; /* Centra verticalmente los elementos hijos */
@@ -227,52 +229,40 @@ a {
     font-weight: bold;
     line-height: 1;
 }
-
-.boton1 {
-    background-color: #ffff;
+.boton1, .boton2 {
+    background-color: #fff;
     text-decoration: none;
     color: #008755;
-    padding: 2px 40px;
-    font-size: 16px;
-    border: 2px solid #008755;
-    border-radius: 15px;
+    padding: 8px 25px;
+    font-size: 14px;
+    border-radius: 25px;
     cursor: pointer;
-    margin: 5px; /* Agrega margen alrededor de los botones */
+    font-weight: 500;
 }
 
-.boton1:hover {
-    background-color: #649b25;
-    color: #ffff;
-}
-
-.boton2 {
-    background-color: #ffff;
-    text-decoration: none;
-    color: #649b25;
-    padding: 2px 40px;
-    font-size: 16px;
-    border: 2px solid #008755;
-    border-radius: 15px;
-    cursor: pointer;
-    margin: 5px; /* Agrega margen alrededor de los botones */
-}
-
-.boton2:hover {
-    background-color: #649b25;
-    color: #ffff;
+.boton1:hover, .boton2:hover {
+    background-color: #008755; 
+    color: #fff; 
+    border: 1px solid #f2f2f2;
 }
 
 .active {
     background-color: #F2F2F2;
-    color: #649b25;
+    color: #008755;
 }
-
+.form-control, .form-select{
+    font-size: 0.875rem !important;
+    padding: .75rem !important;
+}
+.fs-p{
+    font-size: 14px;
+}
 .boton3 {
     background-color: #008755;
     font: weight 4px;
     border: #008755;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
     color: #ffff;
     padding: 8px 30px;
     border-radius: 15px;
