@@ -157,9 +157,9 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let historial of getPaginatedList()" [ngClass]="{
-                      'cuota-pagada': historial.saldo === '0.00',
-                      'deuda-vencida': isDeudaVencida(historial)
-                  }" class="table-row">
+                          'cuota-pagada': historial.saldo === '0.00',
+                          'deuda-vencida': isDeudaVencida(historial)
+                      }" class="table-row">
                       <td>{{ historial.nombre }}</td>
                       <td>{{ formatMilesNumber(historial.monto_programado) }}</td>
                       <td>{{ historial.mora }}</td>
@@ -169,7 +169,7 @@
                       <td>{{ historial.saldo }}</td>
                       <td>{{ formatDateTemp(historial.fecha_pago) }}</td>
                       <td>
-                        <p class="text-end" *ngIf="historial.estado === 'pagado'">
+                        <p class="text-end" *ngIf="shouldShowButton(historial.monto_pagado, historial.saldo)">
                           <a class="link link-opacity-100-hover px-3" (click)="openModalBoleta(historial.nombre)"
                             id="link1">
                             Ver
@@ -179,6 +179,7 @@
                     </tr>
                   </tbody>
                 </table>
+                
               </div>
             </div>
             <div class="d-flex justify-content-center mb-4">
