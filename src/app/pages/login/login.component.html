@@ -30,18 +30,7 @@
                 <div class="formulario elemento">
                     <div class="container">
                         <p class="mb-3" id="titulo4">Ingresar al portal</p>
-                        <div class="outer mt-0">
-                          <div class="radio-inputs my-1">
-                              <label class="radio">
-                                <input type="radio" name="radio" checked="">
-                                <span class="name">DOCUMENTO</span>
-                              </label>
-                              <label class="radio">
-                                <input type="radio" name="radio">
-                                <span class="name">CELULAR</span>
-                              </label>                                
-                          </div>
-  
+                        <div class="outer mt-0">  
                             <form class="needs-validation" novalidate (ngSubmit)="login()" #formulario="ngForm">
                                 <div class="input-group">
                                     <select class="form-select mt-3" id="tipoDocumento" [(ngModel)]="tipoDocumento" name="tipoDocumento" required [ngClass]="{'is-invalid': formulario.submitted && (tipoDocumento === 'T' || !tipoDocumento)}">

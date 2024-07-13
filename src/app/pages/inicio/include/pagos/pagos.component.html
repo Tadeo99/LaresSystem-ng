@@ -11,19 +11,25 @@
           <h5 class="titulo1 ">Información General</h5>
           <p class="texto2 ms-3 mt-3">Para realizar el pago de tu letra, sigue los siguientes pasos</p>
           <div class="container">
-            <div class="row mb-3">
+            <div class="row mb-1">
               <div class="carousel mt-3">
                 <div class="carousel-container">
-                  <div class="carousel-slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide">
+                  <div class="carousel-slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide" [ngClass]="{'bg-black': i === 1 || i === 3}">
                     <img [src]="slide.image" alt="Slide Image">
                     <div class="step mt-4">
                       <h2 class="t-title">{{slide.stepTitle}}</h2>
-                      <p class="t-desc">{{slide.stepDescription}}</p>
-                      <div class="step-desc">
-                        <div class="i ">
-                          <i class="bi bi-droplet"></i>
+                      <p class="t-desc">{{slide.stepDescription}} <strong>{{slide.strongp}}</strong></p>
+                      <div class="step-desc"
+                          [ngClass]="{
+                            'oval': slide.shape === 'oval',
+                            'rectangle': slide.shape === 'rectangle',
+                            'limp': slide.shape === 'limp',
+                          }">
+                        <div class="i">
+                          <i [ngClass]="'bi bi-' + slide.iconClass"></i>
                         </div>
-                        <span>Pagar servicios</span>
+                        <span><strong>{{slide.strong1}}</strong> {{slide.additionalInfo}}</span>
+                        <span><strong>{{slide.strong2}}</strong> {{slide.additionalInfo2}}</span>
                       </div>
                     </div>
                   </div>
@@ -32,9 +38,9 @@
                   <span *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide" (click)="goToSlide(i)"></span>
                 </div>          
               </div>
-              
             </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -49,7 +55,7 @@
 
         <div class="col-12 col-lg-6">
           <div class="ficha p-3 alt_pan_gen"
-            style="border: 2px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
+            style="border: 1px solid #008755; background-color: #FFFFFF; border-radius: 15px;">
             <h5 class="titulo1 ">Información General</h5>
             <div class="row align-items-center">
               <div class="col-3 col-md-3">

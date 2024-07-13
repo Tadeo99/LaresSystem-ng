@@ -34,28 +34,49 @@ export class PagosComponent implements OnInit {
   cuotasPagadas: number = 0;
   totalCuotas: number = 0;
   listaProximaLetra: any[] = [];
-
-  currentSlide = 0;
+  currentSlide = 0;  
+  crsl = [
+    {
+      specialStyle: true
+    },
+  ];
   slides = [
     {
       image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/inicio_20240706204617.png', 
       stepTitle: 'PASO 1',
-      stepDescription: 'Elige “Pago de Servicios” en el menú principal.'
+      stepDescription: 'Elige “Pago de Servicios” en el menú principal.',
+      additionalInfo: 'Pagar servicios',
+      shape: 'oval',
+      iconClass: 'droplet',
+      specialStyle: true
     },
     {
       image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_2_20240706204619.png', 
       stepTitle: 'PASO 2',
-      stepDescription: 'Descripción del paso 2.'
+      stepDescription: 'Colocar el nombre de la empresa a pagar.',
+      additionalInfo: 'Inmobiliaria Monte Flor Sac',
+      shape: 'rectangle',
+      iconClass: 'search',
+      specialStyle: true
     },
     {
       image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_3_20240706204622.png',
       stepTitle: 'PASO 3',
-      stepDescription: 'Descripción del paso 3.'
+      stepDescription: 'Selecciona el tipo de servicio:',
+      strong1:'Cobranzas',      
+      additionalInfo: '(para pago en Soles)',      
+      shape: 'limp',
+      strong2:'Letras', 
+      additionalInfo2: '(para pago en Dólares)',
+      specialStyle: true
     },
     {
       image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_4_20240706204625.png', 
       stepTitle: 'PASO 4',
-      stepDescription: 'Descripción del paso 4.'
+      stepDescription: 'Para finalizar deberás colocar tu número de DNI y',
+      strongp: 'seleccionar la cuota a pagar',
+      shape: 'limp',
+      specialStyle: true,
     },
   ];
 
