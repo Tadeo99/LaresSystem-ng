@@ -9,7 +9,7 @@ import { Usuario } from 'src/shared/models/common/clases/usuario';
 import { UsuarioService } from 'src/shared/usuarioService';
 import { DatePipe } from '@angular/common';
 import { ModalBoletaComponent } from '@pages/shared/modal-show-boleta/modal-boleta.component';
-
+import { CacheGeneralService } from 'src/shared/CacheServiceGeneral';
 @Component({
   selector: 'app-pagos',
   templateUrl: './pagos.component.html',
@@ -34,45 +34,49 @@ export class PagosComponent implements OnInit {
   cuotasPagadas: number = 0;
   totalCuotas: number = 0;
   listaProximaLetra: any[] = [];
-  currentSlide = 0;  
-    
+  currentSlide = 0;
+
   crsl = [
     {
-      specialStyle: true
+      specialStyle: true,
     },
   ];
   slides = [
     {
-      image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/inicio_20240706204617.png', 
+      image:
+        'https://sperant.s3.amazonaws.com/lares/gallery/project/inicio_20240706204617.png',
       stepTitle: 'PASO 1',
       stepDescription: 'Elige “Pago de Servicios” en el menú principal.',
       additionalInfo: 'Pagar servicios',
       shape: 'oval',
       iconClass: 'droplet',
-      specialStyle: true
+      specialStyle: true,
     },
     {
-      image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_2_20240706204619.png', 
+      image:
+        'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_2_20240706204619.png',
       stepTitle: 'PASO 2',
       stepDescription: 'Colocar el nombre de la empresa a pagar.',
       additionalInfo: 'Inmobiliaria Monte Flor Sac',
       shape: 'rectangle',
       iconClass: 'search',
-      specialStyle: true
+      specialStyle: true,
     },
     {
-      image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_3_20240706204622.png',
+      image:
+        'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_3_20240706204622.png',
       stepTitle: 'PASO 3',
       stepDescription: 'Selecciona el tipo de servicio:',
-      strong1:'Cobranzas',      
-      additionalInfo: '(para pago en Soles)',      
+      strong1: 'Cobranzas',
+      additionalInfo: '(para pago en Soles)',
       shape: 'limp',
-      strong2:'Letras', 
+      strong2: 'Letras',
       additionalInfo2: '(para pago en Dólares)',
-      specialStyle: true
+      specialStyle: true,
     },
     {
-      image: 'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_4_20240706204625.png', 
+      image:
+        'https://sperant.s3.amazonaws.com/lares/gallery/project/monteflor_4_20240706204625.png',
       stepTitle: 'PASO 4',
       stepDescription: 'Para finalizar deberás colocar tu número de DNI y',
       strongp: 'seleccionar la cuota a pagar',
@@ -82,6 +86,7 @@ export class PagosComponent implements OnInit {
   ];
 
   constructor(
+    private cacheService: CacheGeneralService,
     private usuarioService: UsuarioService,
     private service: ApiserviceService,
     private activatedRoute: ActivatedRoute,
@@ -91,25 +96,31 @@ export class PagosComponent implements OnInit {
   ) {}
 
   prevSlide() {
-    this.currentSlide = (this.currentSlide === 0) ? this.slides.length - 1 : this.currentSlide - 1;
+    this.currentSlide =
+      this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
   }
 
   nextSlide() {
-    this.currentSlide = (this.currentSlide === this.slides.length - 1) ? 0 : this.currentSlide + 1;
+    this.currentSlide =
+      this.currentSlide === this.slides.length - 1 ? 0 : this.currentSlide + 1;
   }
 
   goToSlide(index: number) {
     this.currentSlide = index;
   }
-  
+
   shouldShowButton(montoPagado: string, saldo: string): boolean {
     return !(montoPagado === '0.00' && saldo === '0.00');
   }
   openModalBoleta(nombrePago: string) {
     const dialogRef = this.dialog.open(ModalBoletaComponent, {
-      width: '500px',  data: { numContrato: this.contratoSeleccionado.numero_contrato, nombre_pago: nombrePago }
+      width: '500px',
+      data: {
+        numContrato: this.contratoSeleccionado.numero_contrato,
+        nombre_pago: nombrePago,
+      },
     });
-    dialogRef.afterClosed().subscribe(result => {});
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   isDeudaVencida(historial: any): boolean {
@@ -135,7 +146,9 @@ export class PagosComponent implements OnInit {
   }
 
   nextPage() {
-    const totalPages = Math.ceil(this.listaHistorial.length / this.itemsPerPage);
+    const totalPages = Math.ceil(
+      this.listaHistorial.length / this.itemsPerPage
+    );
     if (this.currentPage < totalPages) {
       this.currentPage++;
     }
@@ -154,7 +167,7 @@ export class PagosComponent implements OnInit {
 
   calcularValores() {
     this.totalCuotas = this.listaHistorial.length;
-    this.listaHistorial.forEach(historial => {
+    this.listaHistorial.forEach((historial) => {
       const montoPagado = parseFloat(historial.monto_pagado);
       const saldo = parseFloat(historial.monto_programado); // monto programado
       this.montoPagadoTotal += montoPagado;
@@ -165,7 +178,8 @@ export class PagosComponent implements OnInit {
       this.moneda = historial.moneda;
     });
     if (this.montoProgramadoTotal > 0) {
-      this.porcentajePagado = (this.montoPagadoTotal * 100) / this.montoProgramadoTotal;
+      this.porcentajePagado =
+        (this.montoPagadoTotal * 100) / this.montoProgramadoTotal;
     } else {
       this.porcentajePagado = 0;
     }
@@ -173,8 +187,10 @@ export class PagosComponent implements OnInit {
 
   get tieneDeudas(): boolean {
     const hoy = new Date();
-    const cuotasConDeuda = this.listaHistorial.filter(historial => {
-      return new Date(historial.fecha_vcto) < hoy && historial.estado !== 'pagado';
+    const cuotasConDeuda = this.listaHistorial.filter((historial) => {
+      return (
+        new Date(historial.fecha_vcto) < hoy && historial.estado !== 'pagado'
+      );
     });
     return cuotasConDeuda.length > 0;
   }
@@ -188,7 +204,7 @@ export class PagosComponent implements OnInit {
       const dateParts = value.split('-');
       return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
     }
-    return "-";
+    return '-';
   }
 
   async obtenerContrato() {
@@ -196,25 +212,45 @@ export class PagosComponent implements OnInit {
   }
 
   async obtenerHistorial(numContrato: string) {
-    if (this.tipoDocumento && this.numDocumento && numContrato) {
-      var params = {
-        tipoDocumento: this.tipoDocumento,
-        numeroDocumento: this.numDocumento,
-        numero_contrato: numContrato,
-      };
-      await this.service.obtenerHistorial(params).subscribe((response) => {
-        if (!response.isError) {
-          this.listaHistorial = response.listaResultado;
-          if (this.listaHistorial.length > 0) {
-            this.listaCutotasVencidas = response.listaResultado.filter((historial: any) => {
-              return new Date(historial.fecha_vcto) < new Date() && historial.estado !== 'pagado';
-            });
+    this.listaHistorial = this.cacheService.getCache('listaHistorial') || [];
+    if (this.listaHistorial.length == 0) {
+      if (this.tipoDocumento && this.numDocumento && numContrato) {
+        var params = {
+          tipoDocumento: this.tipoDocumento,
+          numeroDocumento: this.numDocumento,
+          numero_contrato: numContrato,
+        };
+        await this.service.obtenerHistorial(params).subscribe((response) => {
+          if (!response.isError) {
+            this.listaHistorial = response.listaResultado;
+            if (this.listaHistorial.length > 0) {
+              this.listaCutotasVencidas = this.listaHistorial.filter(
+                (historial: any) => {
+                  return (
+                    new Date(historial.fecha_vcto) < new Date() &&
+                    historial.estado !== 'pagado'
+                  );
+                }
+              );
+            }
+            this.calcularValores();
+          } else {
+            this.openModalError(response.mensajeError);
           }
-          this.calcularValores();
-        } else {
-          this.openModalError(response.mensajeError);
-        }
-      });
+        });
+      }
+    } else {
+      if (this.listaHistorial.length > 0) {
+        this.listaCutotasVencidas = this.listaHistorial.filter(
+          (historial: any) => {
+            return (
+              new Date(historial.fecha_vcto) < new Date() &&
+              historial.estado !== 'pagado'
+            );
+          }
+        );
+      }
+      this.calcularValores();
     }
   }
 
@@ -266,15 +302,15 @@ export class PagosComponent implements OnInit {
       };
       return new Date(date).toLocaleDateString('es-ES', options);
     }
-    return "-";
+    return '-';
   }
 
   formatDateTemp(date: any): string {
     if (date) {
       const formattedDate = this.datePipe.transform(date, 'dd/MM/yyyy');
-      return formattedDate ? formattedDate : "-";
+      return formattedDate ? formattedDate : '-';
     }
-    return "-";
+    return '-';
   }
 
   formatMilesNumber(number: number | string): string {
@@ -283,7 +319,7 @@ export class PagosComponent implements OnInit {
     if (!isNaN(numericValue)) {
       return numericValue.toLocaleString('en-US', {
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+        maximumFractionDigits: 2,
       });
     } else {
       return '';

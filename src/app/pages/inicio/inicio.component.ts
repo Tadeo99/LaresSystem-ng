@@ -39,7 +39,7 @@ export class InicioComponent implements OnInit, OnChanges {
   tipoCambio: any = null;
   estadoContrato: any = null;
   pollingTimer: any;
-  pollingInterval: number = 300000;// 5 minutos 30
+  pollingInterval: number = 900000;// 5 minutos 30
   constructor(
     private usuarioService: UsuarioService,
     private contratoService: ContratoService,
@@ -155,7 +155,8 @@ export class InicioComponent implements OnInit, OnChanges {
                   this.contratoSeleccionado.telefono,
                   this.contratoSeleccionado.celulares,
                   this.contratoSeleccionado.codigo_unidad,
-                  this.contratoSeleccionado.id_unidad
+                  this.contratoSeleccionado.id_unidad,
+                  this.contratoSeleccionado.codigo_proyecto
                 );
                 const cacheService = new CacheService<any>('listaContrato');
                 cacheService.setCache(response.listaResultado);
@@ -258,7 +259,8 @@ export class InicioComponent implements OnInit, OnChanges {
       this.contratoSeleccionado.telefono,
       this.contratoSeleccionado.celulares,
       this.contratoSeleccionado.codigo_unidad,
-      this.contratoSeleccionado.id_unidad
+      this.contratoSeleccionado.id_unidad,
+      this.contratoSeleccionado.codigo_proyecto
     );
     this.contratoService.deleteContrato();
     this.contratoService.setContrato(this.contrato);
