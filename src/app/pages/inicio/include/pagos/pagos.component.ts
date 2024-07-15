@@ -103,7 +103,7 @@ export class PagosComponent implements OnInit {
   }
   
   shouldShowButton(montoPagado: string, saldo: string): boolean {
-    return !(montoPagado === '0.00' && saldo === '0.00');
+    return !(montoPagado === '0.00');
   }
   openModalBoleta(nombrePago: string) {
     const dialogRef = this.dialog.open(ModalBoletaComponent, {
