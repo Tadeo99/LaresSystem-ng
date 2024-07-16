@@ -33,7 +33,6 @@ export class JwtTokenInterceptor implements HttpInterceptor {
     ) {
       var access_token = localStorage.getItem('token');
       if (access_token) {
-        console.log(access_token);
         if(request.url.startsWith(environment.urlSperant)){
           request = request.clone({
             setHeaders: { Authorization: 'mocpzudRVQ94rJNntDt3X41qdQ2HB61B96mZJTay' },

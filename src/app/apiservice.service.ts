@@ -75,6 +75,12 @@ export class ApiserviceService {
     return this.dataService.execGet(request).pipe();
   }
 
+  obtenerProyectoUrl(request: any): Observable<any> {
+    const pathService = environment.urlService + 'proyect/url';
+    this.dataService.set(pathService);
+    return this.dataService.execGet(request).pipe();
+  }
+
   obtenerLastPayment(request: any): Observable<any> {
     const pathService = environment.urlService + 'lastPayment';
     this.dataService.set(pathService);
