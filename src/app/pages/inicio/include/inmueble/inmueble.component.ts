@@ -9,7 +9,7 @@ import { PATH_URL_DATA } from 'src/shared/helpers/constants';
 import { Usuario } from 'src/shared/models/common/clases/usuario';
 import { UsuarioService } from 'src/shared/usuarioService';
 import { ModalOpenImageComponent } from '@pages/shared/modal-open-image/modal-open-image.component';
-
+import { CacheService } from 'src/shared/CacheService';
 @Component({
   selector: 'app-inmueble',
   templateUrl: './inmueble.component.html',
@@ -31,7 +31,9 @@ export class inmuebleComponent implements OnInit {
   porcentajePagado: number = 0;
   cuotasPagadas: number = 0;
   totalCuotas: number = 0;
-
+  urlPrincipal : string;
+  urlSecundario : string;
+  estado : string;
   constructor(
     private usuarioService: UsuarioService,
     private service: ApiserviceService,
@@ -40,6 +42,34 @@ export class inmuebleComponent implements OnInit {
     private router: Router,
     private datePipe: DatePipe
   ) {}
+
+
+  async obtenerProyectoUrl(contrato: string) {
+    var params = {
+      codigo: contrato,
+    };
+    this.service.obtenerProyectoUrl(params).subscribe((response: any) => {
+      if (!response.isError) {
+        const listaUrl = response.listaResultado;
+        // Buscar la URL de tipo "Principal"
+        const principal = listaUrl.find((item: any) => item.tipo === 'Principal');
+        if (principal) {
+          this.urlPrincipal = principal.url;
+        }
+        // Buscar la URL de tipo "Secundario"
+        const secundario = listaUrl.find((item: any) => item.tipo === 'Secundario');
+        if (secundario) {
+          this.urlSecundario = secundario.url;
+        }
+        // Manejo de errores si no se encuentran las URLs
+        if (!principal && !secundario) {
+          this.openModalError('No se encontraron URLs de tipo Principal o Secundario');
+        }
+      } else {
+        this.openModalError(response.mensajeError);
+      }
+    });
+  }
 
   getTotalPages() {
     return Math.ceil(this.listaHistorial.length / this.itemsPerPage);
@@ -94,8 +124,12 @@ export class inmuebleComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = this.usuarioService.getUsuario();
+
     this.recuperarParametros();
-    this.obtenerContrato();
+    this.obtenerProyectoUrl(this.contratoSeleccionado?.codigo_proyecto);
+    const cacheService = new CacheService<any>('estado');
+    this.estado = cacheService.getCache() || '';
+    //this.obtenerContrato();
   }
 
   calcularValores() {

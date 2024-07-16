@@ -11,6 +11,7 @@ export class Contrato {
     celulares: string;
     codigo_unidad : string;
     id_unidad : string;
+    codigo_proyecto : string;
     constructor(
       numeroContrato: string,
       documentoCliente: string,
@@ -23,7 +24,8 @@ export class Contrato {
       telefono: string,
       celulares: string,
       codigo_unidad : string,
-      id_unidad : string
+      id_unidad : string,
+      codigo_proyecto : string
     ) {
       this.numero_contrato = numeroContrato;
       this.documento_cliente = documentoCliente;
@@ -36,6 +38,7 @@ export class Contrato {
       this.telefono = telefono;
       this.celulares = celulares;
       this.codigo_unidad = codigo_unidad;
-      this.id_unidad = id_unidad
+      this.id_unidad = id_unidad;
+      this.codigo_proyecto = codigo_proyecto
     }
   }

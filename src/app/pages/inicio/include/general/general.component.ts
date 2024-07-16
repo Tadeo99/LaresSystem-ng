@@ -12,13 +12,13 @@ import { PATH_URL_DATA } from 'src/shared/helpers/constants';
 import { Usuario } from 'src/shared/models/common/clases/usuario';
 import { UsuarioService } from 'src/shared/usuarioService';
 import { CacheService } from 'src/shared/CacheService';
-
+import { CacheGeneralService } from 'src/shared/CacheServiceGeneral';
 @Component({
   selector: 'app-inicio-general',
   templateUrl: './general.component.html',
   styleUrl: './general.component.css',
 })
-export class GeneralComponent implements OnInit,OnChanges {
+export class GeneralComponent implements OnInit, OnChanges {
   @Input() contratoSeleccionado: any;
   @Input() modulo: string;
   @Input() estadoContrato: any;
@@ -34,8 +34,11 @@ export class GeneralComponent implements OnInit,OnChanges {
   moneda: string;
   cuotasPagadas: number = 0;
   totalCuotas: number = 0;
+  listaHistorial: any[] = [];
+  UrlBaner: string;
 
   constructor(
+    private cacheService: CacheGeneralService,
     private usuarioService: UsuarioService,
     private service: ApiserviceService,
     private activatedRoute: ActivatedRoute,
@@ -50,6 +53,8 @@ export class GeneralComponent implements OnInit,OnChanges {
     } else {
       this.recuperarParametros();
       this.obtenerContrato();
+      this.obtenerHistorial(this.contratoSeleccionado?.numero_contrato);
+      this.obtenerProyectoUrl(this.contratoSeleccionado?.codigo_proyecto);
     }
   }
 
@@ -62,54 +67,131 @@ export class GeneralComponent implements OnInit,OnChanges {
   }
 
   async obtenerContrato() {
-    console.log("EL CONTRATO SELECCIONAO ES ", this.contratoSeleccionado);
+    //console.log('EL CONTRATO SELECCIONAO ES ', this.contratoSeleccionado);
     this.obtenerProxmaLetra(this.contratoSeleccionado?.numero_contrato);
     this.obtenerLastpayment(this.contratoSeleccionado?.numero_contrato);
   }
 
   async obtenerProxmaLetra(numContrato: string) {
-    if (this.tipoDocumento && this.numDocumento && numContrato) {
-      var params = {
-        tipoDocumento: this.tipoDocumento,
-        numeroDocumento: this.numDocumento,
-        numero_contrato: numContrato,
-      };
-      await this.service
-        .obtenerProximaLetra(params)
-        .subscribe((response: any) => {
+    this.listaProximaLetra =
+      this.cacheService.getCache('listaProximaLetra') || [];
+    if (this.listaProximaLetra.length == 0) {
+      if (this.tipoDocumento && this.numDocumento && numContrato) {
+        var params = {
+          tipoDocumento: this.tipoDocumento,
+          numeroDocumento: this.numDocumento,
+          numero_contrato: numContrato,
+        };
+        await this.service
+          .obtenerProximaLetra(params)
+          .subscribe((response: any) => {
+            if (!response.isError) {
+              this.listaProximaLetra = response.listaResultado;
+              this.cacheService.setCache(
+                'listaProximaLetra',
+                this.listaProximaLetra
+              );
+            } else {
+              this.openModalError(response.mensajeError);
+            }
+          });
+      }
+    }
+  }
+
+  async obtenerProyectoUrl(contrato: string) {
+    var params = {
+      codigo: contrato,
+    };
+    this.service.obtenerProyectoUrl(params).subscribe((response: any) => {
+      if (!response.isError) {
+        const listaUrl = response.listaResultado;
+        const banner = listaUrl.find((item: any) => item.tipo === 'Banner');
+        if (banner) {
+          this.UrlBaner = banner.url;
+        } else {
+          this.openModalError('No se encontró una URL de tipo Banner');
+        }
+      } else {
+        this.openModalError(response.mensajeError);
+      }
+    });
+  }
+
+  calcularValores() {
+    this.totalCuotas = this.listaHistorial.length;
+    this.listaHistorial.forEach((historial) => {
+      const montoPagado = parseFloat(historial.monto_pagado);
+      const saldo = parseFloat(historial.monto_programado); // monto programado
+      this.montoPagadoTotal += montoPagado;
+      this.montoProgramadoTotal += saldo;
+      if (historial.estado === 'pagado') {
+        this.cuotasPagadas++;
+      }
+      this.moneda = historial.moneda;
+    });
+    if (this.montoProgramadoTotal > 0) {
+      this.porcentajePagado =
+        (this.montoPagadoTotal * 100) / this.montoProgramadoTotal;
+    } else {
+      this.porcentajePagado = 0;
+    }
+  }
+
+  async obtenerHistorial(numContrato: string) {
+    this.listaHistorial = this.cacheService.getCache('listaHistorial') || [];
+    if (this.listaHistorial.length == 0) {
+      if (this.tipoDocumento && this.numDocumento && numContrato) {
+        var params = {
+          tipoDocumento: this.tipoDocumento,
+          numeroDocumento: this.numDocumento,
+          numero_contrato: numContrato,
+        };
+        await this.service.obtenerHistorial(params).subscribe((response) => {
           if (!response.isError) {
-            this.listaProximaLetra = response.listaResultado;
-            console.log('Lista proxima Letra ', this.listaProximaLetra);
+            this.listaHistorial = response.listaResultado;
+            this.cacheService.setCache('listaHistorial', this.listaHistorial);
+            this.calcularValores();
           } else {
             this.openModalError(response.mensajeError);
           }
         });
+      }
+    } else {
+      this.calcularValores();
     }
   }
 
   async obtenerLastpayment(numContrato: string) {
-    if (this.tipoDocumento && this.numDocumento && numContrato) {
-      var params = {
-        tipoDocumento: this.tipoDocumento,
-        numeroDocumento: this.numDocumento,
-        numero_contrato: numContrato,
-      };
-      await this.service
-        .obtenerLastPayment(params)
-        .subscribe((response: any) => {
-          if (!response.isError) {
-            this.listaLastPayment = response.listaResultado;
-            console.log('obtenerLastPayment ', this.listaLastPayment);
-          } else {
-            this.openModalError(response.mensajeError);
-          }
-        });
+    this.listaLastPayment =
+      this.cacheService.getCache('listaLastPayment') || [];
+    if (this.listaLastPayment.length == 0) {
+      if (this.tipoDocumento && this.numDocumento && numContrato) {
+        var params = {
+          tipoDocumento: this.tipoDocumento,
+          numeroDocumento: this.numDocumento,
+          numero_contrato: numContrato,
+        };
+        await this.service
+          .obtenerLastPayment(params)
+          .subscribe((response: any) => {
+            if (!response.isError) {
+              this.listaLastPayment = response.listaResultado;
+              this.cacheService.setCache(
+                'listaLastPayment',
+                this.listaLastPayment
+              );
+            } else {
+              this.openModalError(response.mensajeError);
+            }
+          });
+      }
     }
   }
 
   setModulo(modulo: string): void {
     this.modulo = modulo;
-    const cacheService = new CacheService<any>("modulo");
+    const cacheService = new CacheService<any>('modulo');
     cacheService.setCache(this.modulo);
     window.location.reload();
   }
@@ -149,7 +231,7 @@ export class GeneralComponent implements OnInit,OnChanges {
     if (!isNaN(numericValue)) {
       return numericValue.toLocaleString('en-US', {
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+        maximumFractionDigits: 2,
       });
     } else {
       return '';
@@ -188,7 +270,7 @@ export class GeneralComponent implements OnInit,OnChanges {
       const parent = element.parentElement;
       if (parent) {
         const accordionItems = parent.querySelectorAll('.accordion-collapse');
-        accordionItems.forEach(item => {
+        accordionItems.forEach((item) => {
           item.classList.remove('show');
         });
       }
