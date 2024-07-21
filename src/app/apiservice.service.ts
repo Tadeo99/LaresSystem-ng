@@ -81,6 +81,12 @@ export class ApiserviceService {
     return this.dataService.execGet(request).pipe();
   }
 
+  obtenerPagoUrl(request: any): Observable<any> {
+    const pathService = environment.urlService + 'payment/url';
+    this.dataService.set(pathService);
+    return this.dataService.execGet(request).pipe();
+  }
+
   obtenerLastPayment(request: any): Observable<any> {
     const pathService = environment.urlService + 'lastPayment';
     this.dataService.set(pathService);
@@ -94,9 +100,9 @@ export class ApiserviceService {
   }
 
   obtenerImagenLote(request: any): Observable<any> {
-    const pathService = environment.urlSperant + request.idUnidad + '/images';
+    const pathService = environment.urlService + 'lote/url';
     this.dataService.set(pathService);
-    return this.dataService.execGet().pipe();
+    return this.dataService.execGet(request).pipe();
   }
 
 }

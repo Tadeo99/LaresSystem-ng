@@ -77,19 +77,20 @@ export class inmuebleComponent implements OnInit {
 
   async obtenerImagenLote() {
     var params = {
-      idUnidad: this.contratoSeleccionado?.id_unidad,
+      idUnidad: this.contratoSeleccionado?.id_unidad
     };
     await this.service.obtenerImagenLote(params).subscribe((response: any) => {
-      if (response.data && response.data.length > 0) {
-        this.urlImagen = response.data[0].attributes.path_url;
+      if (!response.isError) {
+        this.urlImagen = response.listaResultado[0].path_url;
+        this.openModalImagen();
+      }else {
+        this.openModalError(response.mensajeError);
       }
     });
   }
 
   openModalImagen() {
     var urlImagen = this.urlImagen;
-    urlImagen =
-      'https://sperant.s3.amazonaws.com/lares/plans/unit/CM-1A-J-19_20230614102918.png';
     const dialogRef = this.dialog.open(ModalOpenImageComponent, {
       width: '500px',
       // height:'500px',

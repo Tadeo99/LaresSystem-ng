@@ -163,6 +163,20 @@ export class PagosComponent implements OnInit {
     this.usuario = this.usuarioService.getUsuario();
     this.recuperarParametros();
     this.obtenerContrato();
+    this.obtenerPagoUrl(this.contratoSeleccionado?.codigo_proyecto);
+  }
+
+  async obtenerPagoUrl(contrato: string) {
+    var params = {
+      codigo: contrato,
+    };
+    this.service.obtenerPagoUrl(params).subscribe((response: any) => {
+      if (!response.isError) {
+        this.slides = response.listaResultado;
+      } else {
+        this.openModalError(response.mensajeError);
+      }
+    });
   }
 
   calcularValores() {
