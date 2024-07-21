@@ -211,4 +211,18 @@ hr {
     color: #fff;
     font-size: 24px; 
   }
-  
+  @media (max-width: 768px){
+    .fondo_panel{
+    height: auto;    
+    border-radius: 15px;
+    }
+    .img_panel{
+        border-radius: 0 0 15px 15px;
+    }
+    .fondo_panel .row{
+        flex-direction: column-reverse;
+    }
+    .fondo_panel .c-2{
+        margin-top: 10px;
+    }
+  }
