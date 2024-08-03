@@ -12,7 +12,7 @@
                 <p class="titulo2 ps-3 pt-3">NOMBRE DEL PROYECTO</p>
                 <p class="texto ms-3">{{ contratoSeleccionado?.nombre_proyecto }}</p>
               </div>
-            </div>              
+            </div>
             <div class="row">
               <div class="col-12">
                 <p class="titulo2 ps-3 pt-3">NUMERO DE CONTRATO</p>
@@ -20,20 +20,20 @@
               </div>
             </div>
           </div>
-        </div>  
+        </div>
         <div class="col-12 col-lg-4 img-inm">
           <img class="img_panel" [src]="urlPrincipal">
         </div>
         <div class="col-12 col-lg-4 img-inm">
           <img class="img_panel" [src]="urlSecundario">
-        </div>     
+        </div>
 
-      <hr class="h-g">
-      
-      <h4 class="titulo m-3">Estado de mi propiedad</h4>
-      <div class="container">
-        <div class="row mx-3">
-          <div class="col-12 col-md-3 col-md-3 mx-0  text-center">            
+        <hr class="h-g">
+
+        <h4 class="titulo m-3">Estado de mi propiedad</h4>
+        <div class="container">
+          <div class="row mx-3">
+            <div class="col-12 col-md-4 col-md-4 mx-0  text-center">
               <div class="step-container">
                 <div class="step completed">
                   <p class="texto3 mt-3">1</p>
@@ -42,35 +42,35 @@
                 </div>
                 <div class="line completed"></div>
               </div>
-            <p class="t-c text-completed">Completado</p>
-          </div>
-
-
-          <div class="col-12 col-md-3 col-md-3 mx-0 text-center">
-            <div class="step-container">
-              <div class="step completed">
-                <p class="texto3 mt-3">2</p>
-                <img src="../../../../../assets/2.svg" alt="">
-                <p class="titulo2 ps-3 pt-3">Pago completado</p>
-              </div>
-              <div class="line completed"></div>
+              <p class="t-c text-completed">Completado</p>
             </div>
-          <p class="t-c text-completed">Completado</p>
-          </div>
 
 
-          <div class="col-12 col-md-3 col-md-3 mx-0  text-center">
-            <div class="step-container">
-              <div class="step">
-                <p class="texto3 mt-3">3</p>
-                <img src="../../../../../assets/3.svg" alt="">
-                <p class="titulo2 ps-3 pt-3">Entrega del inmueble</p>
+            <div class="col-12 col-md-4 col-md-4 mx-0 text-center">
+              <div class="step-container">
+                <div class="step completed">
+                  <p class="texto3 mt-3">2</p>
+                  <img src="../../../../../assets/2.svg" alt="">
+                  <p class="titulo2 ps-3 pt-3">Pago completado</p>
+                </div>
+                <div class="line completed"></div>
               </div>
-              <div class="line "></div>
+              <p class="t-c text-completed">Completado</p>
             </div>
-            <p class="t-c">En proceso</p>
-          </div>
-          <div class="col-12 col-md-3 col-md-3 mx-0  text-center">
+
+
+            <div class="col-12 col-md-4 col-md-4 mx-0  text-center">
+              <div class="step-container">
+                <div class="step">
+                  <p class="texto3 mt-3">3</p>
+                  <img src="../../../../../assets/3.svg" alt="">
+                  <p class="titulo2 ps-3 pt-3">Entrega del inmueble</p>
+                </div>
+                <!-- <div class="line "></div> -->
+              </div>
+              <p class="t-c">En proceso</p>
+            </div>
+            <!-- <div class="col-12 col-md-3 col-md-3 mx-0  text-center">
             <div class="step-container">
               <div class="step ">
                 <p class="texto3 mt-3">4</p>
@@ -79,22 +79,23 @@
               </div>
             </div>
             <p class="t-c">En proceso</p>
+          </div> -->
           </div>
-        </div>
-        <p class="texto1 mx-5 mt-3">(*) LARES te sugiere que realices la inscripción de tu minuta
+          <!-- <p class="texto1 mx-5 mt-3">(*) LARES te sugiere que realices la inscripción de tu minuta
           de compraventa en los Registros Públicos, con la finalidad de
-           que el inmueble aparezca inscrito a tu nombre.</p>
-      </div>
+           que el inmueble aparezca inscrito a tu nombre.</p> -->
+        </div>
 
-      <h4 class="titulo mt-3 mb-4 mx-3">Anexo</h4>
-      <div class="container mb-4">
-        <div class="row">
-          <div class="col-6 col-md-3 titulo2">Plano de inmueble</div>
-          <div class="col-6 col-md-3"><button class="btn boton_anexo" (click)="obtenerImagenLote()">Ver</button></div>
-          <div class="col-6 col-md-3 mt-3 mt-md-0 titulo2">Contrato</div>
-          <div class="col-6 col-md-3 mt-3 mt-md-0"><button class="btn boton_anexo" (click)="obtenerImagenLote()">Ver</button></div>
+        <h4 class="titulo mt-3 mb-4 mx-3">Anexo</h4>
+        <div class="container mb-4">
+          <div class="row">
+            <div class="col-6 col-md-3 titulo2">Plano de inmueble</div>
+            <div class="col-6 col-md-3"><button class="btn boton_anexo" (click)="obtenerImagenLote()">Ver</button></div>
+            <div class="col-6 col-md-3 mt-3 mt-md-0 titulo2">Contrato</div>
+            <div class="col-6 col-md-3 mt-3 mt-md-0"><button class="btn boton_anexo"
+                (click)="obtenerImagenLote()">Ver</button></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
