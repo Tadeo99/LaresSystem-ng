@@ -17,7 +17,7 @@ export class ModalBoletaComponent implements OnInit {
   comprobante : any;
   private: string;
   mostrarTabla : boolean = false;
-  displayedColumns: string[] = ['nro', 'numero_operacion', 'detalles'];
+  displayedColumns: string[] = ['nro', 'numero_operacion','tipoComprobante', 'detalles'];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,

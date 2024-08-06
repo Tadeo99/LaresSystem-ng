@@ -28,10 +28,17 @@
           <td mat-cell *matCellDef="let element"> {{ element.numero_operacion }} </td>
         </ng-container>
 
+        <ng-container matColumnDef="tipoComprobante">
+          <th mat-header-cell *matHeaderCellDef> Tipo Comprobante </th>
+          <td mat-cell *matCellDef="let element"> {{ element.tipoComprobante }} </td>
+        </ng-container>
+
         <ng-container matColumnDef="detalles">
           <th mat-header-cell *matHeaderCellDef> Ver Detalle </th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="verDetalle(element)" class="ver-detalle-btn">Ver Boleta</button>
+            <a *ngIf="element.url != null" class="ver-detalle-btn" [href]="element.url" target="_blank" matTooltip="Ver Detale">
+              <mat-icon>visibility</mat-icon> <!-- Aquí usamos el ícono de Material "visibility" -->
+            </a>
           </td>
         </ng-container>
 
