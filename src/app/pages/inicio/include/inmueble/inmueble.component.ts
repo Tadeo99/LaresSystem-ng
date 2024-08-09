@@ -34,6 +34,7 @@ export class inmuebleComponent implements OnInit {
   urlPrincipal : string;
   urlSecundario : string;
   estado : string;
+  urlContrato : string;
   constructor(
     private usuarioService: UsuarioService,
     private service: ApiserviceService,
@@ -83,6 +84,20 @@ export class inmuebleComponent implements OnInit {
       if (!response.isError) {
         this.urlImagen = response.listaResultado[0].path_url;
         this.openModalImagen();
+      }else {
+        this.openModalError(response.mensajeError);
+      }
+    });
+  }
+
+  async obtenerUrlContrato() {
+    var params = {
+      codigo: this.contratoSeleccionado?.numero_contrato+'.pdf'
+    };
+    await this.service.obtenerPdfContrato(params).subscribe((response: any) => {
+      if (!response.isError) {
+        this.urlContrato = response.objetoResultado;
+        window.open(this.urlContrato, '_blank');
       }else {
         this.openModalError(response.mensajeError);
       }

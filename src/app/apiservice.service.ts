@@ -105,4 +105,10 @@ export class ApiserviceService {
     return this.dataService.execGet(request).pipe();
   }
 
+  obtenerPdfContrato(request: any): Observable<any> {
+    const pathService = environment.urlService + 'contrat/url';
+    this.dataService.set(pathService);
+    return this.dataService.execGet(request).pipe();
+  }
+
 }
