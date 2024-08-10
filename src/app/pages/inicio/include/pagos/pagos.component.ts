@@ -321,9 +321,21 @@ export class PagosComponent implements OnInit {
 
   formatDateTemp(date: any): string {
     if (date) {
-      const formattedDate = this.datePipe.transform(date, 'dd/MM/yyyy');
-      return formattedDate ? formattedDate : '-';
+      const parsedDate = new Date(date);
+  
+      // Extraer el día, mes y año
+      const day = parsedDate.getUTCDate(); // Cambiado de getDate() a getUTCDate()
+      const month = parsedDate.getUTCMonth() + 1; // Cambiado de getMonth() a getUTCMonth()
+      const year = parsedDate.getUTCFullYear(); // Cambiado de getFullYear() a getUTCFullYear()
+  
+      // Formatear el día y el mes para que siempre tengan dos dígitos
+      const formattedDay = day < 10 ? `0${day}` : `${day}`;
+      const formattedMonth = month < 10 ? `0${month}` : `${month}`;
+  
+      // Retornar la fecha en formato dd/MM/yyyy
+      return `${formattedDay}/${formattedMonth}/${year}`;
     }
+  
     return '-';
   }
 
