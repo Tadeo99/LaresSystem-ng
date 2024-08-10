@@ -166,7 +166,7 @@
                       <td>{{ formatMilesNumber(historial.monto_programado) }}</td>
                       <td>{{ formatDateTemp(historial.fecha_vcto) }}</td>
                       <td>{{ formatMilesNumber(historial.monto_pagado) }}</td>
-                      <td>{{ historial.saldo }}</td>
+                      <td>{{ formatMilesNumber(historial.saldo) }}</td>
                       <td>{{ formatDateTemp(historial.fecha_pago) }}</td>
                       <td>
                         <p class="text-end" *ngIf="shouldShowButton(historial.monto_pagado, historial.saldo)">
