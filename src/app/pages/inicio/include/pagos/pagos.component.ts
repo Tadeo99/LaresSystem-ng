@@ -123,6 +123,10 @@ export class PagosComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {});
   }
 
+  getProjectName(historial: any): string {
+    return historial.codigo_proyecto === 'VE' ? historial.etiqueta : historial.nombre;
+  }
+
   isDeudaVencida(historial: any): boolean {
     const currentDate = new Date();
     const fechaVencimiento = new Date(historial.fecha_vcto);
@@ -322,7 +326,6 @@ export class PagosComponent implements OnInit {
   formatDateTemp(date: any): string {
     if (date) {
       const parsedDate = new Date(date);
-  
       // Extraer el día, mes y año
       const day = parsedDate.getUTCDate(); // Cambiado de getDate() a getUTCDate()
       const month = parsedDate.getUTCMonth() + 1; // Cambiado de getMonth() a getUTCMonth()
@@ -335,7 +338,6 @@ export class PagosComponent implements OnInit {
       // Retornar la fecha en formato dd/MM/yyyy
       return `${formattedDay}/${formattedMonth}/${year}`;
     }
-  
     return '-';
   }
 
