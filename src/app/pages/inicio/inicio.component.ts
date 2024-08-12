@@ -161,7 +161,7 @@ export class InicioComponent implements OnInit, OnChanges {
                 const cacheService = new CacheService<any>('listaContrato');
                 cacheService.setCache(response.listaResultado);
                 this.contratoService.setContrato(this.contrato);
-                this.obtenerEstado(this.contratoSeleccionado.numero_contrato);
+                //this.obtenerEstado(this.contratoSeleccionado.numero_contrato);
               }
               console.log('Lista contrato desde servicio', this.listaContrato);
             } else {
@@ -171,7 +171,7 @@ export class InicioComponent implements OnInit, OnChanges {
       }
     } else {
       this.contratoSeleccionado = this.contratoService.getContrato();
-      await this.obtenerEstado(this.contratoSeleccionado.numero_contrato);
+      //await this.obtenerEstado(this.contratoSeleccionado.numero_contrato);
     }
   }
 

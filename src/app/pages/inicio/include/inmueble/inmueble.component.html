@@ -33,57 +33,22 @@
         <h4 class="titulo m-3">Estado de mi propiedad</h4>
         <div class="container">
           <div class="row mx-3">
-            <div class="col-12 col-md-4 col-md-4 mx-0  text-center">
+            <div 
+              class="col-12 col-md-4 mx-0 text-center" 
+              *ngFor="let estado of estadosFases; let i = index">
               <div class="step-container">
-                <div class="step completed">
-                  <p class="texto3 mt-3">1</p>
-                  <img src="../../../../../assets/1.svg" alt="">
-                  <p class="titulo2 ps-3 pt-3">Contrato firmado</p>
+                <div [ngClass]="{'step': true, 'completed': isCompleted(estado.orden)}">
+                  <p class="texto3 mt-3">{{ i + 1 }}</p>
+                  <img [src]="getIconPath(i + 1)" alt="">
+                  <p class="titulo2 ps-3 pt-3">{{ estado.estado }}</p>
                 </div>
-                <div class="line completed"></div>
+                <div *ngIf="i < estadosFases.length - 1" [ngClass]="{'line': true, 'completed': isCompleted(estado.orden)}"></div>
               </div>
-              <p class="t-c text-completed">Completado</p>
+              <p class="t-c" [ngClass]="{'text-completed': isCompleted(estado.orden)}">
+                {{ isCompleted(estado.orden) ? 'Completado' : 'En proceso' }}
+              </p>
             </div>
-
-
-            <div class="col-12 col-md-4 col-md-4 mx-0 text-center">
-              <div class="step-container">
-                <div class="step completed">
-                  <p class="texto3 mt-3">2</p>
-                  <img src="../../../../../assets/2.svg" alt="">
-                  <p class="titulo2 ps-3 pt-3">Pago completado</p>
-                </div>
-                <div class="line completed"></div>
-              </div>
-              <p class="t-c text-completed">Completado</p>
-            </div>
-
-
-            <div class="col-12 col-md-4 col-md-4 mx-0  text-center">
-              <div class="step-container">
-                <div class="step">
-                  <p class="texto3 mt-3">3</p>
-                  <img src="../../../../../assets/3.svg" alt="">
-                  <p class="titulo2 ps-3 pt-3">Entrega del inmueble</p>
-                </div>
-                <!-- <div class="line "></div> -->
-              </div>
-              <p class="t-c">En proceso</p>
-            </div>
-            <!-- <div class="col-12 col-md-3 col-md-3 mx-0  text-center">
-            <div class="step-container">
-              <div class="step ">
-                <p class="texto3 mt-3">4</p>
-                <img src="../../../../../assets/4.svg" alt="">
-                <p class="titulo2 ps-3 pt-3">Entrega de minuta *</p>
-              </div>
-            </div>
-            <p class="t-c">En proceso</p>
-          </div> -->
           </div>
-          <!-- <p class="texto1 mx-5 mt-3">(*) LARES te sugiere que realices la inscripción de tu minuta
-          de compraventa en los Registros Públicos, con la finalidad de
-           que el inmueble aparezca inscrito a tu nombre.</p> -->
         </div>
 
         <h4 class="titulo mt-3 mb-4 mx-3">Anexo</h4>

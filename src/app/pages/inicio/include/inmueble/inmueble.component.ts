@@ -18,12 +18,12 @@ import { CacheService } from 'src/shared/CacheService';
 export class inmuebleComponent implements OnInit {
   datos: any;
   @Input() contratoSeleccionado: any;
-  @Input() estadoContrato: any;
   currentPage: number = 1; // Página actual
   itemsPerPage: number = 10; // Elementos por página
   tipoDocumento: any;
   numDocumento: any;
   listaHistorial: any[] = [];
+  estadoContrato:any[] = [];
   usuario: Usuario | null;
   urlImagen: string;
   montoPagadoTotal: number = 0;
@@ -43,6 +43,52 @@ export class inmuebleComponent implements OnInit {
     private router: Router,
     private datePipe: DatePipe
   ) {}
+
+  async obtenerEstado(numContrato: string) {
+    console.log("numContrato estado", numContrato);
+    const cacheService = new CacheService<any>('estado');
+    this.estadoContrato = cacheService.getCache() || [];
+  
+    if (this.estadoContrato == null || this.estadoContrato.length == 0 || this.estadoContrato == undefined) {
+      const params = {
+        numero_contrato: numContrato
+      };
+  
+      await this.service.obtenerEstado(params).subscribe((response: any) => {
+        if (!response.isError) {
+          // Verificar si response.objetoResultado es un arreglo y tiene al menos un elemento
+          if (Array.isArray(response.listaResultado) && response.listaResultado.length > 0) {
+            this.estadoContrato = response.listaResultado;
+            const cacheService = new CacheService<any>('estado');
+            cacheService.setCache(this.estadoContrato);
+          } else {
+            // En caso de que objetoResultado no sea un arreglo o esté vacío, manejarlo según tu lógica
+            this.estadoContrato = []; // o algún valor por defecto
+            console.error('objetoResultado no es un arreglo o está vacío.');
+          }
+        } else {
+          this.openModalError(response.mensajeError);
+        }
+      });
+    }else{
+      //hacer cosas con la lista de esta de cache
+    }
+  }
+
+  estadosFases = [
+    { estado: 'Contrato Firmado', orden: 1 },
+    { estado: 'Pago completado', orden: 2 },
+    { estado: 'Entrega del inmueble', orden: 3 },
+    // Añadir más fases aquí si es necesario
+  ];
+  
+  isCompleted(orden: number): boolean {
+    return this.estadoContrato.some(estado => estado.orden === orden);
+  }
+  
+  getIconPath(stepNumber: number): string {
+    return `../../../../../assets/${stepNumber}.svg`;
+  }
 
 
   async obtenerProyectoUrl(contrato: string) {
@@ -138,14 +184,11 @@ export class inmuebleComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  async ngOnInit(){
     this.usuario = this.usuarioService.getUsuario();
-
     this.recuperarParametros();
     this.obtenerProyectoUrl(this.contratoSeleccionado?.codigo_proyecto);
-    const cacheService = new CacheService<any>('estado');
-    this.estado = cacheService.getCache() || '';
-    //this.obtenerContrato();
+    await this.obtenerEstado(this.contratoSeleccionado.numero_contrato);
   }
 
   calcularValores() {

@@ -21,7 +21,6 @@ import { CacheGeneralService } from 'src/shared/CacheServiceGeneral';
 export class GeneralComponent implements OnInit, OnChanges {
   @Input() contratoSeleccionado: any;
   @Input() modulo: string;
-  @Input() estadoContrato: any;
   tipoDocumento: any;
   showAll: boolean = false;
   numDocumento: any;
