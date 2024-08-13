@@ -35,6 +35,8 @@ export class inmuebleComponent implements OnInit {
   urlSecundario : string;
   estado : string;
   urlContrato : string;
+  maxOrder: number = 0;
+
   constructor(
     private usuarioService: UsuarioService,
     private service: ApiserviceService,
@@ -61,6 +63,7 @@ export class inmuebleComponent implements OnInit {
             this.estadoContrato = response.listaResultado;
             const cacheService = new CacheService<any>('estado');
             cacheService.setCache(this.estadoContrato);
+            this.calculateMaxOrder();
           } else {
             // En caso de que objetoResultado no sea un arreglo o esté vacío, manejarlo según tu lógica
             this.estadoContrato = []; // o algún valor por defecto
@@ -72,7 +75,15 @@ export class inmuebleComponent implements OnInit {
       });
     }else{
       //hacer cosas con la lista de esta de cache
+      this.calculateMaxOrder();
     }
+  }
+
+  calculateMaxOrder() {
+    // Encuentra el valor máximo de `orden` en `estadoContrato`
+    this.maxOrder = this.estadoContrato.reduce((max, estado) => {
+      return estado.orden > max ? estado.orden : max;
+    }, 0);
   }
 
   estadosFases = [

@@ -37,18 +37,28 @@
               class="col-12 col-md-4 mx-0 text-center" 
               *ngFor="let estado of estadosFases; let i = index">
               <div class="step-container">
-                <div [ngClass]="{'step': true, 'completed': isCompleted(estado.orden)}">
+                <div [ngClass]="{'step': true, 'completed': i + 1 <= maxOrder}">
                   <p class="texto3 mt-3">{{ i + 1 }}</p>
                   <img [src]="getIconPath(i + 1)" alt="">
                   <p class="titulo2 ps-3 pt-3">{{ estado.estado }}</p>
                 </div>
-                <div *ngIf="i < estadosFases.length - 1" [ngClass]="{'line': true, 'completed': isCompleted(estado.orden)}"></div>
+          
+                <!-- Línea entre los pasos -->
+                <div *ngIf="i < estadosFases.length - 1" 
+                [ngClass]="{
+                   'line_solid': i + 1 < maxOrder, 
+                   'line': true, 'completed': i + 1 === maxOrder
+                 }"></div>
+                 
               </div>
-              <p class="t-c" [ngClass]="{'text-completed': isCompleted(estado.orden)}">
-                {{ isCompleted(estado.orden) ? 'Completado' : 'En proceso' }}
+              <p class="t-c" [ngClass]="{'text-completed': i + 1 <= maxOrder}">
+                {{ i + 1 <= maxOrder ? 'Completado' : 'En proceso' }}
               </p>
             </div>
           </div>
+          
+          
+          
         </div>
 
         <h4 class="titulo mt-3 mb-4 mx-3">Anexo</h4>

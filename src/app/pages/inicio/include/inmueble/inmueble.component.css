@@ -149,6 +149,13 @@
     margin: 0 -25px 0 -2px;
 }
 
+.line_solid {
+    width: 200px;
+    height: 2px;
+    background-color: transparent;
+    border-top: 7px solid  #008755;
+    margin: 0 -25px 0 -2px;
+  }
 .line.completed {
     border-top: 7px dashed #008755;
 }
