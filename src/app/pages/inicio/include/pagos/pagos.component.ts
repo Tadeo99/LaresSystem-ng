@@ -157,12 +157,6 @@ export class PagosComponent implements OnInit {
       this.currentPage++;
     }
   }
-  toggleAccordion(id: string) {
-    const element = document.getElementById(id);
-    if (element) {
-      element.classList.toggle('show');
-    }
-  }
   ngOnInit(): void {
     this.usuario = this.usuarioService.getUsuario();
     this.recuperarParametros();

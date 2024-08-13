@@ -92,7 +92,9 @@
   font-weight: bold;
   text-decoration: underline;
 }
-
+.accordion-body {
+  padding: 0.4em 1.25rem;
+}
 /*seccion de rectangulos*/
 .panel {
   border: 1px solid #008755;
@@ -108,33 +110,30 @@
 }
 
 .cuota-pagada {
-  background-color: #B9EDBA; /* Verde */
-  /* color: #ffffff; Texto blanco */
+  background-color: #B9EDBA; 
 }
 .deuda-vencida {
-  background-color: #ffe6e6; /* Fondo rojo claro */
-  color: red !important; /* Texto rojo */
-  font-weight: bold; /* Texto en negrita */
+  background-color: #ffe6e6; 
+  color: red !important; 
+  font-weight: bold;
 }
 .overflow-x-auto {
   overflow-x: auto;
   max-width: 100%;
 }
 
-/* Establece un ancho mínimo para la tabla */
 .table {
   max-width: 100%;
 }
 
-/* Agrega un padding inferior para evitar que el contenido se solape con la barra de desplazamiento */
 .table-wrapper {
-  padding-bottom: 20px; /* Puedes ajustar el valor según tus necesidades */
+  padding-bottom: 20px; 
 }
 
 .percentage-label {
   font-size: 0.875rem;
   font-weight: bold;
-  color: #28a745; /* Este es el color de la barra de progreso */
+  color: #28a745; 
   margin-left: 0.5rem;
 }
 .accordion-item {
@@ -143,6 +142,9 @@
 }
 .accordion-header{
 margin: 0!important;
+}
+.accordion-header .titulo{
+  padding: 0.5rem 1rem;
 }
 .accordion-button{
 background-color: #F2F2F2 !important;
@@ -159,7 +161,7 @@ border-radius: 15px!important;
   text-align: center;
 }
 
-.alt_pan_gen{/**altura de la ficha de proximos a vences en "inicio"*/
+.alt_pan_gen{
   min-height: 200px;
 }
 .icon_face{
