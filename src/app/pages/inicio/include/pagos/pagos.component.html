@@ -2,11 +2,11 @@
   <div class="panel mb-2">
     <div class="accordion-item">
       <h2 class="accordion-header">
-        <span class="titulo" >
+        <span class="titulo">
           Como realizar mis pagos
         </span>
       </h2>
-      <div id="collapseUno" >
+      <div id="collapseUno">
         <div class="accordion-body">
           <h5 class="titulo1 ">Información General</h5>
           <p class="texto2 ms-3 mt-3">Para realizar el pago de tu letra, sigue los siguientes pasos</p>
@@ -14,13 +14,13 @@
             <div class="row mb-1">
               <div class="carousel mt-3">
                 <div class="carousel-container">
-                  <div class="carousel-slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide" [ngClass]="{'bg-black': i === 1 || i === 3}">
+                  <div class="carousel-slide" *ngFor="let slide of slides; let i = index"
+                    [class.active]="i === currentSlide" [ngClass]="{'bg-black': i === 1 || i === 3}">
                     <img [src]="slide.image" alt="Slide Image">
                     <div class="step mt-4">
                       <h2 class="t-title">{{slide.stepTitle}}</h2>
                       <p class="t-desc">{{slide.stepDescription}} <strong>{{slide.strongp}}</strong></p>
-                      <div class="step-desc"
-                          [ngClass]="{
+                      <div class="step-desc" [ngClass]="{
                             'oval': slide.shape === 'oval',
                             'rectangle': slide.shape === 'rectangle',
                             'limp': slide.shape === 'limp',
@@ -35,16 +35,17 @@
                   </div>
                 </div>
                 <div class="carousel-indicators">
-                  <span *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide" (click)="goToSlide(i)"></span>
-                </div>          
+                  <span *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide"
+                    (click)="goToSlide(i)"></span>
+                </div>
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
-    
+
 
   </div>
   <div class="panel">
@@ -68,12 +69,20 @@
               </div>
               <div class="col-3">
                 <div class="row">
-                  <div class="col-6 "><p class="titulo2 text-center mt-1 mb-1">Mz: </p></div>
-                  <div class="col-6 "><p class="text-center  mt-1 mb-1">{{ contratoSeleccionado?.Manzana }}</p></div>
+                  <div class="col-6 ">
+                    <p class="titulo2 text-center mt-1 mb-1">Mz: </p>
+                  </div>
+                  <div class="col-6 ">
+                    <p class="text-center  mt-1 mb-1">{{ contratoSeleccionado?.Manzana }}</p>
+                  </div>
                 </div>
                 <div class="row">
-                    <div class="col-6"><p class="titulo2 text-center mt-1 mb-1">Lt:</p></div>
-                    <div class="col-6"><p class="text-center  mt-1 mb-1">{{ contratoSeleccionado?.Lote }}</p></div>
+                  <div class="col-6">
+                    <p class="titulo2 text-center mt-1 mb-1">Lt:</p>
+                  </div>
+                  <div class="col-6">
+                    <p class="text-center  mt-1 mb-1">{{ contratoSeleccionado?.Lote }}</p>
+                  </div>
                 </div>
               </div>
               <div class="col-3 text-center d-flex flex-column align-items-center justify-content-center">
@@ -179,7 +188,7 @@
                     </tr>
                   </tbody>
                 </table>
-                
+
               </div>
             </div>
             <div class="d-flex justify-content-center mb-4">

@@ -124,12 +124,26 @@ export class PagosComponent implements OnInit {
   }
 
   getProjectName(historial: any): string {
-    return historial.codigo_proyecto === 'VE' ? historial.etiqueta : historial.nombre;
+    if (historial.codigo_proyecto === 'VE') {
+      return historial.etiqueta;
+    } else {
+      // Validaciones adicionales para historial.nombre (ignorando mayúsculas y minúsculas)
+      const nombreNormalizado = historial.nombre.trim().toLowerCase();
+      if (nombreNormalizado === 'firma') {
+        return 'Firma de Contrato';
+      } else if (nombreNormalizado === 'separa') {
+        return 'SEPARACIÓN';
+      } else {
+        return historial.nombre;
+      }
+    }
   }
 
   isDeudaVencida(historial: any): boolean {
     const currentDate = new Date();
-    const fechaVencimiento = new Date(historial.fecha_vcto);
+    // Extraer día, mes y año de la fecha en formato "dd/MM/yyyy"
+    const [day, month, year] = historial.fecha_vcto.split('/').map(Number);
+    const fechaVencimiento = new Date(year, month - 1, day); // Restar 1 al mes porque los meses en JavaScript van de 0 (enero) a 11 (diciembre)
     return fechaVencimiento < currentDate && parseFloat(historial.saldo) > 0;
   }
 
@@ -324,11 +338,11 @@ export class PagosComponent implements OnInit {
       const day = parsedDate.getUTCDate(); // Cambiado de getDate() a getUTCDate()
       const month = parsedDate.getUTCMonth() + 1; // Cambiado de getMonth() a getUTCMonth()
       const year = parsedDate.getUTCFullYear(); // Cambiado de getFullYear() a getUTCFullYear()
-  
+
       // Formatear el día y el mes para que siempre tengan dos dígitos
       const formattedDay = day < 10 ? `0${day}` : `${day}`;
       const formattedMonth = month < 10 ? `0${month}` : `${month}`;
-  
+
       // Retornar la fecha en formato dd/MM/yyyy
       return `${formattedDay}/${formattedMonth}/${year}`;
     }
