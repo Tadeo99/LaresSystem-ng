@@ -24,7 +24,7 @@
               <div *ngFor="let pago of listaLastPayment" class="mb-3">
                 <p class="titulo3 ps-3"><i class="bi bi-circle-fill"></i> PAGADO</p>
                 <div class="row">
-                  <div class="texto2 col-6 ps-4">{{ formatDate(pago.fecha_vcto) }}</div>
+                  <div class="texto2 col-6 ps-4">{{ pago.fecha_vcto }}</div>
                   <div class="col-6 pe-4 text-end titulo1"> {{pago.moneda}} {{ formatCurrency(pago.monto_pagado) }}</div>
                 </div>
                 <p class="titulo3 ps-3">Cuota: {{ pago.numero_couta }}</p>
@@ -72,7 +72,7 @@
                     <!-- Contenido de cada registro -->
                     <p class="titulo2 ps-3">PRÓXIMO VENCIMIENTO</p>
                     <div class="row">
-                        <div class="texto2 col-6 ps-4">{{ formatDate(letra.fecha_vcto) }}</div>
+                        <div class="texto2 col-6 ps-4">{{ letra.fecha_vcto }}</div>
                         <div class="titulo1 col-6 pe-4 text-end">{{letra.moneda}} {{ formatCurrency(letra.saldo) }}</div>
                     </div>
                     <p class="titulo2 ps-3">Cuota: {{ letra.numero_couta }}</p>
@@ -89,7 +89,7 @@
                             <!-- Contenido de cada registro -->
                             <p class="titulo2 ps-3">PRÓXIMO VENCIMIENTO</p>
                             <div class="row">
-                                <div class="texto2 col-6 ps-4">{{ formatDate(letra.fecha_vcto) }}</div>
+                                <div class="texto2 col-6 ps-4">{{ letra.fecha_vcto }}</div>
                                 <div class="titulo1 col-6 pe-4 text-end">{{letra.moneda}} {{ formatCurrency(letra.saldo) }}</div>
                             </div>
                             <p class="titulo2 ps-3">Cuota: {{ letra.numero_couta }}</p>
