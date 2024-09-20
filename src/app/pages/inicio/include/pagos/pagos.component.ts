@@ -212,14 +212,25 @@ export class PagosComponent implements OnInit {
   }
 
   get tieneDeudas(): boolean {
-    const hoy = new Date();
+    const currentDate = new Date();
+    
+    // Verificar si 'listaHistorial' no está vacío
+    if (!this.listaHistorial || this.listaHistorial.length === 0) {
+      return false;
+    }
+  
+    // Comprobamos las deudas pendientes
     const cuotasConDeuda = this.listaHistorial.filter((historial) => {
-      return (
-        new Date(historial.fecha_vcto) < hoy && historial.estado !== 'pagado'
-      );
+      // Extraer día, mes y año de la fecha en formato "dd/MM/yyyy"
+      const [day, month, year] = historial.fecha_vcto.split('/').map(Number);
+      const fechaVencimiento = new Date(year, month - 1, day); // Ajuste de mes
+      
+      return fechaVencimiento < currentDate && parseFloat(historial.saldo) > 0 && historial.estado !== 'pagado';
     });
+  
     return cuotasConDeuda.length > 0;
   }
+  
 
   cerrarSesion() {
     this.goLogin();
