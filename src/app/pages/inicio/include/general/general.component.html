@@ -128,9 +128,8 @@
                 <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body mt-0">
                     <a class="link link-opacity-100-hover"
-                        href="https://api.whatsapp.com/send?phone=51975146063&text=¡Hola!👋%20Tengo%20dudas%20y%20consultas%20en%20el%20%20proceso%20de%20post%20Venta%20¿Podría%20ayudarme%3F"
-                        target="_blank">Escríbenos aquí</a>
-
+                    [href]="'https://api.whatsapp.com/send?phone=' + 51975146063 + '&text=¡Hola!👋%20Tengo%20dudas%20y%20consultas%20en%20el%20%20proceso%20de%20post%20Venta%20¿Podría%20ayudarme%3F'"
+                    target="_blank">Escríbenos aquí</a>
                     <P class="texto2"></P>
                       <ul>
                         <li><strong>Recojo de letras:</strong> Coordina el recojo de tus letras canceladas al WhatsApp. </li>
@@ -154,8 +153,9 @@
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <a class="link link-opacity-100-hover"
-                        href="https://api.whatsapp.com/send?phone=51923365503&text=Estoy%20experimentando%20dificultades%20para%20pagar%20en%20este%20momento%20y%20necesito%20ayuda.%20¿Podrías%20guiarme%20sobre%20cómo%20proceder%3F"
-                        target="_blank">Escríbenos aquí</a>
+                      [href]="getWhatsAppLink()"
+                      target="_blank">Escríbenos aquí
+                    </a>          
                       <ul>
                         <li><strong>Dudas sobre cómo realizar mis pagos:</strong> Usted recibirá una comunicación días antes del vencimiento con el recordatorio de pago y el procedimiento para la cancelación de la cuota por vencer.</li>
                         <li><strong>Envío de Voucher de abono:</strong> Una vez efectuado el abono, por favor remitir el abono al correo <a href="mailto: creditosycobranzas@activaholding.pe">creditosycobranzas&#64;activaholding.pe</a> </li>

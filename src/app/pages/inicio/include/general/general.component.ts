@@ -35,7 +35,8 @@ export class GeneralComponent implements OnInit, OnChanges {
   totalCuotas: number = 0;
   listaHistorial: any[] = [];
   UrlBaner: string;
-
+  telefonoCobranzas: string = '';
+  
   constructor(
     private cacheService: CacheGeneralService,
     private usuarioService: UsuarioService,
@@ -66,7 +67,7 @@ export class GeneralComponent implements OnInit, OnChanges {
   }
 
   async obtenerContrato() {
-    //console.log('EL CONTRATO SELECCIONAO ES ', this.contratoSeleccionado);
+    console.log('EL CONTRATO SELECCIONAO ES ', this.contratoSeleccionado);
     this.obtenerProxmaLetra(this.contratoSeleccionado?.numero_contrato);
     this.obtenerLastpayment(this.contratoSeleccionado?.numero_contrato);
   }
@@ -102,20 +103,35 @@ export class GeneralComponent implements OnInit, OnChanges {
     var params = {
       codigo: contrato,
     };
+  
     this.service.obtenerProyectoUrl(params).subscribe((response: any) => {
       if (!response.isError) {
         const listaUrl = response.listaResultado;
         const banner = listaUrl.find((item: any) => item.tipo === 'Banner');
+  
         if (banner) {
           this.UrlBaner = banner.url;
         } else {
           this.openModalError('No se encontró una URL de tipo Banner');
+        }
+        /*--Boton whatsapp cobranza--*/ 
+        const nombreProyecto = this.contratoSeleccionado?.nombre_proyecto; 
+          
+        const proyectoFiltrado = listaUrl.find((proyecto: any) => proyecto.nombre === nombreProyecto);
+        if (proyectoFiltrado) {
+          const telefonoCobranzas = proyectoFiltrado.Telefono_cobranzas || '';
+          console.log(`Teléfono de cobranzas del proyecto ${nombreProyecto}:`, telefonoCobranzas);
+          this.telefonoCobranzas = telefonoCobranzas; 
+        } else {
+          console.log(`No se encontró un proyecto con el nombre: ${nombreProyecto}`);
+          this.telefonoCobranzas = ''; 
         }
       } else {
         this.openModalError(response.mensajeError);
       }
     });
   }
+  
 
   calcularValores() {
     this.totalCuotas = this.listaHistorial.length;
@@ -219,6 +235,27 @@ export class GeneralComponent implements OnInit, OnChanges {
     this.numDocumento = this.usuario?.documentoCliente;
   }
 
+  getWhatsAppLink(): string {
+    if (this.usuario && this.usuario.cliente) {
+      const nombreCompleto = this.usuario.cliente.split(' ');     
+      const primerNombre = this.toCamelCase(nombreCompleto[0]); 
+      const primerApellido = nombreCompleto.length > 1 ? this.toCamelCase(nombreCompleto[1]) : '';
+      const mensaje = `¡Hola! te escribe *${primerNombre} ${primerApellido}* 👋 Tengo algunas consultas sobre el proceso de Cobranzas ¿Podría ayudarme?`;
+  
+      return `https://api.whatsapp.com/send?phone=${this.telefonoCobranzas}&text=${encodeURIComponent(mensaje)}`;
+    }
+    return '#'; 
+  }  
+  
+  toCamelCase(text: string): string {
+    return text
+      .toLowerCase() 
+      .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match) =>
+        match.charAt(0).toUpperCase() + match.slice(1) 
+      )
+      .replace(/\s+/g, ''); 
+  }
+  
   goLogin() {
     localStorage.clear();
     this.usuarioService.deleteUsuario();
